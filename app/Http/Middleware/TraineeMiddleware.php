@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class EditorMiddleware
+class TraineeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,8 +19,8 @@ class EditorMiddleware
         foreach(Auth::user()->role as $role)
         {
             // dd(Auth::user()->role);
-            //if the role is editor , proceed with the requested page , else
-            if($role->name == 'editor')
+            //if the role is Trainee , proceed with the requested page , else
+            if($role->name == 'Trainee')
             {
                         return $next($request);
             }

@@ -25,9 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home','AdminController@index');
 
 //Route for showing the editor's dashboard after login
-Route::get('admin/editor','EditorController@index');
+Route::get('admin/trainee','TraineeController@index');
 
-Route::get('admin/test','EditorController@test');
+Route::get('admin/test','TraineeController@test');
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EditorController extends Controller
+class TraineeController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('editor',['except'=>'test']);
+        $this->middleware('trainee',['except'=>'test']);
     }
 
     public function index()

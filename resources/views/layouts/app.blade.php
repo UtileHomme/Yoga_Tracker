@@ -16,9 +16,9 @@
     <style media="screen">
     body
     {
-        background-image:url(../images/yoga1.jpg);
+        background-image:url(../images/yoga4.jpg);
         background-position: 0 40px;
-         background-color:  #8e8584  ;
+         background-color:  #273746;
          background-repeat:no repeat;
          background-size: cover;
          background-blend-mode:screen;
@@ -40,7 +40,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand " href="{{ url('/') }}">
+                    <a class="navbar-brand " href="{{ url('/') }}" style="margin-left: -140px;">
                         {{ config('app.name', 'Yoga Tracker') }}
                     </a>
                 </div>
@@ -55,8 +55,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('trainee.register') }}">Register</a></li>
+                        <li><a href="{{ route('admin.login') }}" >Login</a></li>
+                        <li style="margin-right: -204px;"><a href="{{ route('trainee.register') }}" >Register</a></li>
                         @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
