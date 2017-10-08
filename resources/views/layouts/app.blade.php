@@ -23,6 +23,8 @@
          background-size: cover;
          background-blend-mode:screen;
     }
+
+
     </style>
 </head>
 <body>
@@ -41,7 +43,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand " href="{{ url('/') }}" style="margin-left: -140px;">
-                        {{ config('app.name', 'Yoga Tracker') }}
+                        <strong>{{ config('app.name', 'Yoga Tracker') }}</strong>
                     </a>
                 </div>
 
@@ -59,8 +61,8 @@
                         <li style="margin-right: -204px;"><a href="{{ route('trainee.register') }}" >Register</a></li>
                         @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="margin-right:-240px;" id="login_name">
+                            <strong>{{ Auth::user()->name }} <span class="caret"></span> </strong>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -88,5 +90,7 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="../js/jquery.js"> </script>
+<script type="text/javascript" src="../js/login_name_hover_color.js"> </script>
 </body>
 </html>

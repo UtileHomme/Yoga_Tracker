@@ -7,12 +7,13 @@ use App\Admin;
 use App\role;
 use App\role_admin;
 use DB;
+use Session;
 
 class TraineeRegisterController extends Controller
 {
     public function showRegistrationForm()
    {
-       return view('admin.register');
+       return view('admin.trainee_register');
    }
 
    public function register(Request $request)
@@ -40,7 +41,8 @@ class TraineeRegisterController extends Controller
        $role_admin->admin_id = $admin_id;
        $role_admin->save();
 
-
+       Session::flash('success','You have been Registered Successfully!! Please Login Now!!');
+       return view('admin.login');
 
 
    }

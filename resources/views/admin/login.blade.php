@@ -7,6 +7,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Admin Login</div>
 
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+                @endif  
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
                         {{ csrf_field() }}
