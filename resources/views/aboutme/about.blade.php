@@ -99,10 +99,6 @@
         <p>ABOUT</p>
     </a>
 
-    <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-eye w3-xxlarge"></i>
-        <p>PHOTOS</p>
-    </a>
-
     <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-envelope w3-xxlarge"></i>
         <p>CONTACT</p>
     </a>
@@ -116,7 +112,6 @@
         <a href="{{url('/')}}" class="w3-bar-item w3-button" style="width:25% !important">YOGA TRACKER HOME PAGE</a>
         <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
         <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-        <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
         <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
     </div>
 </div>
