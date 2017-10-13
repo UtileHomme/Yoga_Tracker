@@ -21,7 +21,7 @@
     <style media="screen">
     body
     {
-        background-color: #283747 ;
+        background-color: #fff ;
     }
     #dash
     {

@@ -24,14 +24,14 @@
             }
 
 
-            body
+            /*body
             {
                 background-image:url(../images/yoga1.jpg);
                  background-color:  #8e8584  ;
                  background-repeat:no repeat;
                  background-size: cover;
                  background-blend-mode:screen;
-            }
+            }*/
 
 
             .full-height {
@@ -90,11 +90,23 @@
                 </div>
             @endif
 
+            <div class="row" style="margin-left:30px; margin-top:30px;">
+                @if(session('success'))
+                <div style="font-color:black;">
+                    {{session('success')}}
+                </div>
+                @endif
+            </div>
+
+
             <div class="content">
                 <div class="title m-b-md">
                     <h3 style="font-family:Abril Fatface">Yoga Tracker</h3>
                 </div>
             </div>
+
+
+
         </div>
     </body>
 </html>

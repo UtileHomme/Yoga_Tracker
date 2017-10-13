@@ -13,21 +13,35 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style media="screen">
-    body
+    div.bgimage
     {
+        width: 100%
         background-image:url(../images/yoga4.jpg);
         background-position: 0 40px;
          background-color:  #273746;
-         background-repeat:no repeat;
-         background-size: cover;
+         background-repeat: no-repeat;
+         background-size: 100% 100%;
          background-blend-mode:screen;
     }
 
 
     </style>
 </head>
-<body>
+<body  >
+
+
+
+
     <div id="app">
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
@@ -92,5 +106,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="../js/jquery.js"> </script>
 <script type="text/javascript" src="../js/login_name_hover_color.js"> </script>
+
 </body>
 </html>

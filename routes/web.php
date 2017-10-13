@@ -13,7 +13,9 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/aboutme','AboutMeController@index');
 
 Auth::routes();
 
@@ -40,3 +42,5 @@ Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showRes
 
 Route::GET('trainee-register','TraineeRegisterController@showRegistrationForm')->name('trainee.register');
 Route::POST('trainee-register','TraineeRegisterController@register')->name('trainee.registered');
+
+Route::POST('contactform','ContactFormController@contact')->name('contact');
