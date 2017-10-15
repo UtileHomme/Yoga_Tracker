@@ -13,7 +13,7 @@ class TraineeRegisterController extends Controller
 {
     public function showRegistrationForm()
    {
-       return view('admin.trainee_register');
+       return view('traineee.trainee_register');
    }
 
    public function register(Request $request)

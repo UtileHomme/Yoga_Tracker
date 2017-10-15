@@ -33,7 +33,7 @@ Route::get('admin/test','TraineeController@test');
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 
-Route::POST('admin','Admin\LoginController@login');
+Route::POST('admin','Admin\LoginController@login')->name('admin.login');
 Route::POST('admin-password/email','Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::GET('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 

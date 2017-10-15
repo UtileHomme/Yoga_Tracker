@@ -14,7 +14,7 @@ class TraineeController extends Controller
 
     public function index()
     {
-        return view('admin.trainee');
+        return view('traineee.trainee');
     }
 
     //making a page which is accessible to the editor and admin

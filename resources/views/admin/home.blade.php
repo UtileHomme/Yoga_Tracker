@@ -1,3 +1,5 @@
+<!-- This is the Admin dashboard -->
+
 @extends('layouts.app')
 
 @section('content')

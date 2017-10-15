@@ -16,13 +16,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Latest compiled and minified CSS -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Styles -->
     <style>
@@ -38,12 +38,13 @@
 
     .bg-image
     {
-        background-image:url(../images/yoga6.jpg);
+        background-image:url(../images/yoga8.jpg);
         background-position: center center;
-         background-repeat: no-repeat;
-         background-attachment: fixed;
-         background-size: cover;
-         background-blend-mode:screen;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-blend-mode: lighten;
+        background-blend-mode:screen;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -103,6 +104,25 @@
         left: 10px;
         top: 18px;
     }
+
+    /*Changing the color of the placeholder */
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    red;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    red;
+       opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    red;
+       opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:    red;
+    }
+    ::-ms-input-placeholder { /* Microsoft Edge */
+       color:    red;
+    }
     </style>
 </head>
 <body>
@@ -130,21 +150,21 @@
         </div>
 
         <!-- <div class="row" style="margin-left:30px; margin-top:30px;">
-            @if(session('success'))
-            <div style="font-color:black;">
-                {{session('success')}}
-            </div>
-            @endif
-        </div>
-    </div> -->
-
-    <!-- <div class="content">
-    <div class="title m-b-md">
-    <h3 style="font-family:Abril Fatface">Yoga Tracker</h3>
+        @if(session('success'))
+        <div style="font-color:black;">
+        {{session('success')}}
+    </div>
+    @endif
 </div>
 </div> -->
 
-    @yield('content')
+<!-- <div class="content">
+<div class="title m-b-md">
+<h3 style="font-family:Abril Fatface">Yoga Tracker</h3>
+</div>
+</div> -->
+
+@yield('content')
 
 </div>
 
