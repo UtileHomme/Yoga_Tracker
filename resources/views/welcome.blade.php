@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Yoga Tracking Website') }}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="images/favicon/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon/yoga_awesome.ico">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="images/favicon/yoga_awesome.png">
 
     <link rel="stylesheet" type="text/css" href="css/plugin.css">
 
@@ -25,9 +25,9 @@
 
 
 
-    <!-- <div id="preloader">
+    <div id="preloader">
     <div class="loader"></div>
-</div> -->
+</div>
 
 
 
@@ -39,7 +39,7 @@
 
                 <div class="col-sm-3">
                     <div class="logo">
-                        <a href="url('/')">Yoga Tracker</a>
+                        <a href="{{url('/')}}">Yoga Tracker</a>
                     </div>
                 </div>
 
@@ -88,10 +88,6 @@
                             <div class="header-text">
                                 <p>Hi! This is Jatin Sharma</p>
                                 <h2><span class="typing"></span></h2>
-
-                                <!-- <div class="margin-top-60">
-                                <a class="button button-style button-style-icon fa fa-long-arrow-right smoth-scroll" href="#portfolio">View Portfolio</a>
-                            </div> -->
 
                         </div>
                     </div>
@@ -312,35 +308,31 @@
             <div class="col-md-6">
 
                 <div class="row">
-                    <form>
-
+                    <form class="" action="{{route('contact')}}" method="post">
+                          {{ csrf_field() }}
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="Your Name">
+                                <input type="text" id="name" class="form-control" placeholder="Your Name" name="name">
                             </div>
                         </div>
 
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Your Email">
+                                <input type="email" id="email" class="form-control" placeholder="Your Email" name="email">
                             </div>
                         </div>
 
                         <div class="col-sm-12">
-                            <select id="subject" class="form-group form-control">
+                            <select id="subject" class="form-group form-control" name="subject">
                                 <option value="" selected disabled>Subject</option>
-                                <option>Website Design & Development</option>
-                                <option>Wordpress Development</option>
-                                <option>Search Engine Optimization</option>
-                                <option>Mobile Website</option>
-                                <option>I Want to General Talk</option>
+                                <option>I Want a General Talk</option>
                                 <option>Other</option>
                             </select>
                         </div>
 
                         <div class="col-sm-12">
                             <div class="textarea-message form-group">
-                                <textarea id="message" class="textarea-message form-control" placeholder="Your Message" rows="5"></textarea>
+                                <textarea id="message" class="textarea-message form-control" placeholder="Your Message" rows="5" name="message"></textarea>
                             </div>
                         </div>
 

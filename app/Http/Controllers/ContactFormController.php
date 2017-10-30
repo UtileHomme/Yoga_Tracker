@@ -17,6 +17,7 @@ class ContactFormController extends Controller
             'message1' => 'min:10',
         ]);
 
+        // dd($request->all());
 
         $data = ['name' => $request->name, 'email'=>$request->email,'subject'=>$request->subject,'message1'=>$request->message];
 
