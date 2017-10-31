@@ -86,8 +86,8 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="header-text">
-                                <p>Hi! This is Jatin Sharma</p>
-                                <h2><span class="typing"></span></h2>
+                                <!-- <p>Hi! This is Jatin Sharma</p> -->
+                                <h2 style="font-size:30px;"><span class="typing"></span></h2>
 
                         </div>
                     </div>
@@ -114,7 +114,7 @@
 
                 <h2>About Me.</h2>
 
-                <p>
+                <p style="padding-top: 10px;">
                     I am someone who is desperately trying to rekindle the "CREATIVE ME" : A part of me that was lost in an abyss created by other HOMOSAPIENS.
                     You can rely on me since I have a knack for getting things done!!!
                     I am enthusiastic and capable of spotting a problem, drilling through the endless factors and details that encompass the issue and I try my level best to come up with a viable solution.

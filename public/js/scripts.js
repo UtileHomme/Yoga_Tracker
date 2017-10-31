@@ -71,11 +71,24 @@
 		  return false;
 	    });
 
-        $(window).load(function(){
+        $(window).load(function()
+        {
         $(".typing").typed({
-            strings: ["I am a Backend Developer!!", "I also dabble in FrontEnd!!"],
-            typeSpeed: 50
+            strings: ["Accepting the reality of change gives rise to equanimity", "While meditating we are simply seeing what the mind has been doing all along","I know but one freedom and that is the freedom of the mind"],
+            typeSpeed: 70
           });
+         });
+
+        $(window).load(function(){
+
+            setInterval(function()
+            {
+                window.clearInterval(0);
+        $(".typing").typed({
+            strings: ["Accepting the reality of change gives rise to equanimity", "While meditating we are simply seeing what the mind has been doing all along","I know but one freedom and that is the freedom of the mind"],
+            typeSpeed: 70
+          });
+      },30000);
          });
 
 
@@ -156,7 +169,7 @@
             markers:[
             {
             address: "Bangalore",
-            html: "<b>Address</b>: <br> Vijayanagar, Bangalore, India",
+            html: "<b>Address</b>: <br> Hampi Nagar,Vijayanagar, Bangalore, India",
             popup: true
             }
             ]
