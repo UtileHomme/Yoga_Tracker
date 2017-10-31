@@ -256,6 +256,13 @@
                     </p>
                 </div>
 
+                <div class="yogaquote-word text-center">
+                    <img src="images/yogaquotes/yoga5.jpeg" class="img-responsive circle" alt="">
+                    <h2>Hatha Yoga Pradipika</h2>
+                    <p>
+                        “Anyone who practices can obtain success in yoga but not one who is lazy. Constant practice alone is the secret of success.”
+                    </p>
+                </div>
             </div>
         </div>
     </div>

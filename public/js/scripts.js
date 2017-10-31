@@ -88,7 +88,7 @@
             strings: ["Accepting the reality of change gives rise to equanimity", "While meditating we are simply seeing what the mind has been doing all along","I know but one freedom and that is the freedom of the mind"],
             typeSpeed: 70
           });
-      },30000);
+      },27900);
          });
 
 
