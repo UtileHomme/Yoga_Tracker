@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/aboutme','AboutMeController@index');
 
+Route::get('/download-resume','ResumeController@index')->name('download-resume');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

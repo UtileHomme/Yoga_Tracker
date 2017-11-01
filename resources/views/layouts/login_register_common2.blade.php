@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/plugin.css">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style1.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 
@@ -88,11 +88,10 @@ ul{
 	margin:0;
 	padding:0;
 }
-/*-- //Reset-Code --*/
 body {
     position: relative;
     height: 100%;
-    background: url(../images/yogaimages/yoga8.jpg);
+    background: url(../images/yogaimages/yoga4.jpg);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;

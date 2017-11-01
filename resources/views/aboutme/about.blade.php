@@ -1,224 +1,299 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <meta charset="utf-8">
+	<title>My Resume</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="css/default.css">
+	<link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="css/media-queries.css">
+   <link rel="stylesheet" href="css/magnific-popup.css">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<script src="js/modernizr.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="favicon.png" >
 
-    <style media="screen">
-
-    body, h1, h2, h3, h4, h5, h6
-    {
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .w3-row-padding img
-    {
-        margin-bottom: 12px;
-    }
-
-    /*set the width of the sidebar to 120px*/
-    .w3-sidebar
-    {
-        width: 120px;
-        background: #222;
-    }
-
-    /*Add a left margin to the "page content" that matches the width of the sidebar (120px)*/
-    #main
-    {
-        margin-left: 120px;
-    }
-
-    /*Changing the color of the placeholder */
-    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-        color:    red;
-    }
-    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-       color:    red;
-       opacity:  1;
-    }
-    ::-moz-placeholder { /* Mozilla Firefox 19+ */
-       color:    red;
-       opacity:  1;
-    }
-    :-ms-input-placeholder { /* Internet Explorer 10-11 */
-       color:    red;
-    }
-    ::-ms-input-placeholder { /* Microsoft Edge */
-       color:    red;
-    }
-
-    /*Remove margins from "page content" on small screens*/
-
-    @media only screen and (max-width: 600px)
-    {
-        #main
-        {
-            margin-left: 0;
-        }
-    }
-
-    </style>
-    <title>About Me</title>
 </head>
-<body class="w3-black">
+
+<body>
+
+   <header id="home">
+
+      <nav id="nav-wrap">
+
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+         <ul id="nav" class="nav">
+            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
+            <li><a class="smoothscroll" href="#about">About</a></li>
+	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
+            <li><a class="smoothscroll" href="#testimonials">Quotes for Success</a></li>
+         </ul>
+
+      </nav>
+
+      <div class="row banner">
+         <div class="banner-text">
+            <h1 class="responsive-headline">I'm Jatin Sharma.</h1>
+            <h3>I'm a Bangalore based <span>Laravel developer</span>, who also likes to dabble in Frontend. Let's <a class="smoothscroll" href="#about">start scrolling</a>
+            and learn more <a class="smoothscroll" href="#about">about me</a>.</h3>
+            <hr />
+         </div>
+      </div>
+
+      <p class="scrolldown">
+         <a class="smoothscroll" href="#about"><i class="icon-down-circle"></i></a>
+      </p>
+
+   </header>
 
 
-<!-- Icon bar (Sidebar -- hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+   <section id="about">
 
-    <!-- Avatar image on top left corner -->
-    <img src="../images/batman.jpeg" alt="" style="width:100%">
+      <div class="row">
 
-    <a href="{{url('/')}}" id="yogatracker" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-        <i class="fa fa-home w3-xxlarge"></i>
-        <p>YOGA TRACKER HOME PAGE</p>
-    </a>
-    <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-black">
-        <i class="fa fa-home w3-xxlarge"></i>
-        <p>HOME</p>
-    </a>
+         <div class="three columns">
 
-    <a href="#about" class="w3-bar-item w3-button w3-padding-large w3-hover-black" >
-        <i class="fa fa-user w3-xxlarge"></i>
-        <p>ABOUT</p>
-    </a>
+            <img class="profile-pic"  src="images/aboutme/profilepic.jpg" alt="" />
 
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-envelope w3-xxlarge"></i>
-        <p>CONTACT</p>
-    </a>
-</nav>
+         </div>
 
-<!-- Navbar on small screens (Hidden on medium and large screens) -->
+         <div class="nine columns main-col">
 
-<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
-    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
+            <h2>About Me</h2>
 
-        <a href="{{url('/')}}" class="w3-bar-item w3-button" style="width:25% !important">YOGA TRACKER HOME PAGE</a>
-        <a href="#home" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
-        <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-        <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-    </div>
-</div>
+            <p>
+                I am someone who is desperately trying to rekindle the "CREATIVE ME" : A part of me that was lost in an abyss created by other HOMOSAPIENS.
+                You can rely on me since I have a knack for getting things done!!!
+                I am enthusiastic and capable of spotting a problem, drilling through the endless factors and details that encompass the issue and I try my level best to come up with a viable solution.
+                In my free time I watch movies , read novels and comics. I am an ardent follower of Batman and try to live by his morals.
+            </p>
 
-<!-- Page Content -->
 
-    <div class="w3-padding-large" id="main">
+            <div class="row">
 
-        <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+               <div class="columns contact-details">
 
-        <h1 class="w3-jumbo" ><span class="w3-hide-small">I'm</span> Jatin Sharma</h1>
-        <p style="font-size:30px;">Laravel Enthusiast and Web Designing Dilettante</p>
+                  <h2>Contact Details</h2>
+                  <p class="address">
+						   <span>Jatin Sharma</span><br>
+						   <span>D - II /10 Pandara Road<br>
+						         New Delhi - 110003
+                     </span><br>
+						   <span>(+91) 8826621482</span><br>
+                     <span>yogatracker.in</span>
+					   </p>
 
-        <img src="../images/batman5.jpg" alt="batman" class="w3-image" width=100%  height=100%>
-        </header>
+               </div>
 
-        <!-- About Part starts here  -->
-
-        <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-
-            <h2 class="w3-text-light-grey" style="font-size:40px;">Jatin Sharma</h2>
-            <hr style="width:260px;" class="w3-opacity">
-
-            <p>I am someone who is desperately trying to rekindle the "CREATIVE ME" : A part of me that was lost in an abyss created by other HOMOSAPIENS. </p>
-            <p class="w3-center" style="font-size: 40px;">You can rely on me since I have a knack for getting things done!!! </p>
-            <p>I am enthusiastic and capable of spotting a problem, drilling through the endless factors and details that encompass the issue and I try my level best to come up with a viable solution.</p>
-            <p>In my free time I watch movies , read novels and comics. I am an ardent follower of Batman and try to live by his morals.</p>
-
-            <h3 class="w3-padding-16 w3-text-light-grey" style="font-size:40px;">My Skills</h3>
-            <hr style="width:160px" class="w3-opacity">
-            <p class="w3-wide">HTML CSS and Bootstrap</p>
-            <div class="w3-white">
-                <div class="w3-dark-grey" style="height:28px; width:65%">
-                    <p class="text-center" style="padding-top:4px;">65%</p>
-                </div>
-            </div>
-
-            <br>
-
-            <p class="w3-wide">PHP and Laravel</p>
-            <div class="w3-white">
-                <div class="w3-dark-grey" style="height:28px; width:50%">
-                    <p class="text-center" style="padding-top:4px;">50%</p>
-                </div>
-            </div>
-
-            <br>
-
-            <p class="w3-wide">Javascript and jQuery</p>
-            <div class="w3-white">
-                <div class="w3-dark-grey" style="height:28px; width:40%">
-                    <p class="text-center" style="padding-top:4px;">40%</p>
-                </div>
-            </div>
-
-            <br>
-
-            <p class="w3-wide">MySQL and Databases</p>
-            <div class="w3-white">
-                <div class="w3-dark-grey" style="height:28px; width:75%">
-                    <p class="text-center" style="padding-top:4px;">75%</p>
-                </div>
-            </div>
-
-            <br>
-
-            <button class="w3-button w3-light-grey w3-padding-large w3-section">
-                <i class="fa fa-download"></i>
-                Download Resume
-            </button>
-
-            <!-- Contact Form starts here -->
-
-            <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
-                <h2 class="w3-text-light-grey">Contact Me</h2>
-                <hr style="width:200px" class="w3-opacity">
-
-                <div class="w3-section">
-                    <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Delhi, India</p>
-                    <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +918826621482</p>
-                    <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Email: jatins368@gmail.com</p>
-                </div>
-
-                <br>
-
-                <p>Let's get in touch. Send me a message:</p>
-
-                <form class="" action="{{route('contact')}}" method="post">
-                      {{ csrf_field() }}
-                    <p><input type="text" name="name" value="" class="w3-input w3-row-padding-16" placeholder="Name" required></p>
-                    <p><input type="text" name="email" value="" class="w3-input w3-row-padding-16" placeholder="Email" required></p>
-                    <p><input type="text" name="subject" value="" class="w3-input w3-row-padding-16" placeholder="Subject" required></p>
-                    <p>
-                        <textarea name="message" value="" class="w3-input w3-row-padding-16" placeholder="Message" required></textarea>
-                    </p>
-                    <p>
-                        <button class="w3-button w3-light-grey w3-padding-large" type="submit"><i class="fa fa-paper-plane"></i>
-                            SEND MESSAGE
-                        </button>
-                    </p>
-                </form>
-
-                <!-- Contact Form ends here -->
+               <div class="columns download">
+                  <p>
+                     <a href="{{route('download-resume')}}" class="button"><i class="fa fa-download"></i>Download Resume</a>
+                  </p>
+               </div>
 
             </div>
 
-        </div>
-    </div>
+         </div>
+
+      </div>
+
+   </section>
+
+
+   <section id="resume">
+
+      <div class="row education">
+
+         <div class="three columns header-col">
+            <h1><span>Education</span></h1>
+         </div>
+
+         <div class="nine columns main-col">
+
+            <div class="row item">
+
+               <div class="twelve columns">
+
+                  <h3>St. Columba's School</h3>
+                  <p class="info">  <span>&bull;</span> <em class="date"> 1997 - 2010</em></p>
+
+                  <p>
+                  </p>
+
+               </div>
+
+            </div>
+
+            <div class="row item">
+
+               <div class="twelve columns">
+
+                  <h3>University School of Information and Communication Technology (IP University)</h3>
+                  <p class="info">Bachelor of Technology (Information Technology) <span>&bull;</span> <em class="date">2011 - 2015</em></p>
+
+                  <p>
+                  </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+
+      <div class="row work">
+
+         <div class="three columns header-col">
+            <h1><span>Work</span></h1>
+         </div>
+
+         <div class="nine columns main-col">
+
+            <div class="row item">
+
+               <div class="twelve columns">
+
+                  <h3>Tata Consultancy Services</h3>
+                  <p class="info">Java Developer <span>&bull;</span> <em class="date">Feb 2016 - Jan 2017</em></p>
+
+                  <p>
+                  </p>
+
+               </div>
+
+            </div>
+
+            <div class="row item">
+
+               <div class="twelve columns">
+
+                  <h3>Health Heal</h3>
+                  <p class="info">Laravel Developer <span>&bull;</span> <em class="date">June 2017 - Present</em></p>
+
+                  <p>
+                  </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+
+      <div class="row skill">
+
+         <div class="three columns header-col">
+            <h1><span>Skills</span></h1>
+         </div>
+
+         <div class="nine columns main-col">
+
+             <p>
+            </p>
+
+				<div class="bars">
+
+				   <ul class="skills">
+					   <li><span class="bar-expand photoshop text-center">45%</span><em>HTML and CSS</em></li>
+                  <li><span class="bar-expand illustrator"></span><em>PHP and Laravel</em></li>
+						<li><span class="bar-expand wordpress"></span><em>SQL and Databases</em></li>
+						<li><span class="bar-expand css"></span><em>JavaScript and jQuery</em></li>
+						<li><span class="bar-expand html5"></span><em>Algorithms and Data Structrues</em></li>
+					</ul>
+
+				</div>
+
+			</div>
+
+      </div>
+
+   </section>
+
+
+   <section id="testimonials">
+
+      <div class="text-container">
+
+         <div class="row">
+
+            <div class="two columns header-col">
+
+               <h1><span>Quotes for Success</span></h1>
+
+            </div>
+
+            <div class="ten columns flex-container">
+
+               <div class="flexslider">
+
+                  <ul class="slides">
+
+                     <li>
+                        <blockquote>
+                            <p>
+                                Success is not final; failure is not fatal: It is the courage to continue that counts.
+                           </p>
+                           <cite>Winston S. Churchill</cite>
+                        </blockquote>
+                     </li>
+
+                     <li>
+                        <blockquote>
+                           <p>
+                               There are two types of people who will tell you that you cannot make a difference in this world: those who are afraid to try and those who are afraid you will succeed.
+                           </p>
+                           <cite>Ray Goforth</cite>
+                        </blockquote>
+                     </li>
+
+                  </ul>
+
+               </div>
+
+            </div>
+
+         </div>
+
+       </div>
+
+   </section>
+
+
+
+
+   <footer>
+
+      <div class="row">
+
+         <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
+
+      </div>
+
+   </footer>
+
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+   <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+
+   <script src="js/jquery.flexslider.js"></script>
+   <script src="js/waypoints.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/magnific-popup.js"></script>
+   <script src="js/init.js"></script>
+
 </body>
+
 </html>

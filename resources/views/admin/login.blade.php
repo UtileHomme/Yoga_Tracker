@@ -11,7 +11,7 @@
                 <div class="login-agileits-top">
                     <form action="{{ route('admin.login') }}" method="post" >
                         {{ csrf_field() }}
-                        <p>User Name </p>
+                        <p>Email Id </p>
                         <input type="email" class="email" name="email" value="{{ old('email') }}" required autofocus />
                         <p>Password</p>
                         <input type="password" class="password" name="password" required=""/>
