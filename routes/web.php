@@ -46,3 +46,7 @@ Route::GET('trainee-register','TraineeRegisterController@showRegistrationForm')-
 Route::POST('trainee-register','TraineeRegisterController@register')->name('trainee.registered');
 
 Route::POST('contactform','ContactFormController@contact')->name('contact');
+
+//Route for PDF generation of view
+Route::get('pdfview','PDFController@index1');
+Route::get('pdf','PDFController@index')->name('pdf');
