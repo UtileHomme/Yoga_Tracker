@@ -22,9 +22,9 @@ class PDFController extends Controller
         // dd($info);
         if($request->has('download'))
         {
-
+            $leadid = 3454;
             $pdf = PDF::loadView('pdfview',compact('info'));
-            return $pdf->download('pdfview.pdf');
+            return $pdf->download("Assessment_Form_for_$leadid.pdf");
         }
 
         return view('pdfview', compact('info'));
