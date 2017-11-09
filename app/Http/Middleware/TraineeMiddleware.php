@@ -16,7 +16,7 @@ class TraineeMiddleware
      */
     public function handle($request, Closure $next)
     {
-        foreach(Auth::user()->role as $role)
+        foreach(Auth::guard('admin')->user()->role as $role)
         {
             // dd(Auth::user()->role);
             //if the role is Trainee , proceed with the requested page , else

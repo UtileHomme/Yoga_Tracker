@@ -1,6 +1,6 @@
 <!-- This is the trainee dashboard -->
 
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
 

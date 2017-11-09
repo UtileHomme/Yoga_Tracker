@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -13,33 +13,22 @@ use App\role_admin;
 use App\User;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class GoogleLoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = 'admin/trainee';
+    * Where to redirect users after login.
+    *
+    * @var string
+    */
+    protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    * Create a new controller instance.
+    *
+    * @return void
+    */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -64,7 +53,6 @@ class LoginController extends Controller
         if($adminModel)
         {
             $adminModel = Admin::where('email', $user->getEmail())->first();
-            $name = DB::table('admins')->where('name', $user->name)->value('name');
         }
         else
         {
@@ -72,7 +60,7 @@ class LoginController extends Controller
 
         $adminModel->name = $user->name;
         $adminModel->email = $user->getEmail();
-        $name = $user->name;
+
         // echo $user->getAvatar();
         $adminModel->save();
 
@@ -88,8 +76,8 @@ class LoginController extends Controller
         $role_admin->admin_id = $admin_id;
         $role_admin->save();
     }
+    // dd($adminModel);
             Auth::login($adminModel, true);
-            return redirect()->route('home',['name'=>$name]);
+            return redirect()->route('admin.trainee');
     }
-
 }

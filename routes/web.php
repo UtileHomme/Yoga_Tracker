@@ -21,7 +21,7 @@ Route::get('/download-resume','ResumeController@index')->name('download-resume')
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 
 //Routes for "Muti Auth"
 
@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home','AdminController@index');
 
 //Route for showing the editor's dashboard after login
-Route::get('admin/trainee','TraineeController@index');
+Route::get('admin/trainee','TraineeController@index')->name('admin.trainee');
 
 Route::get('admin/test','TraineeController@test');
 
@@ -50,3 +50,7 @@ Route::POST('contactform','ContactFormController@contact')->name('contact');
 //Route for PDF generation of view
 Route::get('pdfview','PDFController@index1');
 Route::get('pdf','PDFController@index')->name('pdf');
+
+// Routes for Login with google
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');

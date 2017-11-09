@@ -42,9 +42,9 @@ class RedirectIfAuthenticated
 
 
     foreach (Auth::guard('admin')->user()->role as $role) {
-    if($role->name == 'editor')
+    if($role->name == 'Trainee')
     {
-         return redirect('admin/editor');
+         return redirect('admin/trainee');
     }
 }
 
