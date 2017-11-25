@@ -18,16 +18,22 @@ class TraineeRegisterController extends Controller
 
    public function register(Request $request)
    {
-       $this->validation($request);
 
        $name = $request->name;
        $email = $request->email;
        $password = bcrypt($request->password);
-       Admin::create([
-           'name' => $name,
-           'email' => $email,
-           'password' => $password,
-       ]);
+
+
+    //    Admin::create([
+    //        'name' => $name,
+    //        'email' => $email,
+    //        'password' => $password,
+    //    ]);
+
+    DB::table('admins')->insert(
+    ['name' => $name, 'email' => $email,'password'=>$password]
+);
+
 
        $roles = new role;
        $roles->name = "Trainee";
@@ -40,6 +46,7 @@ class TraineeRegisterController extends Controller
        $role_admin->role_id = $role_id;
        $role_admin->admin_id = $admin_id;
        $role_admin->save();
+
 
        Session::flash('success','You have been Registered Successfully!! Please Login Now!!');
        return view('admin.login');

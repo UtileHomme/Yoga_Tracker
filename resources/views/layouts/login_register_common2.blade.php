@@ -63,7 +63,7 @@ body a:hover {
 body a:focus, a:hover {
 	text-decoration: none;
 }
-input[type="email"],input[type="text"],input[type=password],
+input[type="email"],input[type="text"],input[type="password"],
 input[type="button"],input[type="submit"],textarea{
 	 font-family: 'Poiret One', cursive;
 	transition:0.5s all;
@@ -128,14 +128,14 @@ h1.header-w3ls {
 }
 .form-control-w3l{display:flex;
 			  display: -webkit-flex;}
-input#name, input#email, input#orgn, input#timepicker, textarea,#datepicker1  {
+input#name, input#email,input#password,input#confirmpassword, input#orgn, input#timepicker, textarea,#datepicker1  {
     padding: 12px 15px;
    	-webkit-flex-basis:100%;
 	flex-basis:100%;
 }
 
 
-input#name, input#email, input#orgn, textarea#message, input#timepicker,#datepicker1 {
+input#name, input#email,input#password,input#confirmpassword, input#orgn, textarea#message, input#timepicker,#datepicker1 {
     color: #fff;
     outline: none;
     letter-spacing: 1px;
@@ -158,7 +158,7 @@ textarea#message{
     padding: 1em;
 	overflow: hidden;
 }
-input#name:hover, input#email:hover, input#orgn:hover, textarea#message:hover, input#timepicker:hover,#datepicker1:hover{border-right: 1px solid #841642;}
+input#name:hover, input#email:hover, input#password:hover, input#confirmpassword:hover,input#orgn:hover, textarea#message:hover, input#timepicker:hover,#datepicker1:hover{border-right: 1px solid #841642;}
 input[type="submit"] {
     text-transform: uppercase;
        background: #f1f1f1;
@@ -178,6 +178,26 @@ input[type="submit"] {
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
 }
+
+    .reg
+    {
+        text-transform: uppercase;
+        color: #000000;
+        padding: .7em 0em;
+        border: none;
+        font-size: 2em;
+        outline: none;
+        width: 100%;
+    	font-family: 'Muli', sans-serif;
+        letter-spacing: 1px;
+        font-weight: 600;
+        margin-top: 1em;
+        cursor: pointer;
+        -webkit-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+    }
 	input[type="submit"]:hover {
     color: #fff;
     background: #000;

@@ -1,62 +1,55 @@
 <!-- This is the trainee dashboard -->
 
-@extends('layouts.app1')
+@extends('traineee.layout.app')
 
-@section('content')
+@section('main-content')
 
-    <div class="container-fluid" style="padding-top:60px;">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default" >
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+<h1>
+Blank page
+<small>it all starts here</small>
+</h1>
+<ol class="breadcrumb">
+<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+<li class="active">Blank page</li>
+</ol>
+</section>
 
-                        <div class="" >
-                            <h4 style="float:left"><span id="dash">Welcome!</span></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Main content -->
+<section class="content">
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="panel panel-default" >
-                    <div class="panel-body">
+<!-- Default box -->
+<div class="box">
+<div class="box-header with-border">
+<h3 class="box-title">Hours Logged will be displayed here</h3>
 
-                        <div class="hours_logged" >
-                            <h4 class="text-center"><span id="dash">Hours logged Today</span></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default" >
-                    <div class="panel-body">
-
-                        <div class="hours_logged" >
-                            <h4 class="text-center"><span id="dash">Hours logged this Week</span></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default" >
-                    <div class="panel-body">
+<div class="box-tools pull-right">
+  <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+          title="Collapse">
+    <i class="fa fa-minus"></i></button>
+  <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+    <i class="fa fa-times"></i></button>
+</div>
+</div>
+<div class="box-body">
+Tabular representation of workout session for that particular trainee will come here
+</div>
+<!-- /.box-body -->
+<div class="box-footer">
 
 
-                        <div class="hours_logged" >
-                            <h4 class="text-center"><span id="dash">Hours logged this Month</span></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
+<!-- /.box-footer-->
+</div>
+<!-- /.box -->
+
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
 @endsection

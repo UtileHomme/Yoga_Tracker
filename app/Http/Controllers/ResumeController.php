@@ -9,7 +9,7 @@ class ResumeController extends Controller
 {
     public function index()
     {
-        $file= public_path(). "/download/hp1.pdf";
+        $file= public_path(). "/download/Jatin_Sharma_CV.pdf";
 
 $headers = array(
           'Content-Type: application/pdf',

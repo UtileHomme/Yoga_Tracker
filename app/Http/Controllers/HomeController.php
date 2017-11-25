@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
      public function index($name)
      {
-         $logged_in_user = $name;
-        //  dd($logged_in_user);
-         return view('traineee.trainee',compact('logged_in_user'));
+
+         $logged_in_user =$name;
+         return view('traineee.google.gtrainee',compact('logged_in_user'));
      }
 }

@@ -19,6 +19,8 @@ Route::get('/aboutme','AboutMeController@index');
 
 Route::get('/download-resume','ResumeController@index')->name('download-resume');
 
+Route::resource('createworkout','WorkoutController');
+
 Auth::routes();
 
 Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
@@ -30,12 +32,18 @@ Route::get('admin/home','AdminController@index');
 
 //Route for showing the editor's dashboard after login
 Route::get('admin/trainee','TraineeController@index')->name('admin.trainee');
+Route::get('trainee/workout','TraineeController@create')->name('trainee.workout');
 
 Route::get('admin/test','TraineeController@test');
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 
 Route::POST('admin','Admin\LoginController@login')->name('admin.login');
+
+Route::get('logout', '\App\Http\Controllers\Admin\LoginController@logout');
+Route::POST('logout', 'Admin\LoginController@logout')->name('logout');
+
+
 Route::POST('admin-password/email','Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::GET('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 
@@ -44,6 +52,7 @@ Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showRes
 
 Route::GET('trainee-register','TraineeRegisterController@showRegistrationForm')->name('trainee.register');
 Route::POST('trainee-register','TraineeRegisterController@register')->name('trainee.registered');
+
 
 Route::POST('contactform','ContactFormController@contact')->name('contact');
 
