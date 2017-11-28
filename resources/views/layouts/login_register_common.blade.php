@@ -500,6 +500,7 @@ h1 {
 <body>
 
     @include('partial/_message')
+    @include('partial/_errors')
 
     <header id="home" class="home-section">
 
@@ -555,22 +556,6 @@ h1 {
     </div>
 
     </header>
-        <!-- <div class="">
-            @if (Route::has('login'))
-
-            <div class="top-left links">
-                <a href="{{ url('/') }}" class="navbar_style yoga_style top_left">Yoga Tracker</a>
-            </div>
-            <div class="top-right links">
-                @if (Auth::check())
-                <a href="{{ url('/home') }}">Home</a>
-                @else
-                <a href="{{ route('admin.login') }}" class="navbar_style">Login</a>
-                <a href="{{ route('trainee.register') }}"class="navbar_style">Register</a>
-                @endif
-            </div>
-            @endif
-        </div> -->
 
 
 

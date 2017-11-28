@@ -18,10 +18,17 @@ class TraineeRegisterController extends Controller
 
    public function register(Request $request)
    {
+       $this->validate($request,
+array(
+    'name' => 'required|string|max:255',
+    'email' => 'required|string|email|max:255|unique:admins',
+    'password' => 'required|string|min:6|confirmed',
+));
 
        $name = $request->name;
        $email = $request->email;
        $password = bcrypt($request->password);
+
 
 
     //    Admin::create([

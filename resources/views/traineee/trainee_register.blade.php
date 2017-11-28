@@ -16,8 +16,10 @@ Registration Form</h3>
             <input type="email" id="email" name="email" placeholder="Please enter a valid email" title="" required="">
         </div>
         <div class="form-control-w3l">
-            <input type="password" id="password" name="password" placeholder="Please enter password"  required="">
-        </div>
+
+        <input type="password" id="password" name="password" placeholder="Please enter password"  required="">
+    </div>
+
         <div class="form-control-w3l">
             <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Please confirm your password"  required="">
         </div>

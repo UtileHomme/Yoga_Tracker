@@ -12,7 +12,7 @@
                     <form action="{{ route('admin.login') }}" method="post" >
                         {{ csrf_field() }}
                         <p>Email Id </p>
-                        <input type="email" class="email" name="email" value="{{ old('email') }}" required autofocus />
+                        <input type="email" class="email" name="email" value="{{ old('email') }}" required />
                         <p>Password</p>
                         <input type="password" class="password" name="password" required=""/>
                         <!-- <label class="anim">
@@ -37,7 +37,7 @@
                 </div>
 
             </div>
-        
+
         </div>
     </div>
 </div>

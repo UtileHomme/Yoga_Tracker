@@ -91,7 +91,7 @@ ul{
 body {
     position: relative;
     height: 100%;
-    background: url(../images/yogaimages/yoga4.jpg);
+    background: url(../images/yogaimages/yoga9.jpg);
     background-position: center center;
     background-repeat:  no-repeat;
     background-attachment: fixed;
@@ -419,6 +419,9 @@ input#name, input#email, input#orgn, textarea#message, input#timepicker, #datepi
     </style>
 </head>
 <body>
+
+    @include('partial/_message')
+    @include('partial/_errors')
     <header id="home" class="home-section">
 
         <div class="header-top-area">
