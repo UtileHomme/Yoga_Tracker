@@ -498,6 +498,9 @@ h1 {
     </style>
 </head>
 <body>
+
+    @include('partial/_message')
+
     <header id="home" class="home-section">
 
         <div class="header-top-area">

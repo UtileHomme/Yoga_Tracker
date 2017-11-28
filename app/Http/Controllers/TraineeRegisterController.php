@@ -48,8 +48,8 @@ class TraineeRegisterController extends Controller
        $role_admin->save();
 
 
-       Session::flash('success','You have been Registered Successfully!! Please Login Now!!');
-       return view('admin.login');
+       Session::flash('message','You have been Registered Successfully!! Please Login Now!!');
+       return redirect()->route('admin.login');
 
 
    }
