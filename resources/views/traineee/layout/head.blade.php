@@ -37,3 +37,81 @@
 
 <!-- Google Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+<style media="screen">
+    .block
+    {
+        display: inline-block;
+
+    }
+
+    .align
+    {
+        margin-left:20px;
+    }
+
+/* IPhone 5s */
+@media only screen and (max-width: 767px)
+{
+    .align
+    {
+        margin-left:3px;
+    }
+    .info-box
+    {
+            width: 200px !important;
+    }
+    .info-box-text
+    {
+        font-size: 12px !important;
+    }
+}
+
+@media only screen and (min-width: 360px ) and (max-width: 420px){
+
+    .align
+    {
+        margin-left:3px;
+    }
+    .info-box
+    {
+            width: 400px !important;
+    }
+    .info-box-text
+    {
+        font-size: 12px !important;
+    }
+
+}
+
+/* IPAD Pro */
+/*@media screen and (max-width: 1200px) {
+
+    .align
+    {
+        margin-left:3px;
+    }
+    .info-box
+    {
+            width: 700px !important;
+    }
+    .info-box-text
+    {
+        font-size: 20px !important;
+    }
+
+}*/
+
+
+/*Galaxy S5 */
+@media only screen and (min-width: 360px ) and (max-width: 700px) {
+    .align
+    {
+        margin-left:3px;
+    }
+    .info-box
+    {
+            width: 325px !important;
+    }
+}
+</style>
