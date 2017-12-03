@@ -128,14 +128,14 @@ h1.header-w3ls {
 }
 .form-control-w3l{display:flex;
 			  display: -webkit-flex;}
-input#name, input#email,input#password,input#confirmpassword, input#orgn, input#timepicker, textarea,#datepicker1  {
+input#name, input#email,input#password,input#password_confirmation, input#orgn, input#timepicker, textarea,#datepicker1  {
     padding: 12px 15px;
    	-webkit-flex-basis:100%;
 	flex-basis:100%;
 }
 
 
-input#name, input#email,input#password,input#confirmpassword, input#orgn, textarea#message, input#timepicker,#datepicker1 {
+input#name, input#email,input#password,input#password_confirmation, input#orgn, textarea#message, input#timepicker,#datepicker1 {
     color: #fff;
     outline: none;
     letter-spacing: 1px;
@@ -158,7 +158,7 @@ textarea#message{
     padding: 1em;
 	overflow: hidden;
 }
-input#name:hover, input#email:hover, input#password:hover, input#confirmpassword:hover,input#orgn:hover, textarea#message:hover, input#timepicker:hover,#datepicker1:hover{border-right: 1px solid #841642;}
+input#name:hover, input#email:hover, input#password:hover, input#password_confirmation:hover,input#orgn:hover, textarea#message:hover, input#timepicker:hover,#datepicker1:hover{border-right: 1px solid #841642;}
 input[type="submit"] {
     text-transform: uppercase;
        background: #f1f1f1;

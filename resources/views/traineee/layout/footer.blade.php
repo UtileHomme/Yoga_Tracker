@@ -24,6 +24,9 @@
 <script src="{{ asset('traineee/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{ asset('traineee/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<!-- bootstrap time picker -->
+<script src="{{ asset('traineee/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+
 <!-- Slimscroll -->
 <script src="{{ asset('traineee/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
@@ -34,3 +37,19 @@
 <script src="{{ asset('traineee/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
+<script>
+  $(function () {
+    // //Initialize Select2 Elements
+    // $('.select2').select2()
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //Timepicker
+$('.timepicker').timepicker({
+  showInputs: false
+})
+  })
+</script>

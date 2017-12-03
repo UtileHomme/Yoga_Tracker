@@ -30,26 +30,55 @@
                         <div class="box-body">
 
                             <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="wname">Workout Name</label>
-                                <input type="text" class="form-control" id="wname" name="wname" placeholder="Name">
-                            </div>
+                                <div class="form-group">
+                                    <label for="wname">Workout Name</label>
+                                    <input type="text" class="form-control" id="wname" name="wname" placeholder="Name">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="wdate">Workout Date</label>
-                                <input type="text" class="form-control" id="wdate" name="wdate" placeholder="Workout Date">
-                            </div>
+                                <div class="form-group">
+                                    <label>Workout Date:</label>
 
-                            <div class="form-group">
-                                <label for="wstime">Workout Start Time</label>
-                                <input type="text" class="form-control" id="wstime" name="wstime" placeholder="Start Time">
-                            </div>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="datepicker">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+
+                                <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>Workout Start Time:</label>
+
+                                        <div class="input-group">
+                                            <input type="text" class="form-control timepicker">
+
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
+                                </div>
                             </div>
 
                             <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="wetime">Workout End Time</label>
-                                    <input type="text" class="form-control" id="wetime" name="wetime" placeholder="End Time">
+                                <div class="bootstrap-timepicker">
+                                    <div class="form-group">
+                                        <label>Workout Start Time:</label>
+
+                                        <div class="input-group">
+                                            <input type="text" class="form-control timepicker">
+
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                    <!-- /.form group -->
                                 </div>
 
                             </div>
@@ -72,7 +101,7 @@
                             <div class="box-body pad">
                                 <form>
                                     <textarea class="textarea" placeholder="Place some text here" name="body"
-                                    style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                 </form>
                             </div>
                         </div>
