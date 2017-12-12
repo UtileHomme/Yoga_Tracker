@@ -118,7 +118,7 @@
         color: #fff;
         padding: .6em 1em;
         margin: 0;
-        width: 100%;
+        width: 124%;
         border: none;
         border: 1px solid rgb(255, 255, 255);
         -webkit-appearance: none;
@@ -342,7 +342,7 @@
             padding: 3em 0 0;
         }
     }
-    @media(max-width:800px){
+    /*@media(max-width:800px){
         .login-form input[type="email"], .login-form input[type="password"] {
             width: 90%;
         }
@@ -356,7 +356,7 @@
         .main-w3lsrow {
             width: 44%;
         }
-    }
+    }*/
     @media(max-width:768px){
         .main {
             padding: 3em 0 0;
@@ -423,13 +423,13 @@
             width: 63%;
         }
     }
-    @media(max-width:414px){
+    /*@media(max-width:414px){
         h1 {
             font-size: 1.8em;
         }
         .login-form h2 {
             font-size: 1.4em;
-            margin-bottom: 2em;
+            margin-bottom: 3em;
         }
         .login-form p {
             font-size: 0.75em;
@@ -440,15 +440,220 @@
             font-size: 0.75em;
         }
         .login-agileits-bottom {
-            margin-top: 1em;
+            margin-top: 2em;
         }
         .login-form input[type="email"], .login-form input[type="password"] {
-            width: 89%;
+            width: 110%;
+        }
+
+        .form-layout
+        {
+            padding-right: 0px;
         }
     }
-    @media(max-width:384px){
+    */
+    @media(min-width:384px) and (max-width:640px){
+        h1 {
+            font-size: 1.8em;
+        }
+        .main-w3lsrow {
+            width: 74%;
+        }
+        .login-form h2 {
+            font-size: 1.4em;
+            margin-bottom: 3em;
+        }
+        .login-form p {
+            font-size: 0.75em;
+            margin: 2em 0 .2em;
+            letter-spacing: 2px;
+        }
+        .anim {
+            font-size: 0.75em;
+        }
+        .login-agileits-bottom {
+            margin-top: 2em;
+        }
+        .login-form input[type="email"], .login-form input[type="password"] {
+            width: 100%;
+        }
+
     }
-    @media(max-width:320px){
+
+    @media(min-width:360px) and (max-width:383px){
+        h1 {
+            font-size: 1.8em;
+        }
+        .main-w3lsrow {
+            background:rgba(0, 0, 10, 0.66);
+            width:75%;
+            padding:2em;
+            margin-left: 41px;
+            margin-top:-44px;
+        }
+        .login-form h2 {
+            font-size: 1.4em;
+            margin-bottom: 3em;
+        }
+        .login-form p {
+            font-size: 0.75em;
+            margin: 2em 0 .2em;
+            letter-spacing: 2px;
+        }
+        .anim {
+            font-size: 0.75em;
+        }
+        .login-agileits-bottom {
+            margin-top: 2em;
+        }
+        .login-form input[type="email"], .login-form input[type="password"] {
+            width: 102%;
+        }
+
+        .form-layout
+        {
+            padding-right: 0px;
+        }
+    }
+
+    @media screen only and (min-width:800px) {
+        h1 {
+            font-size: 1.8em;
+        }
+        .main-w3lsrow {
+            background:rgba(0, 0, 10, 0.66);
+            width:175% !important;
+            padding:2em;
+            margin-left: 41px;
+            margin-top:-44px;
+        }
+        .login-form h2 {
+            font-size: 1.4em;
+            margin-bottom: 3em;
+        }
+        .login-form p {
+            font-size: 0.75em;
+            margin: 2em 0 .2em;
+            letter-spacing: 2px;
+        }
+        .anim {
+            font-size: 0.75em;
+        }
+        .login-agileits-bottom {
+            margin-top: 2em;
+        }
+        .login-form input[type="email"], .login-form input[type="password"] {
+            width: 135% !important;
+        }
+
+        .form-layout
+        {
+            padding-right: 0px;
+        }
+    }
+
+    @media(min-width:600px) and (max-width:799px){
+        h1 {
+            font-size: 1.8em;
+        }
+        .main-w3lsrow {
+            background:rgba(0, 0, 10, 0.66);
+            width:50%;
+            padding:2em;
+            margin-left: 140px;
+            margin-top:-100px;
+        }
+        .login-form h2 {
+            font-size: 1.4em;
+            margin-bottom: 3em;
+        }
+        .login-form p {
+            font-size: 0.75em;
+            margin: 2em 0 .2em;
+            letter-spacing: 2px;
+        }
+        .anim {
+            font-size: 0.75em;
+        }
+        .login-agileits-bottom {
+            margin-top: 2em;
+        }
+        .login-form input[type="email"], .login-form input[type="password"] {
+            width: 102% !important;
+        }
+
+        .form-layout
+        {
+            padding-right: 0px;
+        }
+    }
+
+    @media(min-width:800px) and (max-width:1280px) and (orientation:portrait){
+        h1 {
+            font-size: 1.8em;
+        }
+        .main-w3lsrow {
+            background:rgba(0, 0, 10, 0.66);
+            width:74%;
+            padding:113px;
+            margin-left: 98px;
+            margin-top:-108px;
+        }
+
+        .login-f
+        {
+            font-size: 25px;
+        }
+        .login-form h2 {
+            font-size: 2.0em;
+            margin-bottom: 3em;
+            margin-left: -85px;
+        }
+        .login-form p {
+            font-size: 1.50em;
+            margin: 2em 0 .2em;
+            letter-spacing: 2px;
+            margin-left: -11px;
+        }
+        .anim {
+            font-size: 0.75em;
+        }
+        .login-agileits-bottom {
+            margin-top: 2em;
+        }
+        .login-form input[type="email"], .login-form input[type="password"] {
+            width: 167% !important;
+            margin-left: -9px;
+        }
+        .login-form input[type="submit"]
+        {
+            width: 88% !important;
+            margin-left: -65px;
+        }
+        .agile-row
+        {
+            width:129%
+        }
+
+        .login-agileits-bottom h6  {
+            font-size: 2em;
+            font-weight: 200;
+            letter-spacing: 5px;
+        }
+
+        .login-agileits-bottom1 h3
+        {
+            font-size: 2em;
+            font-weight: 200;
+            letter-spacing: 5px;
+        }
+
+        .form-layout
+        {
+            padding-right: 0px;
+        }
+    }
+    @media only screen and (max-width:320px) and (max-device-width : 480px){
         h1 {
             font-size: 1.6em;
         }
@@ -553,7 +758,7 @@
                 <div class="display-table-cell">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-center form-layout">
                                 @yield('content')
 
                             </div>

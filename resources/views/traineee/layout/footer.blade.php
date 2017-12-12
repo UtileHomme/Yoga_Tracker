@@ -38,6 +38,21 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
 <script>
+$(document).ready(function(){
+  $('.counter-count').each(function () {
+        $(this).prop('Counter',0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 4000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+});
+</script>
+<script>
   $(function () {
     // //Initialize Select2 Elements
     // $('.select2').select2()
@@ -53,3 +68,7 @@ $('.timepicker').timepicker({
 })
   })
 </script>
+
+@section('footerSection')
+
+@show

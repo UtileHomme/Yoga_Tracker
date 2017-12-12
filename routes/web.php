@@ -19,7 +19,7 @@ Route::get('/aboutme','AboutMeController@index');
 
 Route::get('/download-resume','ResumeController@index')->name('download-resume');
 
-Route::resource('createworkout','WorkoutController');
+Route::resource('workout','TraineeController');
 
 Auth::routes();
 
@@ -30,11 +30,8 @@ Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 //Route for showing the admin's dashboard after login
 Route::get('admin/home','AdminController@index');
 
-//Route for showing the editor's dashboard after login
-Route::get('admin/trainee','TraineeController@index')->name('admin.trainee');
-Route::get('trainee/workout','TraineeController@create')->name('trainee.workout');
+Route::get('workout/display','TraineeController@display')->name('workout.display');
 
-Route::get('admin/test','TraineeController@test');
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 

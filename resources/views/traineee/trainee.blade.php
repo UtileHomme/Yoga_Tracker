@@ -21,42 +21,75 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="row align">
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3 class="counter-count text-center">150</h3>
 
-            <div class="block">
-                <div class="info-box " >
-                    <span class="info-box-icon bg-aqua"><i class="fa fa-clock-o"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Hours Logged In Today</span>
-                        <span class="info-box-number">2</span>
+                        <p class="text-center">Hours Logged in Today</p>
                     </div>
-                    <!-- /.info-box-content -->
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                    </a>
                 </div>
             </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3 class="counter-count text-center">150</h3>
 
-            <div class="block">
-                <div class="info-box ">
-                    <span class="info-box-icon bg-green"><i class="fa fa-clock-o"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Hours Logged In This Week</span>
-                        <span class="info-box-number">410</span>
+                        <p class="text-center">Hours Logged in This Week</p>
                     </div>
-                    <!-- /.info-box-content -->
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                    </a>
                 </div>
             </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3 class="counter-count text-center">150</h3>
 
-            <div class="block">
-                <div class="info-box ">
-                    <span class="info-box-icon bg-red"><i class="fa fa-clock-o"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Hours Logged In This Year</span>
-                        <span class="info-box-number">410</span>
+                        <p class="text-center">Hours Logged in This Month</p>
                     </div>
-                    <!-- /.info-box-content -->
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                    </a>
                 </div>
             </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3 class="counter-count text-center">150</h3>
+
+                        <p class="text-center">Hours Logged in This Year</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <a href="#" class="small-box-footer">
+                        More info <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- ./col -->
         </div>
 
 

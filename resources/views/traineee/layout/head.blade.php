@@ -85,7 +85,7 @@
 }
 
 /* IPAD Pro */
-/*@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
 
     .align
     {
@@ -100,7 +100,7 @@
         font-size: 20px !important;
     }
 
-}*/
+}
 
 
 /*Galaxy S5 */
@@ -115,3 +115,7 @@
     }
 }
 </style>
+
+@section('headSection')
+
+@show

@@ -469,7 +469,8 @@ body.loaded #preloader{
         }
 
 
-        .yogaimages {}
+        .yogaimages {
+        }
 
             .yogaimages-inner .mix {
                 display: none;

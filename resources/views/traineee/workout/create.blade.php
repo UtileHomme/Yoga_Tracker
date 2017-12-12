@@ -10,7 +10,7 @@
             Create Your Workout Log Here
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('admin.trainee')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route('workout.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Add Workout</li>
         </ol>
     </section>
@@ -22,17 +22,17 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Workout Details</h3>
+                        <h3 class="box-title">Add Workout Details</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" action="">
                         <div class="box-body">
 
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="wname">Workout Name</label>
-                                    <input type="text" class="form-control" id="wname" name="wname" placeholder="Name">
+                                    <input type="text" class="form-control" id="wname" name="workout_name" placeholder="Give a name to your workout">
                                 </div>
 
                                 <div class="form-group">
@@ -42,7 +42,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control pull-right" id="datepicker">
+                                        <input type="text" class="form-control pull-right" id="datepicker" name="workout_date" placeholder="Enter your workout date">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -52,7 +52,7 @@
                                         <label>Workout Start Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker">
+                                            <input type="text" class="form-control timepicker" name="workout_start_time">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -70,7 +70,7 @@
                                         <label>Workout Start Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker">
+                                            <input type="text" class="form-control timepicker" name="workout_start_time">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -87,14 +87,14 @@
 
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title"> Comments
+                                <h3 class="box-title"> Add any Comments or Notes here
                                 </h3>
                                 <!-- tools box -->
-                                <div class="pull-right box-tools">
+                                <!-- <div class="pull-right box-tools">
                                     <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
                                     title="Collapse">
                                     <i class="fa fa-minus"></i></button>
-                                </div>
+                                </div> -->
                                 <!-- /. tools -->
                             </div>
                             <!-- /.box-header -->

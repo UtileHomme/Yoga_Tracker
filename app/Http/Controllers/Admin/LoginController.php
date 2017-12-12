@@ -57,7 +57,7 @@ class LoginController extends Controller
             }
             else if($role->name == 'Trainee')
             {
-                return redirect('admin/trainee');
+                return redirect('workout');
             }
         }
     }

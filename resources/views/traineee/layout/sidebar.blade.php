@@ -26,8 +26,8 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
-          <li class=""><a href="{{ route('trainee.workout')}}"><i class="fa fa-circle-o"></i> Log My Workout</a></li>
-          <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> View My Workouts</a></li>
+          <li class=""><a href="{{route('workout.create')}}"><i class="fa fa-circle-o"></i> Log My Workout</a></li>
+          <li class=""><a href="{{route('workout.display')}}"><i class="fa fa-circle-o"></i> View My Workouts</a></li>
       </li>
       <li>
       </li>
