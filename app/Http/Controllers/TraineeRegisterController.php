@@ -38,9 +38,9 @@ array(
     //    ]);
 
     DB::table('admins')->insert(
-    ['name' => $name, 'email' => $email,'password'=>$password]
-);
+    ['name' => $name, 'email' => $email,'password'=>$password]);
 
+    $trainee_id = DB::table('admins')->max('id');
 
        $roles = new role;
        $roles->name = "Trainee";
@@ -54,6 +54,9 @@ array(
        $role_admin->admin_id = $admin_id;
        $role_admin->save();
 
+
+       DB::table('trainee_details')->insert(
+       ['trainee_name' => $name, 'trainee_emailid' => $email,'id'=>$trainee_id]);
 
        Session::flash('message','You have been Registered Successfully!! Please Login Now!!');
        return redirect()->route('admin.login');

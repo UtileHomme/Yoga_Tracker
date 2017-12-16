@@ -210,7 +210,7 @@
         background-color: #fff;
         width: 37px;
         height: 37px;
-        font-size: 15px;
+        font-size: 20px;
         border:1px solid #fff;
         line-height: 36px;
         text-align: center;
@@ -224,14 +224,6 @@
     .top-links li a i.fa-facebook:hover {
         color: #fff;
         background-color: #46629E;
-    }
-    .top-links li a i.fa-twitter:hover {
-        color: #fff;
-        background-color: #00ACEE;
-    }
-    .top-links li a i.fa-linkedin:hover {
-        color: #fff;
-        background-color: #0077B5;
     }
     .top-links li a i.fa-google-plus:hover {
         color: #fff;
@@ -315,7 +307,7 @@
     .home-section-background {
         position: relative;
         height: 100%;
-        background: url(../images/yogaimages/yoga7.jpg);
+        background: url(../images/yogaimages/yoga11.jpg);
         background-position: center center;
         background-repeat:  no-repeat;
         background-attachment: fixed;
@@ -343,372 +335,511 @@
         }
     }
     /*@media(max-width:800px){
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 90%;
-        }
-        .login-agileits-bottom h6 {
-            letter-spacing: 3px;
-        }
-        .login-form h2{
-            font-size: 2em;
-            margin-bottom: 1.2em;
-        }
-        .main-w3lsrow {
-            width: 44%;
-        }
-    }*/
-    @media(max-width:768px){
-        .main {
-            padding: 3em 0 0;
-        }
-        h1 {
-            font-size: 3.5em;
-        }
+    .login-form input[type="email"], .login-form input[type="password"] {
+    width: 90%;
+}
+.login-agileits-bottom h6 {
+letter-spacing: 3px;
+}
+.login-form h2{
+font-size: 2em;
+margin-bottom: 1.2em;
+}
+.main-w3lsrow {
+width: 44%;
+}
+}*/
+@media(max-width:768px){
+    .main {
+        padding: 3em 0 0;
     }
-    @media(max-width:736px){
-        .main-w3lsrow {
-            width: 50%;
-        }
+    h1 {
+        font-size: 3.5em;
     }
-    @media(max-width:667px){
-        .main-w3lsrow {
-            width: 56%;
-        }
-        h1 {
-            font-size: 3em;
-        }
+}
+@media(max-width:736px){
+    .main-w3lsrow {
+        width: 50%;
     }
-    @media(max-width:640px){
-        h1 {
-            font-size: 2.4em;
-        }
-        .login-form input[type="submit"] {
-            margin-top: 1.5em;
-        }
-        .main {
-            padding: 3em 0 0;
-        }
+}
+@media(max-width:667px){
+    .main-w3lsrow {
+        width: 56%;
     }
-    @media(max-width:568px){
-        .login-form input[type="email"],.login-form input[type="password"],.login-form input[type="submit"] {
-            font-size: 0.9em;
-            padding: .5em 0.8em;
-        }
-        .login-form p {
-            font-size: 0.8em;
-            margin:1.2em 0 .8em;
-            letter-spacing: 4px;
-        }
-        h1 {
-            font-size: 2.2em;
-        }
-        .login-form h2 {
-            font-size: 1.8em;
-            margin-bottom: 1em;
-        }
-        .copyright p {
-            font-size: 0.9em;
-            padding: 0 1em;
-        }
-        .login-agileits-bottom h6 {
-            font-size: 0.9em;
-            letter-spacing: 3px;
-        }
+    h1 {
+        font-size: 3em;
     }
-    @media(max-width:480px){
-        h1 {
-            font-size: 1.9em;
-        }
-        .main-w3lsrow {
-            width: 63%;
-        }
+}
+@media(max-width:640px){
+    h1 {
+        font-size: 2.4em;
     }
-    /*@media(max-width:414px){
-        h1 {
-            font-size: 1.8em;
-        }
-        .login-form h2 {
-            font-size: 1.4em;
-            margin-bottom: 3em;
-        }
-        .login-form p {
-            font-size: 0.75em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 110%;
-        }
+    .login-form input[type="submit"] {
+        margin-top: 1.5em;
+    }
+    .main {
+        padding: 3em 0 0;
+    }
+}
+@media(max-width:568px){
+    .login-form input[type="email"],.login-form input[type="password"],.login-form input[type="submit"] {
+        font-size: 0.9em;
+        padding: .5em 0.8em;
+    }
+    .login-form p {
+        font-size: 0.8em;
+        margin:1.2em 0 .8em;
+        letter-spacing: 4px;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    .login-form h2 {
+        font-size: 1.8em;
+        margin-bottom: 1em;
+    }
+    .copyright p {
+        font-size: 0.9em;
+        padding: 0 1em;
+    }
+    .login-agileits-bottom h6 {
+        font-size: 0.9em;
+        letter-spacing: 3px;
+    }
+}
+@media(max-width:480px){
+    h1 {
+        font-size: 1.9em;
+    }
+    .main-w3lsrow {
+        width: 63%;
+    }
+}
+/*@media(max-width:414px){
+h1 {
+font-size: 1.8em;
+}
+.login-form h2 {
+font-size: 1.4em;
+margin-bottom: 3em;
+}
+.login-form p {
+font-size: 0.75em;
+margin: 2em 0 .2em;
+letter-spacing: 2px;
+}
+.anim {
+font-size: 0.75em;
+}
+.login-agileits-bottom {
+margin-top: 2em;
+}
+.login-form input[type="email"], .login-form input[type="password"] {
+width: 110%;
+}
 
-        .form-layout
-        {
-            padding-right: 0px;
-        }
+.form-layout
+{
+padding-right: 0px;
+}
+}
+*/
+@media(min-width:384px) and (max-width:640px){
+    h1 {
+        font-size: 1.8em;
     }
-    */
-    @media(min-width:384px) and (max-width:640px){
-        h1 {
-            font-size: 1.8em;
-        }
-        .main-w3lsrow {
-            width: 74%;
-        }
-        .login-form h2 {
-            font-size: 1.4em;
-            margin-bottom: 3em;
-        }
-        .login-form p {
-            font-size: 0.75em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 100%;
-        }
-
+    .main-w3lsrow {
+        width: 74%;
+    }
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
+    }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 100%;
     }
 
-    @media(min-width:360px) and (max-width:383px){
-        h1 {
-            font-size: 1.8em;
-        }
-        .main-w3lsrow {
-            background:rgba(0, 0, 10, 0.66);
-            width:75%;
-            padding:2em;
-            margin-left: 41px;
-            margin-top:-44px;
-        }
-        .login-form h2 {
-            font-size: 1.4em;
-            margin-bottom: 3em;
-        }
-        .login-form p {
-            font-size: 0.75em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 102%;
-        }
+}
 
-        .form-layout
-        {
-            padding-right: 0px;
-        }
+@media(min-width:320px) and (max-width:333px){
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:75%;
+        padding:2em;
+        margin-left: 41px;
+        margin-top:-33px;
     }
 
-    @media screen only and (min-width:800px) {
-        h1 {
-            font-size: 1.8em;
-        }
-        .main-w3lsrow {
-            background:rgba(0, 0, 10, 0.66);
-            width:175% !important;
-            padding:2em;
-            margin-left: 41px;
-            margin-top:-44px;
-        }
-        .login-form h2 {
-            font-size: 1.4em;
-            margin-bottom: 3em;
-        }
-        .login-form p {
-            font-size: 0.75em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 135% !important;
-        }
 
-        .form-layout
-        {
-            padding-right: 0px;
-        }
+    .login-agileits-bottom h6  {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
     }
 
-    @media(min-width:600px) and (max-width:799px){
-        h1 {
-            font-size: 1.8em;
-        }
-        .main-w3lsrow {
-            background:rgba(0, 0, 10, 0.66);
-            width:50%;
-            padding:2em;
-            margin-left: 140px;
-            margin-top:-100px;
-        }
-        .login-form h2 {
-            font-size: 1.4em;
-            margin-bottom: 3em;
-        }
-        .login-form p {
-            font-size: 0.75em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 102% !important;
-        }
-
-        .form-layout
-        {
-            padding-right: 0px;
-        }
+    ul.top-links li a i.fa {
+        color: #000;
+        background-color: #fff;
+        width: 27px;
+        height: 33px;
+        font-size: 12px;
+        border:1px solid #fff;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+        transition:all 0.5s ease-in-out;
+        -webkit-transition:all 0.5s ease-in-out;
+        -moz-transition:all 0.5s ease-in-out;
+        -o-transition:all 0.5s ease-in-out;
+        -ms-transition:all 0.5s ease-in-out;
     }
 
-    @media(min-width:800px) and (max-width:1280px) and (orientation:portrait){
-        h1 {
-            font-size: 1.8em;
-        }
-        .main-w3lsrow {
-            background:rgba(0, 0, 10, 0.66);
-            width:74%;
-            padding:113px;
-            margin-left: 98px;
-            margin-top:-108px;
-        }
-
-        .login-f
-        {
-            font-size: 25px;
-        }
-        .login-form h2 {
-            font-size: 2.0em;
-            margin-bottom: 3em;
-            margin-left: -85px;
-        }
-        .login-form p {
-            font-size: 1.50em;
-            margin: 2em 0 .2em;
-            letter-spacing: 2px;
-            margin-left: -11px;
-        }
-        .anim {
-            font-size: 0.75em;
-        }
-        .login-agileits-bottom {
-            margin-top: 2em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"] {
-            width: 167% !important;
-            margin-left: -9px;
-        }
-        .login-form input[type="submit"]
-        {
-            width: 88% !important;
-            margin-left: -65px;
-        }
-        .agile-row
-        {
-            width:129%
-        }
-
-        .login-agileits-bottom h6  {
-            font-size: 2em;
-            font-weight: 200;
-            letter-spacing: 5px;
-        }
-
-        .login-agileits-bottom1 h3
-        {
-            font-size: 2em;
-            font-weight: 200;
-            letter-spacing: 5px;
-        }
-
-        .form-layout
-        {
-            padding-right: 0px;
-        }
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
     }
-    @media only screen and (max-width:320px) and (max-device-width : 480px){
-        h1 {
-            font-size: 1.6em;
-        }
-        .login-form input[type="email"], .login-form input[type="password"], .login-form input[type="submit"] {
-            font-size: 0.8em;
-            padding: .5em 0.8em;
-        }
-        .login-form p {
-            font-size: 0.7em;
-        }
-        .anim {
-            font-size: 0.7em;
-            margin: 1em 0 0;
-            letter-spacing: 1px;
-        }
-        input.checkbox:before {
-            width: 15px;
-            height: 14px;
-        }
-        input.checkbox:after {
-            width: 11px;
-            height: 8px;
-        }
-        input.checkbox:checked:after {
-            top: 3px;
-            left: 2px;
-            width: 7px;
-            height: 2px;
-        }
-        .login-agileits-bottom h6 {
-            font-size: 0.75em;
-            letter-spacing: 2px;
-        }
-        .login-agileits-bottom {
-            margin-top: 0.8em;
-        }
-        .login-form h2 {
-            font-size: 1.2em;
-        }
-        .copyright p {
-            font-size: 0.8em;
-        }
-        .main {
-            padding: 2em 0 0;
-        }
-        .copyright {
-            padding: 1.4em 0 1em;
-        }
-        h1 {
-            letter-spacing: 5px;
-        }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
     }
-    /*-- //responsive-design --*/
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 102%;
+    }
 
-    </style>
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+@media(min-width:768px) and (max-width:1024px){
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:75%;
+        padding:2em;
+        margin-left: 41px;
+        margin-top:-33px;
+    }
+
+
+    .login-agileits-bottom h6  {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
+    }
+
+    ul.top-links li a i.fa {
+        color: #000;
+        background-color: #fff;
+        width: 27px;
+        height: 33px;
+        font-size: 12px;
+        border:1px solid #fff;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+        transition:all 0.5s ease-in-out;
+        -webkit-transition:all 0.5s ease-in-out;
+        -moz-transition:all 0.5s ease-in-out;
+        -o-transition:all 0.5s ease-in-out;
+        -ms-transition:all 0.5s ease-in-out;
+    }
+
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
+    }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 102%;
+    }
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+@media(min-width:360px) and (max-width:383px){
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:75%;
+        padding:2em;
+        margin-left: 41px;
+        margin-top:-44px;
+    }
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
+    }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 102%;
+    }
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+@media screen only and (min-width:800px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:175% !important;
+        padding:2em;
+        margin-left: 41px;
+        margin-top:-44px;
+    }
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
+    }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 135% !important;
+    }
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+@media(min-width:600px) and (max-width:799px){
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:50%;
+        padding:2em;
+        margin-left: 140px;
+        margin-top:-100px;
+    }
+    .login-form h2 {
+        font-size: 1.4em;
+        margin-bottom: 3em;
+    }
+    .login-form p {
+        font-size: 0.75em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 102% !important;
+    }
+
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+@media(min-width:800px) and (max-width:1280px) and (orientation:portrait){
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:74%;
+        padding:113px;
+        margin-left: 98px;
+        margin-top:-108px;
+    }
+    ul.top-links li a i.fa {
+        color: #000;
+        background-color: #fff;
+        width: 50px;
+        height: 35px;
+        font-size: 24px;
+        border:1px solid #fff;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+        transition:all 0.5s ease-in-out;
+        -webkit-transition:all 0.5s ease-in-out;
+        -moz-transition:all 0.5s ease-in-out;
+        -o-transition:all 0.5s ease-in-out;
+        -ms-transition:all 0.5s ease-in-out;
+    }
+
+    .login-f
+    {
+        font-size: 25px;
+    }
+    .login-form h2 {
+        font-size: 2.0em;
+        margin-bottom: 3em;
+        margin-left: -85px;
+    }
+    .login-form p {
+        font-size: 1.50em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+        margin-left: -11px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 167% !important;
+        margin-left: -9px;
+    }
+    .login-form input[type="submit"]
+    {
+        width: 88% !important;
+        margin-left: -65px;
+    }
+    .agile-row
+    {
+        width:129%
+    }
+
+    .login-agileits-bottom h6  {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
+    }
+
+    .login-agileits-bottom1 h3
+    {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
+    }
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+@media only screen and (max-width:320px) and (max-device-width : 480px){
+    h1 {
+        font-size: 1.6em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"], .login-form input[type="submit"] {
+        font-size: 0.8em;
+        padding: .5em 0.8em;
+    }
+    .login-form p {
+        font-size: 0.7em;
+    }
+    .anim {
+        font-size: 0.7em;
+        margin: 1em 0 0;
+        letter-spacing: 1px;
+    }
+    input.checkbox:before {
+        width: 15px;
+        height: 14px;
+    }
+    input.checkbox:after {
+        width: 11px;
+        height: 8px;
+    }
+    input.checkbox:checked:after {
+        top: 3px;
+        left: 2px;
+        width: 7px;
+        height: 2px;
+    }
+    .login-agileits-bottom h6 {
+        font-size: 0.75em;
+        letter-spacing: 2px;
+    }
+    .login-agileits-bottom {
+        margin-top: 0.8em;
+    }
+    .login-form h2 {
+        font-size: 1.2em;
+    }
+    .copyright p {
+        font-size: 0.8em;
+    }
+    .main {
+        padding: 2em 0 0;
+    }
+    .copyright {
+        padding: 1.4em 0 1em;
+    }
+    h1 {
+        letter-spacing: 5px;
+    }
+}
+/*-- //responsive-design --*/
+
+</style>
 </head>
 <body>
 

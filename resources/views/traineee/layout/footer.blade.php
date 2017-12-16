@@ -37,6 +37,7 @@
 <script src="{{ asset('traineee/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
+
 <script>
 $(document).ready(function(){
   $('.counter-count').each(function () {
@@ -68,7 +69,7 @@ $('.timepicker').timepicker({
 })
   })
 </script>
-
+@include('partial/_errors')
 @section('footerSection')
 
 @show

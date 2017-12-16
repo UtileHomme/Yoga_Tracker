@@ -12,7 +12,7 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('traineee/dist/css/AdminLTE.min.css') }}">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
-     folder instead of downloading all of them to reduce the load. -->
+folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{ asset('traineee/dist/css/skins/_all-skins.min.css') }}">
 <!-- Morris chart -->
 <link rel="stylesheet" href="{{ asset('traineee/bower_components/morris.js/morris.css') }}">
@@ -39,16 +39,18 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 <style media="screen">
-    .block
-    {
-        display: inline-block;
 
-    }
 
-    .align
-    {
-        margin-left:20px;
-    }
+.block
+{
+    display: inline-block;
+
+}
+
+.align
+{
+    margin-left:20px;
+}
 
 /* IPhone 5s */
 @media only screen and (max-width: 767px)
@@ -59,7 +61,7 @@
     }
     .info-box
     {
-            width: 200px !important;
+        width: 200px !important;
     }
     .info-box-text
     {
@@ -75,7 +77,7 @@
     }
     .info-box
     {
-            width: 400px !important;
+        width: 400px !important;
     }
     .info-box-text
     {
@@ -93,7 +95,7 @@
     }
     .info-box
     {
-            width: 700px !important;
+        width: 700px !important;
     }
     .info-box-text
     {
@@ -111,7 +113,7 @@
     }
     .info-box
     {
-            width: 325px !important;
+        width: 325px !important;
     }
 }
 </style>

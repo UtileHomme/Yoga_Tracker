@@ -7,15 +7,14 @@
 <body class="hold-transition skin-purple sidebar-mini">
 
     <div class="wrapper">
-
+    @include('partial/_errors')
         @include('traineee.layout.header')
 
         @include('traineee.layout.sidebar')
 
-        <!-- @section('main-content')
+        @section('main-content')
 
-        @show -->
-
+        @show
         @include('traineee.layout.footer')
 
     </div>

@@ -2,6 +2,38 @@
 
 @section('main-content')
 
+<head>
+
+<style media="screen">
+
+.alert-success
+{
+    color: #3c763d !important;
+    background-color: #dff0d8 !important;
+    border-color: #d6e9c6 !important;
+
+}
+
+.alert
+{
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.modal-content2
+{
+    height: 52px !important;
+    margin-top: 87% !important;
+
+    border-radius: 7px;
+}
+}
+</style>
+
+</head>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -9,6 +41,8 @@
         <h1>
             Create Your Workout Log Here
         </h1>
+        <br>
+
         <ol class="breadcrumb">
             <li><a href="{{route('workout.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Add Workout</li>
@@ -26,7 +60,8 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="">
+                    <form role="form" action="{{route('workout.store')}}" method="POST">
+                        {{csrf_field()}}
                         <div class="box-body">
 
                             <div class="col-lg-6">
@@ -67,10 +102,10 @@
                             <div class="col-lg-6">
                                 <div class="bootstrap-timepicker">
                                     <div class="form-group">
-                                        <label>Workout Start Time:</label>
+                                        <label>Workout End Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker" name="workout_start_time">
+                                            <input type="text" class="form-control timepicker" name="workout_end_time">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -78,8 +113,23 @@
                                         </div>
                                         <!-- /.input group -->
                                     </div>
-                                    <!-- /.form group -->
                                 </div>
+                                <div class="form-group">
+                                    <label>Select Your Trainer:</label>
+
+                                    <div class="input-group">
+
+                                        <select class="form-control select2" style="width: 100%;" name="trainer_name">
+                                            <option selected="selected"></option>
+                                            @foreach($trainer_names as $trainer)
+                                            <option value="{{$trainer->name}}">{{$trainer->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <!-- /.form group -->
+
 
                             </div>
                         </div>
@@ -91,34 +141,32 @@
                                 </h3>
                                 <!-- tools box -->
                                 <!-- <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                    title="Collapse">
-                                    <i class="fa fa-minus"></i></button>
-                                </div> -->
-                                <!-- /. tools -->
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body pad">
-                                <form>
-                                    <textarea class="textarea" placeholder="Place some text here" name="body"
-                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                </form>
-                            </div>
+                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                                <i class="fa fa-minus"></i></button>
+                            </div> -->
+                            <!-- /. tools -->
                         </div>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- /.box-header -->
+                        <div class="box-body pad">
+                            <textarea class="textarea" placeholder="Place some text here" name="comments"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                         </div>
-                    </form>
-                </div>
-                <!-- /.box -->
-
-
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-            <!-- /.col-->
+            <!-- /.box -->
+
+
         </div>
-        <!-- ./row -->
-    </section>
-    <!-- /.content -->
+        <!-- /.col-->
+    </div>
+    <!-- ./row -->
+</section>
+<!-- /.content -->
 </div>
 
 @endsection

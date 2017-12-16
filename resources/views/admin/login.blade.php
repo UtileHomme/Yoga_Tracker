@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="main" style="opacity:0.5;">
+<div class="main" style="opacity:1.5;">
     <div class="main-w3lsrow">
         <!-- login form -->
         <div class="login-form login-form-left">
