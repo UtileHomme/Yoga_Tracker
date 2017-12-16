@@ -33,7 +33,7 @@ Workout Logs
 <div class="box-header with-border">
 <!-- <h3 class="box-title">Workouts</h3> -->
 
-<a href=" {{ route('trainee.workout')}}" class="btn btn-success col-lg-offset-5 pull-left"> Add New Workout</a>
+<a href=" {{ route('workout.create')}}" class="btn btn-success col-lg-offset-5 pull-left"> Add New Workout</a>
 
 <div class="box-tools pull-right">
   <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -65,25 +65,25 @@ Workout Logs
           </thead>
           <tbody>
 
+              @foreach($trainee_workouts as $workout)
+    <tr>
+      <td>{{$loop->index+1}}</td>
+      <td>{{$workout->workout_name}}</td>
+      <td>{{$workout->workout_date}}</td>
+      <td>{{$workout->workout_start_time}}</td>
+      <td>{{$workout->workout_end_time}}</td>
+      <td><a href=""><span class="glyphicon glyphicon-edit"></span></a></td>
+      <td><span class="glyphicon glyphicon-trash"></span></a></td>
+    </tr>
+      @endforeach
           </tbody>
-          <tfoot>
-              <th>S.no</th>
-              <th>Workout Name</th>
-              <th>Workout Start date</th>
-              <th>Workout Start Time</th>
-              <th>Workout End Time</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </tfoot>
+
         </table>
       </div>
       <!-- /.box-body -->
     </div>
 </div>
-<div class="box-footer">
-Footer
-</div>
+
 <!-- /.box-footer-->
 </div>
 <!-- /.box -->

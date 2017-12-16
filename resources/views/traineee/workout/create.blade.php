@@ -114,6 +114,8 @@
                                         <!-- /.input group -->
                                     </div>
                                 </div>
+
+                                @if($trainer_id==NULL)
                                 <div class="form-group">
                                     <label>Select Your Trainer:</label>
 
@@ -129,6 +131,7 @@
                                     <!-- /.input group -->
                                 </div>
                                 <!-- /.form group -->
+                                @endif
 
 
                             </div>

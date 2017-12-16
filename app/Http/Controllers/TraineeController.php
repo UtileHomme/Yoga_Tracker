@@ -37,10 +37,11 @@ class TraineeController extends Controller
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
+        $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
 
-
+        // dd($trainer_id);
         $trainer_names = DB::table('trainers')->get();
-        return view('traineee/workout/create',compact('logged_in_user','trainer_names'));
+        return view('traineee/workout/create',compact('logged_in_user','trainer_names','trainer_id'));
     }
 
     /**
@@ -98,7 +99,16 @@ class TraineeController extends Controller
     public function display()
     {
         $logged_in_user = Auth::user()->name;
-        return view('traineee.workout.show',compact('logged_in_user'));
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        // dd($trainee_id);
+
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+
+        // dd($trainee_workouts);
+            // dd($logged_in_user);
+            return view('traineee.workout.show',compact('logged_in_user','trainee_workouts'));
     }
 
     /**

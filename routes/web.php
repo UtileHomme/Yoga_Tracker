@@ -19,7 +19,10 @@ Route::get('/aboutme','AboutMeController@index');
 
 Route::get('/download-resume','ResumeController@index')->name('download-resume');
 
+Route::get('workout/display','TraineeController@display')->name('workout.display');
+
 Route::resource('workout','TraineeController');
+
 
 Auth::routes();
 
@@ -29,9 +32,6 @@ Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 
 //Route for showing the admin's dashboard after login
 Route::get('admin/home','AdminController@index');
-
-Route::get('workout/display','TraineeController@display')->name('workout.display');
-
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 
