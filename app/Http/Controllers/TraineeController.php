@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Workout;
+use App\trainee_detail;
 
 class TraineeController extends Controller
 {
@@ -107,8 +108,8 @@ class TraineeController extends Controller
         $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($trainee_workouts);
-            // dd($logged_in_user);
-            return view('traineee.workout.show',compact('logged_in_user','trainee_workouts'));
+        // dd($logged_in_user);
+        return view('traineee.workout.show',compact('logged_in_user','trainee_workouts'));
     }
 
     /**
@@ -154,5 +155,57 @@ class TraineeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function profile()
+    {
+        $logged_in_user = Auth::user()->name;
+
+        return view('traineee/profile/profile',compact('logged_in_user'));
+    }
+
+    public function editprofile()
+    {
+        $logged_in_user = Auth::user()->name;
+
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
+
+        $trainer_names = DB::table('trainers')->get();
+
+
+        // dd($trainer)
+        return view('traineee/profile/editprofile',compact('logged_in_user','trainer_id','trainer_names'));
+    }
+
+    public function updateprofile(Request $request)
+    {
+        $this->validate($request,[
+            'trainee_name'=>'required|string',
+            'trainee_dob'=>'required|date',
+            'trainee_emailid'=>'required|email',
+            'trainee_mobileno'=>'required',
+            'trainer_name'=>'required',
+            'trainer_name'=>'required',
+            'profile_image'=>'required',
+        ]);
+
+        if($request->hasFile('profile_image'))
+        {
+            $imageName = $request->profile_image->store('public');
+
+        }
+
+        $logged_in_user = Auth::user()->name;
+
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_detail = trainee_detail::find($trainee_id);
+
+        
+
     }
 }

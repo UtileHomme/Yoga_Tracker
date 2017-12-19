@@ -21,6 +21,7 @@ Route::get('/download-resume','ResumeController@index')->name('download-resume')
 
 Route::get('workout/display','TraineeController@display')->name('workout.display');
 
+
 Route::resource('workout','TraineeController');
 
 
@@ -40,6 +41,10 @@ Route::POST('admin','Admin\LoginController@login')->name('admin.login');
 Route::get('logout', '\App\Http\Controllers\Admin\LoginController@logout');
 Route::POST('logout', 'Admin\LoginController@logout')->name('logout');
 
+
+Route::get('profile','TraineeController@profile')->name('profile');
+Route::get('editprofile','TraineeController@editprofile')->name('editprofile');
+Route::post('updateprofile','TraineeController@updateprofile')->name('updateprofile');
 
 Route::POST('admin-password/email','Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::GET('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');

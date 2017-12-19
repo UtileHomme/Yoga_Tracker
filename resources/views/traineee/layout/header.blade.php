@@ -20,7 +20,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="user-image" alt="User Image">
 
-    <span class="hidden-xs">{{$logged_in_user}}</span>
+    <span class="hidden-xs">{{Auth::user()->name}}</span>
 
 
           </a>
@@ -36,7 +36,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
