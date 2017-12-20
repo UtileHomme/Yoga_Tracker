@@ -1,5 +1,10 @@
 @extends('traineee.layout.app')
 
+@section('editname',$trainee_details->trainee_name)
+@section('editemailid',$trainee_details->trainee_emailid)
+@section('editdob',$trainee_details->trainee_dob)
+@section('editmobileno',$trainee_details->trainee_mobilenumber)
+
 @section('main-content')
 
 <head>
@@ -63,7 +68,7 @@
                             <div class="col-lg-6 col-lg-offset-3">
                                 <div class="form-group">
                                     <label for="trainee_name">Name</label>
-                                    <input type="text" class="form-control" id="trainee_name" name="trainee_name" placeholder="Your Name please">
+                                    <input type="text" class="form-control" id="trainee_name" name="trainee_name" placeholder="Your Name please" value="@yield('editname')">
                                 </div>
 
                                 <div class="form-group">
@@ -73,19 +78,19 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control pull-right" id="datepicker" name="trainee_dob" placeholder="Select Your Date of Birth">
+                                        <input type="text" class="form-control pull-right" id="datepicker" name="trainee_dob" placeholder="Select Your Date of Birth" value="@yield('editdob')">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
 
                                 <div class="form-group">
                                     <label for="trainee_emailid">Email Id</label>
-                                    <input type="text" class="form-control" id="trainee_emailid" name="trainee_emailid" placeholder="Your Email id please">
+                                    <input type="text" class="form-control" id="trainee_emailid" name="trainee_emailid" placeholder="Your Email id please" value="@yield('editemailid')">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="trainee_mobileno">Mobile Number</label>
-                                    <input type="text" class="form-control" id="trainee_mobileno" name="trainee_mobileno" placeholder="Your Email id please">
+                                    <label for="trainee_mobilenumber">Mobile Number</label>
+                                    <input type="text" class="form-control" id="trainee_mobilenumber" name="trainee_mobilenumber" placeholder="Your Mobile Number please" value="@yield('editmobileno')">
                                 </div>
 
 

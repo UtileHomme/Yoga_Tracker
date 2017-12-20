@@ -18,7 +18,8 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="user-image" alt="User Image">
+            <!-- <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="user-image" alt="User Image"> -->
+            <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="user-image" alt="User Image">
 
     <span class="hidden-xs">{{Auth::user()->name}}</span>
 
@@ -27,10 +28,10 @@
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="img-circle" alt="User Image">
+              <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="img-circle" alt="User Image">
 
               <p>
-                {{$logged_in_user}} - Web Developer
+                {{Auth::user()->name}} - Web Developer
               </p>
             </li>
             <!-- Menu Footer-->

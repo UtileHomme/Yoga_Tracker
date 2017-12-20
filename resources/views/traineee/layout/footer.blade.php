@@ -70,6 +70,8 @@ $('.timepicker').timepicker({
   })
 </script>
 @include('partial/_errors')
+@include('partial/_message')
+
 @section('footerSection')
 
 @show

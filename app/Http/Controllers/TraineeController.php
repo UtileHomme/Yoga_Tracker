@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\Workout;
 use App\trainee_detail;
+use Session;
 
 class TraineeController extends Controller
 {
@@ -23,8 +24,14 @@ class TraineeController extends Controller
     public function index()
     {
         $logged_in_user = Auth::user()->name;
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        // dd($trainee_image);
         // dd($logged_in_user);
-        return view('traineee.trainee',compact('logged_in_user'));
+        return view('traineee.trainee',compact('logged_in_user','trainee_image'));
     }
 
     /**
@@ -36,13 +43,17 @@ class TraineeController extends Controller
     {
         $logged_in_user = Auth::user()->name;
 
+        $logged_in_user = Auth::user()->name;
+
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
         $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
 
         // dd($trainer_id);
         $trainer_names = DB::table('trainers')->get();
-        return view('traineee/workout/create',compact('logged_in_user','trainer_names','trainer_id'));
+        return view('traineee/workout/create',compact('logged_in_user','trainer_names','trainer_id','trainee_image'));
     }
 
     /**
@@ -53,20 +64,34 @@ class TraineeController extends Controller
     */
     public function store(Request $request)
     {
+        $logged_in_user = Auth::user()->name;
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        $trainer_id = DB::table('trainers')->where('name',$request->trainer_name)->value('id');
+
+        if($trainer_id==NULL)
+        {
+            $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
+        }
+        // dd($trainer_id);
         //backend validations
         $this->validate($request,[
             'workout_name'=>'required|string',
             'workout_date'=>'required|date',
             'workout_start_time'=>'required',
             'workout_end_time'=>'required',
-            'trainer_name'=>'required',
         ]);
-        $logged_in_user = Auth::user()->name;
 
-        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
-        // dd($trainee_id);
+        if($trainer_id==NULL)
+        {
+                    $this->validate($request,[
+                        'trainer_name'=>'required',
+                                ]);
+        }
 
-        $trainer_id = DB::table('trainers')->where('name',$request->trainer_name)->value('id');
 
         $date = $request->workout_date;
         $date = date("Y-m-d",strtotime($date));
@@ -94,7 +119,7 @@ class TraineeController extends Controller
         ->where('id',$trainee_id)
         ->update(['trainer_id'=> $trainer_id]);
 
-        return view('traineee.trainee',compact('logged_in_user'));
+        return view('traineee.trainee',compact('logged_in_user','trainee_image'));
     }
 
     public function display()
@@ -103,13 +128,15 @@ class TraineeController extends Controller
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
         // dd($trainee_id);
 
         $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($trainee_workouts);
         // dd($logged_in_user);
-        return view('traineee.workout.show',compact('logged_in_user','trainee_workouts'));
+        return view('traineee.workout.show',compact('logged_in_user','trainee_workouts','trainee_image'));
     }
 
     /**
@@ -161,51 +188,75 @@ class TraineeController extends Controller
     {
         $logged_in_user = Auth::user()->name;
 
-        return view('traineee/profile/profile',compact('logged_in_user'));
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        return view('traineee/profile/profile',compact('logged_in_user','trainee_image'));
     }
 
     public function editprofile()
     {
         $logged_in_user = Auth::user()->name;
 
-
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
         $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
 
         $trainer_names = DB::table('trainers')->get();
 
+        $trainee_details = trainee_detail::find($trainee_id);
 
-        // dd($trainer)
-        return view('traineee/profile/editprofile',compact('logged_in_user','trainer_id','trainer_names'));
+        // dd($trainee_details);
+        return view('traineee/profile/editprofile',compact('logged_in_user','trainer_id','trainer_names','trainee_details','trainee_image'));
     }
 
     public function updateprofile(Request $request)
     {
         $this->validate($request,[
             'trainee_name'=>'required|string',
-            'trainee_dob'=>'required|date',
             'trainee_emailid'=>'required|email',
-            'trainee_mobileno'=>'required',
-            'trainer_name'=>'required',
-            'trainer_name'=>'required',
-            'profile_image'=>'required',
+            // 'trainee_trainer_name'=>'required',
         ]);
 
+        $logged_in_user = Auth::user()->name;
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        // dd($request->all());
         if($request->hasFile('profile_image'))
         {
             $imageName = $request->profile_image->store('public');
-
+            $trainee_image = $request->profile_image->store('public');
+            // dd($imageName);
         }
 
+        // dd($imageName);
         $logged_in_user = Auth::user()->name;
 
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
+        $date = $request->trainee_dob;
+        $date = date("Y-m-d",strtotime($date));
+
+        // dd($request->trainee_mobilenumber);
         $trainee_detail = trainee_detail::find($trainee_id);
+        $trainee_detail->trainee_name = $request->trainee_name;
+        $trainee_detail->trainee_emailid = $request->trainee_emailid;
+        $trainee_detail->trainee_dob = $date;
+        $trainee_detail->trainee_mobilenumber = $request->trainee_mobilenumber;
 
-        
+        $trainee_detail->profile_image = $imageName;
 
+        // dd($imageName, $trainee_image);
+        $trainee_detail->save();
+
+        Session::flash('message','Your Profile Settings have been changed');
+        return view('traineee/profile/profile',compact('trainee_image'));
     }
 }
