@@ -3,21 +3,40 @@
 <head>
 
     @include('traineee.layout.head')
+
+    <style media="screen">
+    .style-3::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5  ;
+    }
+
+    .style-3::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5  ;
+    }
+
+    .style-3::-webkit-scrollbar-thumb
+    {
+        background-color: #13a7b5  ;
+    }
+    </style>
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-purple sidebar-mini style-3">
 
-    <div class="wrapper">
+<div class="wrapper">
     @include('partial/_errors')
-        @include('traineee.layout.header')
+    @include('traineee.layout.header')
 
-        @include('traineee.layout.sidebar')
+    @include('traineee.layout.sidebar')
 
-        @section('main-content')
+    @section('main-content')
 
-        @show
-        @include('traineee.layout.footer')
+    @show
+    @include('traineee.layout.footer')
 
-    </div>
+</div>
 
 </body>
 </html>

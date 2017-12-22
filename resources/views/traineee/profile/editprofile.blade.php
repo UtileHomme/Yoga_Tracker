@@ -4,6 +4,7 @@
 @section('editemailid',$trainee_details->trainee_emailid)
 @section('editdob',$trainee_details->trainee_dob)
 @section('editmobileno',$trainee_details->trainee_mobilenumber)
+@section('edittrainer_name',$trainer_name)
 
 @section('main-content')
 
@@ -100,7 +101,7 @@
                                     <div class="input-group">
 
                                         <select class="form-control select2"  name="trainer_name">
-                                            <option selected="selected"></option>
+                                            <option selected="selected">@yield('edittrainer_name')</option>
                                             @foreach($trainer_names as $trainer)
                                             <option value="{{$trainer->name}}">{{$trainer->name}}</option>
                                             @endforeach
@@ -123,7 +124,7 @@
                         </div>
                         <!-- /.box-body -->
 
-                        <div class="box-footer">
+                        <div class="box-footer text-center">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>

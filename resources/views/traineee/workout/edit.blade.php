@@ -60,14 +60,16 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('workout.store')}}" method="POST">
+                    <form role="form" action="{{route('workout.update', $id)}}" method="POST">
                         {{csrf_field()}}
+                        {{ method_field('PATCH')}}
                         <div class="box-body">
 
+                            @foreach($workouts as $workout)
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="wname">Workout Name</label>
-                                    <input type="text" class="form-control" id="wname" name="workout_name" placeholder="Give a name to your workout">
+                                    <input type="text" class="form-control" id="wname" name="workout_name" placeholder="Give a name to your workout" value="{{$workout->workout_name}}">
                                 </div>
 
                                 <div class="form-group">
@@ -77,7 +79,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control pull-right" id="datepicker" name="workout_date" placeholder="Enter your workout date">
+                                        <input type="text" class="form-control pull-right" id="datepicker" name="workout_date" placeholder="Enter your workout date" value="{{$workout->workout_date}}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -87,7 +89,7 @@
                                         <label>Workout Start Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker" name="workout_start_time">
+                                            <input type="text" class="form-control timepicker" name="workout_start_time" value="{{$workout->workout_start_time}}">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -105,7 +107,7 @@
                                         <label>Workout End Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker" name="workout_end_time">
+                                            <input type="text" class="form-control timepicker" name="workout_end_time" value="{{$workout->workout_end_time}}">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -114,24 +116,6 @@
                                         <!-- /.input group -->
                                     </div>
                                 </div>
-
-                                @if($trainer_id==NULL)
-                                <div class="form-group">
-                                    <label>Select Your Trainer:</label>
-
-                                    <div class="input-group">
-
-                                        <select class="form-control select2" style="width: 100%;" name="trainer_name">
-                                            <option selected="selected"></option>
-                                            @foreach($trainer_names as $trainer)
-                                            <option value="{{$trainer->name}}">{{$trainer->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                                @endif
 
 
                             </div>
@@ -152,10 +136,11 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body pad">
-                            <textarea name="comments"
-                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+                            <textarea  name="comments"
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1" >{{$workout->comments}}</textarea>
                         </div>
                     </div>
+                    @endforeach
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

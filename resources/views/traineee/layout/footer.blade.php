@@ -38,6 +38,9 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
 
+<!-- CK Editor -->
+<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+
 <script>
 $(document).ready(function(){
   $('.counter-count').each(function () {
@@ -69,6 +72,16 @@ $('.timepicker').timepicker({
 })
   })
 </script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
+
 @include('partial/_errors')
 @include('partial/_message')
 

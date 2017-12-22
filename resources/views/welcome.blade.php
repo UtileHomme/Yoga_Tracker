@@ -19,8 +19,26 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <style type="text/css">
 
+    .style-3::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5  ;
+    }
+
+    .style-3::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5  ;
+    }
+
+    .style-3::-webkit-scrollbar-thumb
+    {
+        background-color: #13a7b5  ;
+    }
 
     @media only screen and (min-width:960px) and (orientation:landscape){
         .navbar-right
@@ -42,7 +60,7 @@
     </style>
 </head>
 
-<body>
+<body class="style-3">
 
 
 
