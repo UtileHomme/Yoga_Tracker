@@ -21,7 +21,7 @@
             <!-- <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="user-image" alt="User Image"> -->
             <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="user-image" alt="User Image">
 
-    <span class="hidden-xs">{{Auth::user()->name}}</span>
+    <span class="hidden-xs">Hello {{Auth::user()->name}}</span>
 
 
           </a>
