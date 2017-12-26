@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\Workout;
 use App\trainee_detail;
+use App\Admin;
 use Session;
 
 class TraineeController extends Controller
@@ -27,11 +28,48 @@ class TraineeController extends Controller
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
+        // dd($trainee_id);
+
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workout1 = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workouts = json_decode($trainee_workouts,true);
+        $trainee_workout_count = count($trainee_workouts);
+
+
+        // dd($trainee_workout_count);
+
+        $workout_id = array();
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $workout_id[] = $trainee_workouts[$i]['id'];
+        }
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+            $comments_per_id = json_decode($comments_per_id,true);
+            $count_comments = count($comments_per_id);
+
+            $comments[] = $comments_per_id;
+            $counts[] = $count_comments;
+        }
+
+        // dd($comments,$counts);
+
+        // dd($workout_id);
+        // $trainee_workout_id = DB::table('workouts')->where('trainee_id',$trainee_id)->value('id');
+
+        // $workout_ids[] = $trainee_workouts[0]['id'];
+        // dd($workout_ids);
+        // dd($trainee_workouts->workout_name);
+        // dd($trainee_workouts);
 
         // dd($trainee_image);
         // dd($logged_in_user);
-        return view('traineee.trainee',compact('logged_in_user','trainee_image'));
+        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count'));
     }
 
     /**
@@ -53,6 +91,32 @@ class TraineeController extends Controller
 
         // dd($trainer_id);
         $trainer_names = DB::table('trainers')->get();
+
+
+                $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+                $trainee_workouts = json_decode($trainee_workouts,true);
+                $trainee_workout_count = count($trainee_workouts);
+
+
+                // dd($trainee_workout_count);
+
+                $workout_id = array();
+
+                for($i=0;$i<$trainee_workout_count;$i++)
+                {
+                    $workout_id[] = $trainee_workouts[$i]['id'];
+                }
+
+                for($i=0;$i<$trainee_workout_count;$i++)
+                {
+                    $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+                    $comments_per_id = json_decode($comments_per_id,true);
+                    $count_comments = count($comments_per_id);
+
+                    $comments[] = $comments_per_id;
+                    $counts[] = $count_comments;
+                }
+
         return view('traineee/workout/create',compact('logged_in_user','trainer_names','trainer_id','trainee_image'));
     }
 
@@ -64,6 +128,7 @@ class TraineeController extends Controller
     */
     public function store(Request $request)
     {
+        // dd($request->all());
         $logged_in_user = Auth::user()->name;
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
@@ -94,13 +159,24 @@ class TraineeController extends Controller
 
 
         $date = $request->workout_date;
+
         $date = date("Y-m-d",strtotime($date));
 
+
+
         $start_time = $request->workout_start_time;
+
+        $start_time_timeofday = substr($start_time,6,2);
+
         $start_time = substr($start_time, 0,5);
         $start_time = $start_time.":00";
 
+
+
         $end_time = $request->workout_end_time;
+
+        $end_time_timeofday = substr($end_time,6,2);
+
         $end_time = substr($end_time, 0,5);
         $end_time = $end_time.":00";
 
@@ -109,7 +185,9 @@ class TraineeController extends Controller
         $workout->workout_name = $request->workout_name;
         $workout->workout_date = $date;
         $workout->workout_start_time = $start_time;
+        $workout->workout_start_timeofday = $start_time_timeofday;
         $workout->workout_end_time = $end_time;
+        $workout->workout_end_timeofday = $end_time_timeofday;
         $workout->comments = $request->comments;
         $workout->trainee_id = $trainee_id;
         $workout->save();
@@ -119,7 +197,31 @@ class TraineeController extends Controller
         ->where('id',$trainee_id)
         ->update(['trainer_id'=> $trainer_id]);
 
-        return view('traineee.trainee',compact('logged_in_user','trainee_image'));
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workouts = json_decode($trainee_workouts,true);
+        $trainee_workout_count = count($trainee_workouts);
+
+
+        // dd($trainee_workout_count);
+
+        $workout_id = array();
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $workout_id[] = $trainee_workouts[$i]['id'];
+        }
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+            $comments_per_id = json_decode($comments_per_id,true);
+            $count_comments = count($comments_per_id);
+
+            $comments[] = $comments_per_id;
+            $counts[] = $count_comments;
+        }
+
+        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count'));
     }
 
     public function display()
@@ -203,10 +305,15 @@ class TraineeController extends Controller
         $date = date("Y-m-d",strtotime($date));
 
         $start_time = $request->workout_start_time;
+
+        $start_time_timeofday = substr($start_time,6,2);
         $start_time = substr($start_time, 0,5);
         $start_time = $start_time.":00";
 
         $end_time = $request->workout_end_time;
+
+        $end_time_timeofday = substr($end_time,6,2);
+
         $end_time = substr($end_time, 0,5);
         $end_time = $end_time.":00";
 
@@ -215,7 +322,9 @@ class TraineeController extends Controller
         $workout->workout_name = $request->workout_name;
         $workout->workout_date = $date;
         $workout->workout_start_time = $start_time;
+        $workout->workout_start_timeofday = $start_time_timeofday;
         $workout->workout_end_time = $end_time;
+        $workout->workout_end_timeofday = $end_time_timeofday;
         $workout->comments = $request->comments;
         $workout->trainee_id = $trainee_id;
         $workout->save();
@@ -315,6 +424,7 @@ class TraineeController extends Controller
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
+        // dd($trainee_id);
         $date = $request->trainee_dob;
         $date = date("Y-m-d",strtotime($date));
 
@@ -327,6 +437,11 @@ class TraineeController extends Controller
         $trainee_detail->profile_image = $imageName;
 
         $trainer_name = $request->trainer_name;
+
+        $admin_details = Admin::find($trainee_id);
+        $admin_details->name = $request->trainee_name;
+        $admin_details->email = $request->trainee_emailid;
+        $admin_details->save();
 
         $trainer_id =DB::table('trainers')->where('name',$trainer_name)->value('id');
         DB::table('trainee_details')

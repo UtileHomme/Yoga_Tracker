@@ -191,6 +191,80 @@
                                     </div>
                                     <!-- ./col -->
                                 </div>
+
+                                @for($i=0;$i<$trainee_workout_count;$i++)
+                                <div class="row">
+                                    <div class="col-lg-8 col-lg-offset-2">
+                                        <!-- Box Comment -->
+                                        <div class="box box-widget">
+                                            <div class="box-header with-border">
+                                                <div class="user-block">
+                                                    <img class="img-circle" src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" alt="User Image">
+                                                    <span class="username"><a href="#">{{Auth::user()->name}}</a></span>
+                                                    <span class="description"> {{$trainee_workouts[$i]['workout_start_time']}} {{$trainee_workouts[$i]['workout_start_timeofday']}} </span>
+                                                </div>
+                                                <!-- /.user-block -->
+                                                <div class="box-tools">
+                                                    <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
+                                                        <i class="fa fa-circle-o"></i></button>
+                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                    <!-- /.box-tools -->
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body">
+                                                    <img class="img-responsive pad" src="{{asset('traineee/dist/img/photo2.png')}}" alt="Photo">
+
+                                                    <p>{{$trainee_workouts[$i]['comments']}}</p>
+                                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
+                                                    <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                                                    <span class="pull-right text-muted">127 likes - {{$counts[$i]}} comments</span>
+                                                </div>
+                                                <!-- /.box-body -->
+                                                @if($counts[$i]>0)
+                                                <div class="box-footer box-comments">
+
+                                                    @for($j=0;$j<$counts[$i];$j++)
+                                                    <div class="box-comment">
+                                                        <!-- User image -->
+                                                        <img class="img-circle img-sm" src="{{asset('traineee/dist/img/user3-128x128.jpg')}}" alt="User Image">
+
+
+                                                        <div class="comment-text">
+                                                            <span class="username">
+                                                                Maria Gonzales
+                                                                <span class="text-muted pull-right">8:03 PM Today</span>
+                                                            </span><!-- /.username -->
+                                                            {{$comments[$i][$j]['comment']}}
+                                                        </div>
+                                                        <!-- /.comment-text -->
+                                                    </div>
+                                                    @endfor
+                                                    <!-- /.box-comment -->
+                                                    <!-- /.box-comment -->
+                                                </div>
+                                                @endif
+                                                <!-- /.box-footer -->
+                                                <div class="box-footer">
+                                                    <form action="#" method="post">
+                                                        <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
+                                                        <!-- .img-push is used to add margin to elements next to floating images -->
+                                                        <div class="img-push">
+                                                            <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!-- /.box-footer -->
+                                            </div>
+                                            <!-- /.box -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <!-- /.col -->
+                                    </div>
+                                    @endfor
+                                    <!-- /.row -->
                             </div>
                             <!-- /.tab-pane -->
                         </div>

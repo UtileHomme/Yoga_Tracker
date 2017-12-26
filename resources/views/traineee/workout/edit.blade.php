@@ -89,7 +89,7 @@
                                         <label>Workout Start Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker" name="workout_start_time" value="{{$workout->workout_start_time}}">
+                                            <input type="text" class="form-control timepicker" name="workout_start_time" value="{{$workout->workout_start_time}} {{$workout->workout_start_timeofday}}">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -107,7 +107,7 @@
                                         <label>Workout End Time:</label>
 
                                         <div class="input-group">
-                                            <input type="text" class="form-control timepicker" name="workout_end_time" value="{{$workout->workout_end_time}}">
+                                            <input type="text" class="form-control timepicker" name="workout_end_time" value="{{$workout->workout_end_time}} {{$workout->workout_end_timeofday}}">
 
                                             <div class="input-group-addon">
                                                 <i class="fa fa-clock-o"></i>
@@ -124,7 +124,7 @@
 
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title"> Add any Comments or Notes here
+                                <h3 class="box-title"> Text for your Workout Post
                                 </h3>
                                 <!-- tools box -->
                                 <!-- <div class="pull-right box-tools">

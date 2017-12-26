@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <style type="text/css">
 
     .style-3::-webkit-scrollbar-track
@@ -37,7 +37,7 @@
 
     .style-3::-webkit-scrollbar-thumb
     {
-        background-color: #13a7b5  ;
+        background-color: #1B1617  ;
     }
 
     @media only screen and (min-width:960px) and (orientation:landscape){

@@ -140,7 +140,7 @@
 
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title"> Add any Comments or Notes here
+                                <h3 class="box-title"> Text for your Workout Post
                                 </h3>
                                 <!-- tools box -->
                                 <!-- <div class="pull-right box-tools">
@@ -153,7 +153,7 @@
                         <!-- /.box-header -->
                         <div class="box-body pad">
                             <textarea name="comments"
-                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" id="editor1"></textarea>
+                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" ></textarea>
                         </div>
                     </div>
                     <div class="box-footer">

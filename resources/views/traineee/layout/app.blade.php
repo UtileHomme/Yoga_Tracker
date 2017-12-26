@@ -19,7 +19,7 @@
 
     .style-3::-webkit-scrollbar-thumb
     {
-        background-color: #13a7b5  ;
+        background-color: #1B1617  ;
     }
     </style>
 </head>
