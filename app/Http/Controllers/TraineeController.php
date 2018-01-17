@@ -190,7 +190,7 @@ class TraineeController extends Controller
     */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->workout_image);
         $logged_in_user = Auth::user()->name;
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
@@ -242,6 +242,16 @@ class TraineeController extends Controller
         $end_time = substr($end_time, 0,5);
         $end_time = $end_time.":00";
 
+        // $imageName = NULL;
+        if($request->hasFile('profile_image'))
+        {
+
+            $imageName1 = $request->profile_image->store('public');
+            dd($imageName1);
+
+            // $trainee_image = $request->profile_image->store('public');
+        }
+
 
         $workout = new Workout;
         $workout->workout_name = $request->workout_name;
@@ -252,6 +262,7 @@ class TraineeController extends Controller
         $workout->workout_end_timeofday = $end_time_timeofday;
         $workout->comments = $request->comments;
         $workout->trainee_id = $trainee_id;
+        $workout->workout_image = $imageName;
         $workout->save();
 
 
@@ -273,17 +284,71 @@ class TraineeController extends Controller
             $workout_id[] = $trainee_workouts[$i]['id'];
         }
 
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
+
+            if($likes_per_workout==NULL)
+            {
+                $likes_per_workout = 0;
+            }
+            $likes[] = $likes_per_workout;
+        }
+
+        // dd($workout_id);
+
         for($i=0;$i<$trainee_workout_count;$i++)
         {
             $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
             $comments_per_id = json_decode($comments_per_id,true);
             $count_comments = count($comments_per_id);
 
+
             $comments[] = $comments_per_id;
             $counts[] = $count_comments;
-        }
 
-        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count'));
+            $name_per_comment = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id[$i])->get();
+            $name_per_comment = json_decode($name_per_comment,true);
+            $name_count = count($name_per_comment);
+            $name[] = $name_per_comment;
+
+            $name_counts[] = $name_count;
+
+            $time_per_comment = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id[$i])->get();
+            $time_per_comment = json_decode($time_per_comment,true);
+
+            $time_count = count($time_per_comment);
+
+            $time[] = $time_per_comment;
+         }
+
+
+
+         for($i=0;$i<$trainee_workout_count;$i++)
+         {
+             if($counts[$i]>0)
+             {
+                 for($j=0;$j<$counts[$i];$j++)
+                 {
+                     $time[$i][$j]['created_at'] = substr($time[$i][$j]['created_at'],11,5);
+                     if(date($time[$i][$j]['created_at'])<12)
+                     {
+                         $time[$i][$j]['created_at'] = $time[$i][$j]['created_at']." AM";
+                     }
+                     else
+                     {
+                        $time[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time[$i][$j]['created_at'])))." PM";
+                     }
+
+
+                 }
+             }
+         }
+
+
+
+        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','time','likes'));
     }
 
     public function display()
@@ -476,7 +541,7 @@ class TraineeController extends Controller
         {
             $imageName = $request->profile_image->store('public');
             $trainee_image = $request->profile_image->store('public');
-            // dd($imageName);
+            dd($imageName);
         }
         // dd($imageName);
 

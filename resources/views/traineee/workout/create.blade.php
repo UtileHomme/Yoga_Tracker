@@ -133,6 +133,10 @@
                                 <!-- /.form group -->
                                 @endif
 
+                                <div class="form-group">
+                                    <label for="profile_image">Upload an Image for Your Workout</label>
+                                    <input type="file" id="profile_image" name="profile_image">
+                                </div>
 
                             </div>
                         </div>
