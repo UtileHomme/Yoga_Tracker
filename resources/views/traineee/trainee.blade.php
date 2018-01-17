@@ -220,7 +220,17 @@
                                                     <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                                                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                                                    <span class="pull-right text-muted">127 likes - {{$counts[$i]}} comments</span>
+                                                    <span class="pull-right text-muted">{{$likes[$i]}}@if($likes[$i]==1)
+                                                    like
+                                                    @else
+                                                    likes
+                                                    @endif - {{$counts[$i]}}
+
+                                                        @if($counts[$i]==1)
+                                                        comment
+                                                        @else
+                                                        comments
+                                                        @endif</span>
                                                 </div>
                                                 <!-- /.box-body -->
                                                 @if($counts[$i]>0)
@@ -234,8 +244,8 @@
 
                                                         <div class="comment-text">
                                                             <span class="username">
-                                                                Maria Gonzales
-                                                                <span class="text-muted pull-right">8:03 PM Today</span>
+                                                                {{$name[$i][$j]['trainee_name']}}
+                                                                <span class="text-muted pull-right">{{$time[$i][$j]['created_at']}}</span>
                                                             </span><!-- /.username -->
                                                             {{$comments[$i][$j]['comment']}}
                                                         </div>

@@ -38,7 +38,18 @@ class TraineeController extends Controller
         $trainee_workout_count = count($trainee_workouts);
 
 
-        // dd($trainee_workout_count);
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $trainee_workouts[$i]['workout_start_time'] = date("H:i",strtotime($trainee_workouts[$i]['workout_start_time']));
+        }
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $trainee_workouts[$i]['workout_end_time'] = date("H:i",strtotime($trainee_workouts[$i]['workout_end_time']));
+        }
+
+
+
 
         $workout_id = array();
 
@@ -49,17 +60,68 @@ class TraineeController extends Controller
 
         for($i=0;$i<$trainee_workout_count;$i++)
         {
+            $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
+
+            if($likes_per_workout==NULL)
+            {
+                $likes_per_workout = 0;
+            }
+            $likes[] = $likes_per_workout;
+        }
+
+        // dd($workout_id);
+
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
             $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
             $comments_per_id = json_decode($comments_per_id,true);
             $count_comments = count($comments_per_id);
 
+
             $comments[] = $comments_per_id;
             $counts[] = $count_comments;
-        }
 
-        // dd($comments,$counts);
+            $name_per_comment = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id[$i])->get();
+            $name_per_comment = json_decode($name_per_comment,true);
+            $name_count = count($name_per_comment);
+            $name[] = $name_per_comment;
 
-        // dd($workout_id);
+            $name_counts[] = $name_count;
+
+            $time_per_comment = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id[$i])->get();
+            $time_per_comment = json_decode($time_per_comment,true);
+
+            $time_count = count($time_per_comment);
+
+            $time[] = $time_per_comment;
+         }
+
+
+
+         for($i=0;$i<$trainee_workout_count;$i++)
+         {
+             if($counts[$i]>0)
+             {
+                 for($j=0;$j<$counts[$i];$j++)
+                 {
+                     $time[$i][$j]['created_at'] = substr($time[$i][$j]['created_at'],11,5);
+                     if(date($time[$i][$j]['created_at'])<12)
+                     {
+                         $time[$i][$j]['created_at'] = $time[$i][$j]['created_at']." AM";
+                     }
+                     else
+                     {
+                        $time[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time[$i][$j]['created_at'])))." PM";
+                     }
+
+
+                 }
+             }
+         }
+
+
+
+        // dd($counts);
         // $trainee_workout_id = DB::table('workouts')->where('trainee_id',$trainee_id)->value('id');
 
         // $workout_ids[] = $trainee_workouts[0]['id'];
@@ -69,7 +131,7 @@ class TraineeController extends Controller
 
         // dd($trainee_image);
         // dd($logged_in_user);
-        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count'));
+        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','time','likes'));
     }
 
     /**
