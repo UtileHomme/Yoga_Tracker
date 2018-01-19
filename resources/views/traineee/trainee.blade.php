@@ -215,7 +215,7 @@
                                                 </div>
                                                 <!-- /.box-header -->
                                                 <div class="box-body">
-                                                    <img class="img-responsive pad" src="{{asset('traineee/dist/img/photo2.png')}}" alt="Photo">
+                                                    <img class="img-responsive pad" src="{{ asset(Storage::disk('local')->url($trainee_workouts[$i]['workout_image'])) }}" alt="Photo" width="100%">
 
                                                     <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>

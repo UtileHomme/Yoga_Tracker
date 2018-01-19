@@ -22,6 +22,7 @@
         background-color: #1B1617  ;
     }
     </style>
+
 </head>
 <body class="hold-transition skin-purple sidebar-mini style-3">
 
@@ -34,9 +35,14 @@
     @section('main-content')
 
     @show
+
+
     @include('traineee.layout.footer')
 
 </div>
 
+@section('scripts')
+
+@show
 </body>
 </html>

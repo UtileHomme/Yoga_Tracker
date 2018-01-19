@@ -32,7 +32,7 @@ class TraineeController extends Controller
 
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
-        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->orderBy('created_at','Desc')->get();
         $trainee_workout1 = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
         $trainee_workouts = json_decode($trainee_workouts,true);
         $trainee_workout_count = count($trainee_workouts);
@@ -94,8 +94,11 @@ class TraineeController extends Controller
             $time_count = count($time_per_comment);
 
             $time[] = $time_per_comment;
-         }
 
+            // $image_workouts = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+            // $image_workouts = json_decode($image_workouts);
+
+         }
 
 
          for($i=0;$i<$trainee_workout_count;$i++)
@@ -121,16 +124,6 @@ class TraineeController extends Controller
 
 
 
-        // dd($counts);
-        // $trainee_workout_id = DB::table('workouts')->where('trainee_id',$trainee_id)->value('id');
-
-        // $workout_ids[] = $trainee_workouts[0]['id'];
-        // dd($workout_ids);
-        // dd($trainee_workouts->workout_name);
-        // dd($trainee_workouts);
-
-        // dd($trainee_image);
-        // dd($logged_in_user);
         return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','time','likes'));
     }
 
@@ -242,14 +235,11 @@ class TraineeController extends Controller
         $end_time = substr($end_time, 0,5);
         $end_time = $end_time.":00";
 
-        // $imageName = NULL;
-        if($request->hasFile('profile_image'))
+        $imageName1 = NULL;
+        if($request->hasFile('workout_image'))
         {
 
-            $imageName1 = $request->profile_image->store('public');
-            dd($imageName1);
-
-            // $trainee_image = $request->profile_image->store('public');
+            $imageName1 = $request->workout_image->store('public');
         }
 
 
@@ -262,7 +252,7 @@ class TraineeController extends Controller
         $workout->workout_end_timeofday = $end_time_timeofday;
         $workout->comments = $request->comments;
         $workout->trainee_id = $trainee_id;
-        $workout->workout_image = $imageName;
+        $workout->workout_image = $imageName1;
         $workout->save();
 
 
@@ -361,6 +351,7 @@ class TraineeController extends Controller
 
         // dd($trainee_id);
 
+
         $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($trainee_workouts);
@@ -408,13 +399,14 @@ class TraineeController extends Controller
     */
     public function update(Request $request, $id)
     {
+        // dd($id);
         $logged_in_user = Auth::user()->name;
 
         $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
 
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
-        // dd($trainee_id);
+        $workout_image = DB::table('workouts')->where('id',$id)->value('workout_image');
 
         $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
@@ -427,6 +419,13 @@ class TraineeController extends Controller
             'workout_end_time'=>'required',
         ]);
 
+        $imageName = $workout_image;
+        // dd($request->hasFile('profile_image'));
+        if($request->hasFile('workout_image'))
+        {
+            $imageName = $request->workout_image->store('public');
+            $workout_image = $request->workout_image->store('public');
+        }
 
         $date = $request->workout_date;
         $date = date("Y-m-d",strtotime($date));
@@ -444,6 +443,7 @@ class TraineeController extends Controller
         $end_time = substr($end_time, 0,5);
         $end_time = $end_time.":00";
 
+        // dd($imageName);
 
         $workout = Workout::find($id);
         $workout->workout_name = $request->workout_name;
@@ -453,6 +453,7 @@ class TraineeController extends Controller
         $workout->workout_end_time = $end_time;
         $workout->workout_end_timeofday = $end_time_timeofday;
         $workout->comments = $request->comments;
+        $workout->workout_image = $imageName;
         $workout->trainee_id = $trainee_id;
         $workout->save();
 
@@ -541,7 +542,7 @@ class TraineeController extends Controller
         {
             $imageName = $request->profile_image->store('public');
             $trainee_image = $request->profile_image->store('public');
-            dd($imageName);
+            // dd($imageName);
         }
         // dd($imageName);
 

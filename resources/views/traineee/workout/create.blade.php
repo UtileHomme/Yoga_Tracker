@@ -1,5 +1,48 @@
 @extends('traineee.layout.app')
 
+@section('scripts')
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    var workout_name = $('#wname').val();
+    var length = workout_name.length;
+    var reg = /^[a-zA-Z\s]*$/;
+    var test = reg.test(workout_name);
+
+
+    // console.log
+    // console.log(workout_name);
+    if(length==0)
+    {
+        $(".error").hide();
+    }
+
+    $("#wname").blur(function(){
+
+        var workout_name = $('#wname').val();
+        var length = workout_name.length;
+        var reg = /^[a-zA-Z\s]*$/;
+        var test = reg.test(workout_name);
+
+        if(reg.test(workout_name)==false)
+        {
+            $(".error").show();
+            $("#submit").prop("disabled",true);
+        }
+        else
+        {
+            $(".error").hide();
+            $("#submit").prop("disabled",false);
+
+        }
+    });
+});
+</script>
+
+@endsection
+
 @section('main-content')
 
 <head>
@@ -32,6 +75,7 @@
 }
 </style>
 
+
 </head>
 
 <!-- Content Wrapper. Contains page content -->
@@ -60,7 +104,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('workout.store')}}" method="POST">
+                    <form role="form" action="{{route('workout.store')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="box-body">
 
@@ -68,6 +112,7 @@
                                 <div class="form-group">
                                     <label for="wname">Workout Name</label>
                                     <input type="text" class="form-control" id="wname" name="workout_name" placeholder="Give a name to your workout">
+                                    <p style="color:red" class="error">Please enter Characters only</p>
                                 </div>
 
                                 <div class="form-group">
@@ -134,8 +179,8 @@
                                 @endif
 
                                 <div class="form-group">
-                                    <label for="profile_image">Upload an Image for Your Workout</label>
-                                    <input type="file" id="profile_image" name="profile_image">
+                                    <label for="workout_image">Upload an Image for Your Workout</label>
+                                    <input type="file" id="workout_image" name="workout_image">
                                 </div>
 
                             </div>
@@ -161,7 +206,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -175,5 +220,6 @@
 </section>
 <!-- /.content -->
 </div>
+
 
 @endsection
