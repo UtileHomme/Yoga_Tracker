@@ -4,6 +4,8 @@
 
 @section('main-content')
 
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -36,15 +38,16 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
 
+                            @for($i=0;$i<$trainee_workout_count;$i++)
                             <div class="row">
                                 <div class="col-lg-8 col-lg-offset-2">
                                     <!-- Box Comment -->
                                     <div class="box box-widget">
                                         <div class="box-header with-border">
                                             <div class="user-block">
-                                                <img class="img-circle" src="{{asset('traineee/dist/img/user1-128x128.jpg')}}" alt="User Image">
-                                                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                                                <span class="description">Shared publicly - 7:30 PM Today</span>
+                                                <img class="img-circle" src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" alt="User Image">
+                                                <span class="username"><a href="#">{{Auth::user()->name}}</a></span>
+                                                <span class="description"> {{$trainee_workouts[$i]['workout_start_time']}} {{$trainee_workouts[$i]['workout_start_timeofday']}} </span>
                                             </div>
                                             <!-- /.user-block -->
                                             <div class="box-tools">
@@ -58,139 +61,85 @@
                                             </div>
                                             <!-- /.box-header -->
                                             <div class="box-body">
-                                                <img class="img-responsive pad" src="{{asset('traineee/dist/img/photo2.png')}}" alt="Photo">
+                                                <img class="img-responsive pad" src="{{ asset(Storage::disk('local')->url($trainee_workouts[$i]['workout_image'])) }}" alt="Photo" width="100%">
 
-                                                <p>I took this photo this morning. What do you guys think?</p>
+                                                <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                                                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                                                <span class="pull-right text-muted">127 likes - 3 comments</span>
-                                            </div>
-                                            <!-- /.box-body -->
-                                            <div class="box-footer box-comments">
-                                                <div class="box-comment">
+                                                <span class="pull-right text-muted">{{$likes[$i]}}@if($likes[$i]==1)
+                                                    like
+                                                    @else
+                                                    likes
+                                                    @endif - {{$counts[$i]}}
+
+                                                    @if($counts[$i]==1)
+                                                    comment
+                                                    @else
+                                                    comments
+                                                    @endif</span>
+                                                </div>
+                                                <!-- /.box-body -->
+
+                                                <div class="box-footer box-comments comments{{$trainee_workouts[$i]['id']}}">
+
+                                                    @if($counts[$i]>0)
+
+
+                                                    @for($j=0;$j<$counts[$i];$j++)
+                                                    <div class="box-comment ">
+
+
                                                     <!-- User image -->
-                                                    <img class="img-circle img-sm" src="{{asset('traineee/dist/img/user3-128x128.jpg')}}" alt="User Image">
+                                                    <img class="img-circle img-sm" src="{{asset(Storage::disk('local')->url($image[$i][$j]['trainee_image'])) }}" alt="User Image">
+
 
                                                     <div class="comment-text">
                                                         <span class="username">
-                                                            Maria Gonzales
-                                                            <span class="text-muted pull-right">8:03 PM Today</span>
+                                                            {{$name[$i][$j]['trainee_name']}}
+                                                            <span class="text-muted pull-right">{{$time[$i][$j]['created_at']}}</span>
                                                         </span><!-- /.username -->
-                                                        It is a long established fact that a reader will be distracted
-                                                        by the readable content of a page when looking at its layout.
+                                                        {{$comments[$i][$j]['comment']}}
                                                     </div>
                                                     <!-- /.comment-text -->
-                                                </div>
-                                                <!-- /.box-comment -->
-                                                <div class="box-comment">
-                                                    <!-- User image -->
-                                                    <img class="img-circle img-sm" src="{{asset('traineee/dist/img/user4-128x128.jpg')}}" alt="User Image">
+                                                    </div>
 
-                                                    <div class="comment-text">
-                                                        <span class="username">
-                                                            Luna Stark
-                                                            <span class="text-muted pull-right">8:03 PM Today</span>
-                                                        </span><!-- /.username -->
-                                                        It is a long established fact that a reader will be distracted
-                                                        by the readable content of a page when looking at its layout.
-                                                    </div>
-                                                    <!-- /.comment-text -->
+                                                @endfor
+                                                @endif
+                                            </div>
+
+
+                                            <!-- /.box-comment -->
+                                            <!-- /.box-comment -->
+
+
+
+                                        <!-- /.box-footer -->
+                                        <div class="box-footer box-comment">
+                                            <form action="/index.html" method="post">
+                                                {{csrf_field()}}
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="hidden" name="workout_number" value="">
+                                                <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
+                                                <!-- .img-push is used to add margin to elements next to floating images -->
+                                                <div class="img-push">
+                                                    <input type="text" class="form-control input-sm textcomment" placeholder="Please post you comment here" id="{{$trainee_workouts[$i]['id']}}">
+                                                    <input type="button" name="" value="Post Comment" class="{{$trainee_workouts[$i]['id']}} submit btn btn-success btn-sm pull-right" style="margin-top:10px;">
                                                 </div>
-                                                <!-- /.box-comment -->
-                                            </div>
-                                            <!-- /.box-footer -->
-                                            <div class="box-footer">
-                                                <form action="#" method="post">
-                                                    <img class="img-responsive img-circle img-sm" src="{{asset('traineee/dist/img/user4-128x128.jpg')}}" alt="Alt Text">
-                                                    <!-- .img-push is used to add margin to elements next to floating images -->
-                                                    <div class="img-push">
-                                                        <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <!-- /.box-footer -->
+
+                                            </form>
                                         </div>
-                                        <!-- /.box -->
+                                        </div>
+                                        <!-- /.box-footer -->
                                     </div>
-                                    <!-- /.col -->
-                                    <!-- /.col -->
+                                    <!-- /.box -->
                                 </div>
-                                <!-- /.row -->
+                                <!-- /.col -->
+                                <!-- /.col -->
+                                @endfor
 
                             </div>
                             <!-- /.tab-pane -->
                             <div class="tab-pane" id="tab_2">
-
-                                <div class="row">
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-aqua">
-                                            <div class="inner">
-                                                <h3 class="counter-count text-center">150</h3>
-
-                                                <p class="text-center">Hours Logged in Today</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer">
-                                                More info <i class="fa fa-arrow-circle-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-green">
-                                            <div class="inner">
-                                                <h3 class="counter-count text-center">150</h3>
-
-                                                <p class="text-center">Hours Logged in This Week</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer">
-                                                More info <i class="fa fa-arrow-circle-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-yellow">
-                                            <div class="inner">
-                                                <h3 class="counter-count text-center">150</h3>
-
-                                                <p class="text-center">Hours Logged in This Month</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer">
-                                                More info <i class="fa fa-arrow-circle-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-red">
-                                            <div class="inner">
-                                                <h3 class="counter-count text-center">150</h3>
-
-                                                <p class="text-center">Hours Logged in This Year</p>
-                                            </div>
-                                            <div class="icon">
-                                                <i class="fa fa-clock-o"></i>
-                                            </div>
-                                            <a href="#" class="small-box-footer">
-                                                More info <i class="fa fa-arrow-circle-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- ./col -->
-                                </div>
 
                                 @for($i=0;$i<$trainee_workout_count;$i++)
                                 <div class="row">
@@ -221,25 +170,30 @@
                                                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                                                     <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
                                                     <span class="pull-right text-muted">{{$likes[$i]}}@if($likes[$i]==1)
-                                                    like
-                                                    @else
-                                                    likes
-                                                    @endif - {{$counts[$i]}}
+                                                        like
+                                                        @else
+                                                        likes
+                                                        @endif - {{$counts[$i]}}
 
                                                         @if($counts[$i]==1)
                                                         comment
                                                         @else
                                                         comments
                                                         @endif</span>
-                                                </div>
-                                                <!-- /.box-body -->
-                                                @if($counts[$i]>0)
-                                                <div class="box-footer box-comments">
+                                                    </div>
+                                                    <!-- /.box-body -->
 
-                                                    @for($j=0;$j<$counts[$i];$j++)
-                                                    <div class="box-comment">
+                                                    <div class="box-footer box-comments comments{{$trainee_workouts[$i]['id']}}">
+
+                                                        @if($counts[$i]>0)
+
+
+                                                        @for($j=0;$j<$counts[$i];$j++)
+                                                        <div class="box-comment ">
+
+
                                                         <!-- User image -->
-                                                        <img class="img-circle img-sm" src="{{asset('traineee/dist/img/user3-128x128.jpg')}}" alt="User Image">
+                                                        <img class="img-circle img-sm" src="{{asset(Storage::disk('local')->url($image[$i][$j]['trainee_image'])) }}" alt="User Image">
 
 
                                                         <div class="comment-text">
@@ -250,31 +204,48 @@
                                                             {{$comments[$i][$j]['comment']}}
                                                         </div>
                                                         <!-- /.comment-text -->
-                                                    </div>
-                                                    @endfor
-                                                    <!-- /.box-comment -->
-                                                    <!-- /.box-comment -->
-                                                </div>
-                                                @endif
-                                                <!-- /.box-footer -->
-                                                <div class="box-footer">
-                                                    <form action="#" method="post">
-                                                        <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
-                                                        <!-- .img-push is used to add margin to elements next to floating images -->
-                                                        <div class="img-push">
-                                                            <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
                                                         </div>
-                                                    </form>
+
+                                                    @endfor
+                                                    @endif
                                                 </div>
-                                                <!-- /.box-footer -->
+
+
+                                                <!-- /.box-comment -->
+                                                <!-- /.box-comment -->
+
+
+
+                                            <!-- /.box-footer -->
+                                            <div class="box-footer box-comment">
+                                                <form action="/index.html" method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <input type="hidden" name="workout_number" value="">
+                                                    <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
+                                                    <!-- .img-push is used to add margin to elements next to floating images -->
+                                                    <div class="img-push">
+                                                        <input type="text" class="form-control input-sm textcomment" placeholder="Please post you comment here" id="{{$trainee_workouts[$i]['id']}}">
+                                                        <input type="button" name="" value="Post Comment" class="{{$trainee_workouts[$i]['id']}} submit btn btn-success btn-sm pull-right" style="margin-top:10px;">
+                                                    </div>
+
+                                                </form>
                                             </div>
-                                            <!-- /.box -->
+                                            </div>
+                                            <!-- /.box-footer -->
                                         </div>
-                                        <!-- /.col -->
-                                        <!-- /.col -->
+                                        <!-- /.box -->
                                     </div>
+                                    <!-- /.col -->
+                                    <!-- /.col -->
                                     @endfor
-                                    <!-- /.row -->
+                                </div>
+
+
+                                <!-- <div class="" id="backendcomments">
+
+                                </div> -->
+                                <!-- /.row -->
                             </div>
                             <!-- /.tab-pane -->
                         </div>
@@ -293,4 +264,49 @@
     </div>
     <!-- /.content-wrapper -->
 
+
     @endsection
+
+    @section('scripts')
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        // $('form').on('submit', function(e){
+        //     e.preventDefault(); //1
+        //
+        //
+        //
+        //
+        // });
+        $(".submit").click(function(){
+            var post_class= $(this).attr("class");
+            var post_class_array=post_class.split(" ");
+            // console.log(post_class_array[0]);
+            var post_id = post_class_array[0];
+            // console.log(post_id);
+            var comment=$("#"+post_id).val();
+            console.log(comment);
+            //
+            // $.ajax({
+            //      type: "POST",
+            //      url: 'addcomment',
+            //
+            //      data: {'comment1' : comment,'id': post_id,'_token':$('input[name=_token]').val() },
+            //      success: function(data){
+            //          $('.comments'+post_id).html(data);
+            //      }
+            //  });
+            $.get("{{ URL::to('addcomment') }}",{ comment1 : comment,id: post_id, }
+            ,function(data){
+                $('.comments'+post_id).html(data);
+            });
+
+            $('.textcomment').val(" ");
+            $(".textcomment").attr("placeholder","Please post your comment here");
+            });
+
+
+        });
+        </script>
+        @endsection

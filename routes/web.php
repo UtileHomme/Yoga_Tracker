@@ -65,3 +65,6 @@ Route::get('pdf','PDFController@index')->name('pdf');
 // Routes for Login with google
 Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
+// Routes for Adding Comments on the person activities
+Route::get('addcomment','TraineeController@addcomment')->name('addcomment');
