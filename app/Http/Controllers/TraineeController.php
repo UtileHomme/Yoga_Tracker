@@ -39,10 +39,10 @@ class TraineeController extends Controller
         $trainee_workout1 = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
         $trainee_workouts = json_decode($trainee_workouts,true);
 
-        // dd($trainee_workouts);
         $trainee_workout_count = count($trainee_workouts);
 
-
+        // dd(Auth::user()->name);
+//
 
         for($i=0;$i<$trainee_workout_count;$i++)
         {
@@ -253,7 +253,7 @@ class TraineeController extends Controller
               }
           }
          //friends activity ends here
-
+         // dd($trainee_workouts,$trainee_image,$name);
          // dd($counts_all);
          // dd($trainee_workouts[0]['id']);
 

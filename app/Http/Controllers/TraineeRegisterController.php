@@ -29,8 +29,9 @@ array(
        $email = $request->email;
        $password = bcrypt($request->password);
 
+       $trainee_default_image = 'public/'.rand(1,3).'.png';
 
-
+       // dd($trainee_default_image);
     //    Admin::create([
     //        'name' => $name,
     //        'email' => $email,
@@ -56,7 +57,7 @@ array(
 
 
        DB::table('trainee_details')->insert(
-       ['trainee_name' => $name, 'trainee_emailid' => $email,'id'=>$trainee_id]);
+       ['trainee_name' => $name, 'trainee_emailid' => $email,'id'=>$trainee_id,'profile_image'=>$trainee_default_image]);
 
        Session::flash('message','You have been Registered Successfully!! Please Login Now!!');
        return redirect()->route('admin.login');
