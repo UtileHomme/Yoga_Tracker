@@ -14,10 +14,7 @@
             Welcome to your dashboard
             <small></small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Blank page</li>
-        </ol>
+    
     </section>
 
     <!-- Main content -->
@@ -165,8 +162,9 @@
                                                     </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
+                                                        @if($trainee_workouts[$i]['workout_image']!=NULL)
                                                         <img class="img-responsive pad" src="{{ asset(Storage::disk('local')->url($trainee_workouts[$i]['workout_image'])) }}" alt="Photo" width="100%">
-
+                                                        @endif
                                                         <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
@@ -302,7 +300,9 @@
                 $.get("{{ URL::to('addcomment') }}",{ comment1 : comment,id: post_id, }
                 ,function(data){
                     $('.comment'+post_id).html(data);
+                    $('.commentsall'+post_id).html(data);
                 });
+
 
             });
 
@@ -318,21 +318,17 @@
     // console.log(post_id);
     var comment2=$("#"+post_id2).val();
     console.log(comment2);
-    //
-    // $.ajax({
-    //      type: "POST",
-    //      url: 'addcomment',
-    //
-    //      data: {'comment1' : comment,'id': post_id,'_token':$('input[name=_token]').val() },
-    //      success: function(data){
-    //          $('.comments'+post_id).html(data);
-    //      }
-    //  });
+
     $.get("{{ URL::to('addcommentall') }}",{ comment2 : comment2,id2: post_id2, }
     ,function(data){
         $('.commentsall'+post_id2).html(data);
+                $('.comment'+post_id2).html(data);
     });
+
+
     });
+
+
 
         });
         </script>

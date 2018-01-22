@@ -409,6 +409,7 @@ class TraineeController extends Controller
         }
 
 
+
         for($i=0;$i<$trainee_workout_count;$i++)
         {
             $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
@@ -514,6 +515,13 @@ class TraineeController extends Controller
                       $workout_id_all[] = $trainee_workouts_all[$i]['id'];
                   }
 
+                  for($i=0;$i<$trainee_workout_count_all;$i++)
+                  {
+                      $workout_id_all[] = $trainee_workouts_all[$i]['id'];
+                      $workout_trainee_image = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('profile_image');
+                      $trainee_images_all[] = $workout_trainee_image;
+                  }
+
                   // dd($workout_id_all);
                   for($i=0;$i<$trainee_workout_count_all;$i++)
                   {
@@ -587,7 +595,7 @@ class TraineeController extends Controller
                    }
                    // dd($image);
         return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','image','time','likes'
-    ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all'));
+    ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all'));
     }
 
     public function display()
