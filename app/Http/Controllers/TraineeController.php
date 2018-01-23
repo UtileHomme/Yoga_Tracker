@@ -67,7 +67,7 @@ class TraineeController extends Controller
         {
             $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
 
-            if($likes_per_workout==NULL)
+            if($likes_per_workout==0)
             {
                 $likes_per_workout = 0;
             }
@@ -133,7 +133,7 @@ class TraineeController extends Controller
                  }
              }
          }
-         // dd($name);
+         // dd($time);
          //individual users workouts end here
 
          //friends activity starts here
@@ -1127,5 +1127,18 @@ for($j=0;$j<$count_for_names;$j++)
 
         return view('traineee/workout/commentcount',compact('commentcount'));
 
+    }
+
+    public function updatelikes(Request $request)
+    {
+        // dd($request->id);
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+
+        $likes_on_workout = $likes_on_workout + 1;
+
+         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
+
+         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
 }

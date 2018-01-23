@@ -72,3 +72,5 @@ Route::get('addcommentall','TraineeController@addcommentall')->name('addcommenta
 
 Route::get('updatecommentcount','TraineeController@commentcount')->name('updatecommentcount');
 Route::get('updatecommentcountall','TraineeController@commentcountall')->name('updatecommentcountall');
+
+Route::get('updatelikes','TraineeController@updatelikes')->name('updatelikes');

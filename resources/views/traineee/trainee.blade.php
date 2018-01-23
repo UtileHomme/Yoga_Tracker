@@ -67,7 +67,7 @@
                                                 @endif
                                                 <p>{{$trainee_workouts_all[$i]['comments']}}</p>
                                                 <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                                                <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                                                <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall btn btn-default btn-xs "><i class="fa fa-thumbs-o-up"></i> Like</button>
                                                 <span class="pull-right text-muted">{{$likes_all[$i]}}@if($likes_all[$i]==1)
                                                     like
                                                     @else
@@ -173,12 +173,18 @@
 
                                                         <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                                                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                                                        <span class="pull-right text-muted">{{$likes[$i]}}@if($likes[$i]==1)
+                                                        <button type="button" class="{{$trainee_workouts[$i]['id']}} like btn btn-default btn-xs" ><i class="fa fa-thumbs-o-up"></i> Like</button>
+                                                        <span class="pull-right text-muted">
+                                                            <div class="updatelikes{{$trainee_workouts[$i]['id']}}">
+
+                                                            {{$likes[$i]}}
+
+                                                            @if($likes[$i]==1)
                                                             like
                                                             @else
                                                             likes
                                                             @endif -
+                                                        </div>
 
                                                             <div class="commentcount{{$trainee_workouts[$i]['id']}}">
                                                                 {{$counts[$i]}}
@@ -291,7 +297,7 @@
                 var post_class= $(this).attr("class");
                 // console.log(post_class);
                 var post_class_array=post_class.split(" ");
-                // console.log(post_class);
+                console.log(post_class_array);
                 var post_id = post_class_array[0];
                 var comment=$("#"+post_id+"com").val();
 
@@ -350,7 +356,20 @@
 
             });
 
+                $(".like").click(function(){
 
+                    var like_class= $(this).attr("class");
+                    var like_class_array = like_class.split(" ");
+                    // console.log(like_class_array);
+                    var post_id = like_class_array[0];
+
+                    $.get("{{ URL::to('updatelikes') }}",{id: post_id}
+                    ,function(data){
+                        $('.updatelikes'+post_id).html(data);
+                    });
+
+                        $('.'+post_id+' like').attr("disabled", true);
+                });
 
         });
         </script>
