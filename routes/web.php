@@ -69,3 +69,6 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 // Routes for Adding Comments on the person activities
 Route::get('addcomment','TraineeController@addcomment')->name('addcomment');
 Route::get('addcommentall','TraineeController@addcommentall')->name('addcommentall');
+
+Route::get('updatecommentcount','TraineeController@commentcount')->name('updatecommentcount');
+Route::get('updatecommentcountall','TraineeController@commentcountall')->name('updatecommentcountall');

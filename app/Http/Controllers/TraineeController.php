@@ -1109,4 +1109,23 @@ for($j=0;$j<$count_for_names;$j++)
         // dd($counts,$name,$comments);
         return view('traineee.workout.allcomments',compact('time_per_comments','count_for_names','comments_per_workout','names_per_comments','image_per_comments'));
     }
+
+    public function commentcount(Request $request)
+    {
+        // dd($workout_id);
+        $workout_id = $request->id;
+        $commentcount = DB::table('workout_comments')->where('workout_id',$workout_id)->count();
+
+        return view('traineee/workout/commentcount',compact('commentcount'));
+
+    }
+    public function commentcountall(Request $request)
+    {
+        // dd($workout_id);
+        $workout_id = $request->id;
+        $commentcount = DB::table('workout_comments')->where('workout_id',$workout_id)->count();
+
+        return view('traineee/workout/commentcount',compact('commentcount'));
+
+    }
 }

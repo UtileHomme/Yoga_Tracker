@@ -72,8 +72,10 @@
                                                     like
                                                     @else
                                                     likes
-                                                    @endif - {{$counts_all[$i]}}
-
+                                                    @endif -
+                                                    <div class="commentcountall{{$trainee_workouts_all[$i]['id']}}">
+                                                        {{$counts_all[$i]}}
+                                                    </div>
                                                     @if($counts_all[$i]==1)
                                                     comment
                                                     @else
@@ -168,6 +170,7 @@
                                                         @if($trainee_workouts[$i]['workout_image']!=NULL)
                                                         <img class="img-responsive pad" src="{{ asset(Storage::disk('local')->url($trainee_workouts[$i]['workout_image'])) }}" alt="Photo" width="100%">
                                                         @endif
+
                                                         <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>
@@ -175,8 +178,11 @@
                                                             like
                                                             @else
                                                             likes
-                                                            @endif - {{$counts[$i]}}
+                                                            @endif -
 
+                                                            <div class="commentcount{{$trainee_workouts[$i]['id']}}">
+                                                                {{$counts[$i]}}
+                                                            </div>
                                                             @if($counts[$i]==1)
                                                             comment
                                                             @else
@@ -288,7 +294,6 @@
                 // console.log(post_class);
                 var post_id = post_class_array[0];
                 var comment=$("#"+post_id+"com").val();
-                console.log(comment);
 
                 //
                 // $.ajax({
@@ -305,6 +310,13 @@
                     $('.comment'+post_id).html(data);
                     $('.commentsall'+post_id).html(data);
                 });
+                $.get("{{ URL::to('updatecommentcount') }}",{ comment3 : comment,id: post_id, }
+                ,function(data){
+
+                    $('.commentcount'+post_id).html(data);
+                    $('.commentcountall'+post_id).html(data);
+
+                });
 
 
             });
@@ -314,22 +326,29 @@
             // $(".textcomment").attr("placeholder","Please post your comment here");
             // });
             $(".submit1").click(function(){
-    var post_class2= $(this).attr("class");
-    var post_class_array2=post_class2.split(" ");
-    // console.log(post_class_array[0]);
-    var post_id2 = post_class_array2[0];
-    // console.log(post_id);
-    var comment2=$("#"+post_id2).val();
-    console.log(comment2);
+                var post_class2= $(this).attr("class");
+                var post_class_array2=post_class2.split(" ");
+                // console.log(post_class_array[0]);
+                var post_id2 = post_class_array2[0];
+                // console.log(post_id);
+                var comment2=$("#"+post_id2).val();
+                console.log(comment2);
 
-    $.get("{{ URL::to('addcommentall') }}",{ comment2 : comment2,id2: post_id2, }
-    ,function(data){
-        $('.commentsall'+post_id2).html(data);
-                $('.comment'+post_id2).html(data);
-    });
+                $.get("{{ URL::to('addcommentall') }}",{ comment2 : comment2,id2: post_id2, }
+                ,function(data){
+                    $('.commentsall'+post_id2).html(data);
+                    $('.comment'+post_id2).html(data);
+                });
 
+                $.get("{{ URL::to('updatecommentcountall') }}",{ comment3 : comment2,id: post_id2, }
+                ,function(data){
 
-    });
+                    $('.commentcountall'+post_id2).html(data);
+                    $('.commentcount'+post_id2).html(data);
+
+                });
+
+            });
 
 
 
