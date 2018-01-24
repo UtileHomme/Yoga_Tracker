@@ -183,21 +183,27 @@
                                                         @endif
 
                                                         <p>{{$trainee_workouts[$i]['comments']}}</p>
-                                                        <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                                                        <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs"
                                                         <?php
                                                         if($like_status[$i]['like_status']==1)
                                                         {
                                                             ?>
-                                                            class = "likecolourchange"
-                                                            style="background-color: #AAAACA";
+                                                            <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs likecolourchange" style="background-color: #AAAACA">
+                                                                <i class="fa fa-thumbs-o-up {{$trainee_workouts[$i]['id']}}likecolour"></i> Like</button>
+                                                            <?php
+                                                        }
+                                                        else
+                                                        {
+                                                            ?>
+                                                            <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs">
+                                                                <i class="fa fa-thumbs-o-up {{$trainee_workouts[$i]['id']}}likecolour"></i> Like</button>
+
+
                                                             <?php
                                                         }
 
                                                         ?>
-                                                        ><i class="fa fa-thumbs-o-up {{$trainee_workouts[$i]['id']}}likecolour"></i> Like</button>
                                                         <span class="pull-right text-muted">
-                                                            <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}}">
+                                                            <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}}" style="float:left">
 
                                                                 {{$likes[$i]}}
 
@@ -208,7 +214,7 @@
                                                                 @endif -
                                                             </div>
 
-                                                            <div class="commentcount{{$trainee_workouts[$i]['id']}}">
+                                                            <div class="commentcount{{$trainee_workouts[$i]['id']}}" style="float:left">
                                                                 {{$counts[$i]}}
 
                                                             @if($counts[$i]==1)
@@ -323,7 +329,9 @@
                 console.log(post_class_array);
                 var post_id = post_class_array[0];
                 var comment=$("#"+post_id+"com").val();
-
+                $("#"+post_id+"com").val('');
+                $("#"+post_id+"com").attr("placeholder", "Please post your comment here");
+                // console.log(comment);
                 //
                 // $.ajax({
                 //      type: "POST",
@@ -338,6 +346,8 @@
                 ,function(data){
                     $('.comment'+post_id).html(data);
                     $('.commentsall'+post_id).html(data);
+
+
                 });
                 $.get("{{ URL::to('updatecommentcount') }}",{ comment3 : comment,id: post_id, }
                 ,function(data){
