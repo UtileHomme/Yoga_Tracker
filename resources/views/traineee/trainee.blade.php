@@ -4,7 +4,16 @@
 
 @section('main-content')
 
+<head>
+    <style media="screen">
 
+    .likecolourchange
+    {
+
+    }
+</style>
+
+</head>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -75,12 +84,14 @@
                                                     @endif -
                                                     <div class="commentcountall{{$trainee_workouts_all[$i]['id']}}">
                                                         {{$counts_all[$i]}}
-                                                    </div>
+
                                                     @if($counts_all[$i]==1)
                                                     comment
                                                     @else
                                                     comments
-                                                    @endif</span>
+                                                    @endif
+                                                    </div>
+                                                    </span>
                                                 </div>
                                                 <!-- /.box-body -->
 
@@ -173,27 +184,39 @@
 
                                                         <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
-                                                        <button type="button" class="{{$trainee_workouts[$i]['id']}} like btn btn-default btn-xs" ><i class="fa fa-thumbs-o-up"></i> Like</button>
+                                                        <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs"
+                                                        <?php
+                                                        if($like_status[$i]['like_status']==1)
+                                                        {
+                                                            ?>
+                                                            class = "likecolourchange"
+                                                            style="background-color: #AAAACA";
+                                                            <?php
+                                                        }
+
+                                                        ?>
+                                                        ><i class="fa fa-thumbs-o-up {{$trainee_workouts[$i]['id']}}likecolour"></i> Like</button>
                                                         <span class="pull-right text-muted">
-                                                            <div class="updatelikes{{$trainee_workouts[$i]['id']}}">
+                                                            <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}}">
 
-                                                            {{$likes[$i]}}
+                                                                {{$likes[$i]}}
 
-                                                            @if($likes[$i]==1)
-                                                            like
-                                                            @else
-                                                            likes
-                                                            @endif -
-                                                        </div>
+                                                                @if($likes[$i]==1)
+                                                                like
+                                                                @else
+                                                                likes
+                                                                @endif -
+                                                            </div>
 
                                                             <div class="commentcount{{$trainee_workouts[$i]['id']}}">
                                                                 {{$counts[$i]}}
-                                                            </div>
+
                                                             @if($counts[$i]==1)
                                                             comment
                                                             @else
                                                             comments
-                                                            @endif</span>
+                                                            @endif
+                                                        </div></span>
                                                         </div>
                                                         <!-- /.box-body -->
 
@@ -356,7 +379,29 @@
 
             });
 
-                $(".like").click(function(){
+            $(".like").click(function(){
+
+                if($(".like").hasClass('likecolourchange'))
+                {
+                    var like_class= $(this).attr("class");
+                    var like_class_array = like_class.split(" ");
+                    // console.log(like_class_array);
+                    var post_id = like_class_array[0];
+
+                    $.get("{{ URL::to('reducelikes') }}",{id: post_id}
+                    ,function(data){
+                        $('.reducelikes'+post_id).html(data);
+                        $('.'+post_id+'likestatus').removeClass("likecolourchange");
+                        $('.'+post_id+'likestatus').css('background-color', '#f4f4f4');
+                        $('.'+post_id+'likestatus').css('border-color', '#ddd');
+
+                    });
+
+
+                    // $('.'+post_id+'likestatus').attr("disabled", true);
+                }
+                else
+                {
 
                     var like_class= $(this).attr("class");
                     var like_class_array = like_class.split(" ");
@@ -366,10 +411,15 @@
                     $.get("{{ URL::to('updatelikes') }}",{id: post_id}
                     ,function(data){
                         $('.updatelikes'+post_id).html(data);
+                        $('.'+post_id+'likestatus').addClass("likecolourchange");
+                        $('.'+post_id+'likestatus').css('background-color', '#AAAACA');
+                        $('.'+post_id+'likestatus').css('border-color', 'black');
+
                     });
 
-                        $('.'+post_id+' like').attr("disabled", true);
-                });
+
+                }
+            });
 
         });
         </script>
