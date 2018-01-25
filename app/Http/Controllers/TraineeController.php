@@ -69,9 +69,11 @@ class TraineeController extends Controller
         $like_status = array();
         for($i=0;$i<$trainee_workout_count;$i++)
         {
-            $like_status = DB::table('like_details')->select('like_status')->where('workout_id',$workout_id[$i])->get();
-            $like_status = json_decode($like_status,true);
+            $like_statuss = DB::table('like_details')->select('like_status')->where('workout_id',$workout_id[$i])->value('like_status');
+            $like_status[] = $like_statuss ;
         }
+
+        // dd($like_status);
         for($i=0;$i<$trainee_workout_count;$i++)
         {
             $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
@@ -534,8 +536,11 @@ class TraineeController extends Controller
         $workout->trainee_id = $trainee_id;
         $workout->save();
 
+        $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+
+
         Session::flash('message','Your Workout changes have been updated');
-        return view('traineee.workout.show',compact('logged_in_user','trainee_image','trainee_workouts'));
+        return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image','trainee_workouts'));
     }
 
     /**
@@ -1021,6 +1026,122 @@ class TraineeController extends Controller
 
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
-        return view('traineee.workout.statistics',compact('logged_in_user','trainee_id','trainee_image'));
+        $todays_date = date("Y-m-d");
+
+        $trainee_workouts_today = DB::table('workouts')->where('trainee_id',$trainee_id)->where('workout_date',$todays_date)->get();
+
+        $trainee_workouts_today = json_decode($trainee_workouts_today,true);
+        // dd($trainee_workouts_today);
+        $trainee_workouts_count = count($trainee_workouts_today);
+        // dd($trainee_workouts_count);
+
+        $total_mins_for_today = 0;
+        for($i=0;$i<$trainee_workouts_count;$i++)
+        {
+            $workout_start_time_hour = substr($trainee_workouts_today[$i]['workout_start_time'],0,2);
+            $workout_start_time_min= substr($trainee_workouts_today[$i]['workout_start_time'],3,2);
+            $workout_start_timeofday = $trainee_workouts_today[$i]['workout_start_timeofday'];
+            $workout_end_time_hour = substr($trainee_workouts_today[$i]['workout_end_time'],0,2);
+            $workout_end_time_min = substr($trainee_workouts_today[$i]['workout_end_time'],3,2);
+            $workout_end_timeofday = $trainee_workouts_today[$i]['workout_end_timeofday'];
+
+            if($workout_end_timeofday=="PM")
+            {
+                $workout_end_time_hour = $workout_end_time_hour+"12";
+            }
+            if($workout_start_timeofday=="PM")
+            {
+                $workout_start_time_hour = $workout_start_time_hour+"12";
+            }
+
+            $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            $diff_mins = $workout_end_time_min - $workout_start_time_min;
+            $total_mins = $diff_hours + $diff_mins;
+
+            $total_mins_for_today = $total_mins_for_today + $total_mins;
+        }
+
+        $total_hours_for_today = intval($total_mins_for_today/60);
+
+
+        $todays_date = date("Y-m-d");
+        $date_one_week_before = date("Y-m-d", strtotime ( '-1 week' , strtotime ( $todays_date) ) );
+        // dd($date_one_week_before);
+        $trainee_workouts_this_week = DB::table('workouts')->where('trainee_id',$trainee_id)->whereBetween('workout_date', [$date_one_week_before, $todays_date])->get();
+        $trainee_workouts_this_week = json_decode($trainee_workouts_this_week,true);
+        $trainee_workouts_this_week_count = count($trainee_workouts_this_week);
+
+        $total_mins_for_this_week = 0;
+        for($i=0;$i<$trainee_workouts_this_week_count;$i++)
+        {
+            $workout_start_time_hour = substr($trainee_workouts_this_week[$i]['workout_start_time'],0,2);
+            $workout_start_time_min= substr($trainee_workouts_this_week[$i]['workout_start_time'],3,2);
+            $workout_start_timeofday = $trainee_workouts_this_week[$i]['workout_start_timeofday'];
+            $workout_end_time_hour = substr($trainee_workouts_this_week[$i]['workout_end_time'],0,2);
+            $workout_end_time_min = substr($trainee_workouts_this_week[$i]['workout_end_time'],3,2);
+            $workout_end_timeofday = $trainee_workouts_this_week[$i]['workout_end_timeofday'];
+
+            if($workout_end_timeofday=="PM")
+            {
+                $workout_end_time_hour = $workout_end_time_hour+"12";
+            }
+            if($workout_start_timeofday=="PM")
+            {
+                $workout_start_time_hour = $workout_start_time_hour+"12";
+            }
+
+            // dd($workout_start_time_hour,$workout_start_time_min,$workout_end_time_hour,$workout_end_time_min);
+
+            $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            $diff_mins = $workout_end_time_min - $workout_start_time_min;
+            $total_mins = $diff_hours + $diff_mins;
+
+            $total_mins_for_this_week = $total_mins_for_this_week + $total_mins;
+        }
+
+        $total_hours_for_this_week = intval($total_mins_for_this_week/60);
+
+        $todays_date = date("Y-m-d");
+        $date_one_month_before = date("Y-m-d", strtotime ( '-1 month' , strtotime ( $todays_date) ) );
+        // dd($date_one_month_before);
+        $trainee_workouts_this_month = DB::table('workouts')->where('trainee_id',$trainee_id)->whereBetween('workout_date', [$date_one_month_before, $todays_date])->get();
+        $trainee_workouts_this_month = json_decode($trainee_workouts_this_month,true);
+
+        // dd($trainee_workouts_this_month);
+        $trainee_workouts_this_month_count = count($trainee_workouts_this_month);
+
+        $total_mins_for_this_month = 0;
+        for($i=0;$i<$trainee_workouts_this_month_count;$i++)
+        {
+            $workout_start_time_hour = substr($trainee_workouts_this_month[$i]['workout_start_time'],0,2);
+            $workout_start_time_min= substr($trainee_workouts_this_month[$i]['workout_start_time'],3,2);
+            $workout_start_timeofday = $trainee_workouts_this_month[$i]['workout_start_timeofday'];
+            $workout_end_time_hour = substr($trainee_workouts_this_month[$i]['workout_end_time'],0,2);
+            $workout_end_time_min = substr($trainee_workouts_this_month[$i]['workout_end_time'],3,2);
+            $workout_end_timeofday = $trainee_workouts_this_month[$i]['workout_end_timeofday'];
+
+            if($workout_end_timeofday=="PM")
+            {
+                $workout_end_time_hour = $workout_end_time_hour+"12";
+            }
+            if($workout_start_timeofday=="PM")
+            {
+                $workout_start_time_hour = $workout_start_time_hour+"12";
+            }
+
+            // dd($workout_start_time_hour,$workout_start_time_min,$workout_end_time_hour,$workout_end_time_min);
+
+            $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            $diff_mins = $workout_end_time_min - $workout_start_time_min;
+            $total_mins = $diff_hours + $diff_mins;
+
+            $total_mins_for_this_month = $total_mins_for_this_month + $total_mins;
+        }
+
+        $total_hours_for_this_month = intval($total_mins_for_this_month/60);
+
+        // dd($total_hours_for_this_month);
+        // dd($trainee_workouts_this_week);
+        return view('traineee.workout.statistics',compact('logged_in_user','trainee_id','trainee_image','total_hours_for_today','total_hours_for_this_week','total_hours_for_this_month'));
     }
 }

@@ -30,7 +30,7 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3 class="counter-count text-center">150</h3>
+                        <h3 class="counter-count text-center">{{$total_hours_for_today}}</h3>
 
                         <p class="text-center">Hours Logged in Today</p>
                     </div>
@@ -47,9 +47,9 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3 class="counter-count text-center">150</h3>
+                        <h3 class="counter-count text-center">{{$total_hours_for_this_week}}</h3>
 
-                        <p class="text-center">Hours Logged in This Week</p>
+                        <p class="text-center">Hours Logged in a Week's Time</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-clock-o"></i>
@@ -64,9 +64,9 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3 class="counter-count text-center">150</h3>
+                        <h3 class="counter-count text-center">{{$total_hours_for_this_month}}</h3>
 
-                        <p class="text-center">Hours Logged in This Month</p>
+                        <p class="text-center">Hours Logged in a Month's Time</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-clock-o"></i>

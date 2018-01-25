@@ -207,7 +207,7 @@
 
                                                             <p>{{$trainee_workouts[$i]['comments']}}</p>
                                                             <?php
-                                                            if($like_status[$i]['like_status']==1)
+                                                            if($like_status[$i]==1)
                                                             {
                                                                 ?>
                                                                 <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs likecolourchange" style="background-color: #AAAACA">
