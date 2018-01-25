@@ -20,6 +20,7 @@ Route::get('/aboutme','AboutMeController@index');
 Route::get('/download-resume','ResumeController@index')->name('download-resume');
 
 Route::get('workout/display','TraineeController@display')->name('workout.display');
+Route::get('workout/statistics','TraineeController@statistics')->name('workout.statistics');
 
 
 Route::resource('workout','TraineeController');
@@ -74,4 +75,6 @@ Route::get('updatecommentcount','TraineeController@commentcount')->name('updatec
 Route::get('updatecommentcountall','TraineeController@commentcountall')->name('updatecommentcountall');
 
 Route::get('updatelikes','TraineeController@updatelikes')->name('updatelikes');
+Route::get('updatelikesall','TraineeController@updatelikesall')->name('updatelikesall');
 Route::get('reducelikes','TraineeController@reducelikes')->name('reducelikes');
+Route::get('reducelikesall','TraineeController@reducelikesall')->name('reducelikesall');

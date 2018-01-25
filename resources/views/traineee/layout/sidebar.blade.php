@@ -28,6 +28,7 @@
       <li class="active treeview">
           <li class=""><a href="{{route('workout.create')}}"><i class="fa fa-circle-o"></i> Log My Workout</a></li>
           <li class=""><a href="{{route('workout.display')}}"><i class="fa fa-circle-o"></i> View My Workouts</a></li>
+          <li class=""><a href="{{route('workout.statistics')}}"><i class="fa fa-circle-o"></i> Your Workout Statistics</a></li>
       </li>
       <li>
       </li>

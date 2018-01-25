@@ -43,7 +43,7 @@ class TraineeController extends Controller
         $trainee_workout_count = count($trainee_workouts);
 
         // dd(Auth::user()->name);
-//
+        //
 
         for($i=0;$i<$trainee_workout_count;$i++)
         {
@@ -119,155 +119,156 @@ class TraineeController extends Controller
             // $image_workouts = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
             // $image_workouts = json_decode($image_workouts);
 
-         }
-         // dd($comments);
+        }
+        // dd($comments);
 
-         for($i=0;$i<$trainee_workout_count;$i++)
-         {
-             if($counts[$i]>0)
-             {
-                 for($j=0;$j<$counts[$i];$j++)
-                 {
-                     $time[$i][$j]['created_at'] = substr($time[$i][$j]['created_at'],11,5);
-                     if(date($time[$i][$j]['created_at'])<12)
-                     {
-                         $time[$i][$j]['created_at'] = $time[$i][$j]['created_at']." AM";
-                     }
-                     else
-                     {
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            if($counts[$i]>0)
+            {
+                for($j=0;$j<$counts[$i];$j++)
+                {
+                    $time[$i][$j]['created_at'] = substr($time[$i][$j]['created_at'],11,5);
+                    if(date($time[$i][$j]['created_at'])<12)
+                    {
+                        $time[$i][$j]['created_at'] = $time[$i][$j]['created_at']." AM";
+                    }
+                    else
+                    {
                         $time[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time[$i][$j]['created_at'])))." PM";
-                     }
+                    }
 
 
-                 }
-             }
-         }
-         // dd($time);
-         //individual users workouts end here
+                }
+            }
+        }
+        // dd($time);
+        //individual users workouts end here
 
-         //friends activity starts here
-
-
-         $trainee_workouts_all = DB::table('workouts')->orderBy('created_at','Desc')->get();
-         $trainee_workouts_all = json_decode($trainee_workouts_all,true);
-         $trainee_workout_count_all = count($trainee_workouts_all);
-         // dd($trainee_workout_count_all);
+        //friends activity starts here
 
 
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $trainee_workouts_all[$i]['workout_start_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_start_time']));
-         }
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $trainee_workouts_all[$i]['workout_end_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_end_time']));
-         }
-
-         // dd($trainee_workouts_all);
+        $trainee_workouts_all = DB::table('workouts')->orderBy('created_at','Desc')->get();
+        $trainee_workouts_all = json_decode($trainee_workouts_all,true);
+        $trainee_workout_count_all = count($trainee_workouts_all);
+        // dd($trainee_workout_count_all);
 
 
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $trainee_workouts_all[$i]['workout_start_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_start_time']));
+        }
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $trainee_workouts_all[$i]['workout_end_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_end_time']));
+        }
 
-         $workout_id_all = array();
-         $trainee_names_all = array();
-
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-             $workout_trainee_image = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('profile_image');
-             $trainee_images_all[] = $workout_trainee_image;
-         }
-         // dd($trainee_images_all);
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-             $workout_trainee_name = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('trainee_name');
-             $trainee_names_all[] = $workout_trainee_name;
-         }
-         // dd($trainee_names_all);
-
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-         }
-
-         // dd($workout_id_all);
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $likes_per_workout_all = DB::table('workouts')->where('id',$workout_id_all[$i])->value('likes_on_workout');
-
-             if($likes_per_workout_all==NULL)
-             {
-                 $likes_per_workout_all = 0;
-             }
-             $likes_all[] = $likes_per_workout_all;
-         }
-
-         // dd($likes_all);
-
-         for($i=0;$i<$trainee_workout_count_all;$i++)
-         {
-             $comments_per_id_all = DB::table('workout_comments')->where('workout_id',$workout_id_all[$i])->get();
-             $comments_per_id_all = json_decode($comments_per_id_all,true);
-             $count_comments_all = count($comments_per_id_all);
+        // dd($trainee_workouts_all);
 
 
-             $comments_all[] = $comments_per_id_all;
-             $counts_all[] = $count_comments_all;
 
-             $name_per_comment_all = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id_all[$i])->get();
-             $name_per_comment_all = json_decode($name_per_comment_all,true);
-             $name_count_all = count($name_per_comment_all);
-             $name_all[] = $name_per_comment_all;
+        $workout_id_all = array();
+        $trainee_names_all = array();
 
-             $name_counts_all[] = $name_count_all;
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $workout_id_all[] = $trainee_workouts_all[$i]['id'];
+            $workout_trainee_image = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('profile_image');
+            $trainee_images_all[] = $workout_trainee_image;
+        }
+        // dd($trainee_images_all);
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $workout_trainee_name = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('trainee_name');
+            $trainee_names_all[] = $workout_trainee_name;
+        }
+        // dd($trainee_names_all);
 
-             $time_per_comment_all = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id_all[$i])->get();
-             $time_per_comment_all = json_decode($time_per_comment_all,true);
+        // dd($workout_id_all);
+        // dd($trainee_workout_count_all);
+        $like_status_all = array();
 
-             $time_count_all = count($time_per_comment_all);
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $like_status_alll = DB::table('like_details')->where('workout_id',$workout_id_all[$i])->value('like_status');
+            $like_status_all[] = $like_status_alll;
+        }
+        // dd($like_status_all);
+        // dd($workout_id_all);
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $likes_per_workout_all = DB::table('workouts')->where('id',$workout_id_all[$i])->value('likes_on_workout');
 
-             $time_all[] = $time_per_comment_all;
+            if($likes_per_workout_all==NULL)
+            {
+                $likes_per_workout_all = 0;
+            }
+            $likes_all[] = $likes_per_workout_all;
+        }
 
-             $image_per_comment_all = DB::table('workout_comments')->select('trainee_image')->where('workout_id',$workout_id_all[$i])->get();
-             $image_per_comment_all = json_decode($image_per_comment_all,true);
+        // dd($likes_all);
 
-             $image_count_all = count($image_per_comment_all);
-
-             $image_all[] = $image_per_comment_all;
-
-             // $image_workouts = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
-             // $image_workouts = json_decode($image_workouts);
-
-          }
-          // dd($name_all);
-
-          for($i=0;$i<$trainee_workout_count_all;$i++)
-          {
-              if($counts_all[$i]>0)
-              {
-                  for($j=0;$j<$counts_all[$i];$j++)
-                  {
-                      $time_all[$i][$j]['created_at'] = substr($time_all[$i][$j]['created_at'],11,5);
-                      if(date($time_all[$i][$j]['created_at'])<12)
-                      {
-                          $time_all[$i][$j]['created_at'] = $time_all[$i][$j]['created_at']." AM";
-                      }
-                      else
-                      {
-                         $time_all[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time_all[$i][$j]['created_at'])))." PM";
-                      }
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            $comments_per_id_all = DB::table('workout_comments')->where('workout_id',$workout_id_all[$i])->get();
+            $comments_per_id_all = json_decode($comments_per_id_all,true);
+            $count_comments_all = count($comments_per_id_all);
 
 
-                  }
-              }
-          }
-         //friends activity ends here
-         // dd($trainee_workouts,$trainee_image,$name);
-         // dd($counts_all);
-         // dd($trainee_workouts[0]['id']);
+            $comments_all[] = $comments_per_id_all;
+            $counts_all[] = $count_comments_all;
+
+            $name_per_comment_all = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id_all[$i])->get();
+            $name_per_comment_all = json_decode($name_per_comment_all,true);
+            $name_count_all = count($name_per_comment_all);
+            $name_all[] = $name_per_comment_all;
+
+            $name_counts_all[] = $name_count_all;
+
+            $time_per_comment_all = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id_all[$i])->get();
+            $time_per_comment_all = json_decode($time_per_comment_all,true);
+
+            $time_count_all = count($time_per_comment_all);
+
+            $time_all[] = $time_per_comment_all;
+
+            $image_per_comment_all = DB::table('workout_comments')->select('trainee_image')->where('workout_id',$workout_id_all[$i])->get();
+            $image_per_comment_all = json_decode($image_per_comment_all,true);
+
+            $image_count_all = count($image_per_comment_all);
+
+            $image_all[] = $image_per_comment_all;
+
+            // $image_workouts = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+            // $image_workouts = json_decode($image_workouts);
+
+        }
+        // dd($name_all);
+
+        for($i=0;$i<$trainee_workout_count_all;$i++)
+        {
+            if($counts_all[$i]>0)
+            {
+                for($j=0;$j<$counts_all[$i];$j++)
+                {
+                    $time_all[$i][$j]['created_at'] = substr($time_all[$i][$j]['created_at'],11,5);
+                    if(date($time_all[$i][$j]['created_at'])<12)
+                    {
+                        $time_all[$i][$j]['created_at'] = $time_all[$i][$j]['created_at']." AM";
+                    }
+                    else
+                    {
+                        $time_all[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time_all[$i][$j]['created_at'])))." PM";
+                    }
+
+
+                }
+            }
+        }
+        //friends activity ends here
 
         return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','time','likes','image'
-        ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all','like_status'));
+        ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all','like_status','like_status_all'));
     }
 
     /**
@@ -291,29 +292,29 @@ class TraineeController extends Controller
         $trainer_names = DB::table('trainers')->get();
 
 
-                $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
-                $trainee_workouts = json_decode($trainee_workouts,true);
-                $trainee_workout_count = count($trainee_workouts);
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workouts = json_decode($trainee_workouts,true);
+        $trainee_workout_count = count($trainee_workouts);
 
 
-                // dd($trainee_workout_count);
+        // dd($trainee_workout_count);
 
-                $workout_id = array();
+        $workout_id = array();
 
-                for($i=0;$i<$trainee_workout_count;$i++)
-                {
-                    $workout_id[] = $trainee_workouts[$i]['id'];
-                }
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $workout_id[] = $trainee_workouts[$i]['id'];
+        }
 
-                for($i=0;$i<$trainee_workout_count;$i++)
-                {
-                    $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
-                    $comments_per_id = json_decode($comments_per_id,true);
-                    $count_comments = count($comments_per_id);
+        for($i=0;$i<$trainee_workout_count;$i++)
+        {
+            $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
+            $comments_per_id = json_decode($comments_per_id,true);
+            $count_comments = count($comments_per_id);
 
-                    $comments[] = $comments_per_id;
-                    $counts[] = $count_comments;
-                }
+            $comments[] = $comments_per_id;
+            $counts[] = $count_comments;
+        }
 
         return view('traineee/workout/create',compact('logged_in_user','trainer_names','trainer_id','trainee_image'));
     }
@@ -410,208 +411,11 @@ class TraineeController extends Controller
         ->where('id',$trainee_id)
         ->update(['trainer_id'=> $trainer_id]);
 
-        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
-        $trainee_workouts = json_decode($trainee_workouts,true);
-        $trainee_workout_count = count($trainee_workouts);
 
+        $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
-        // dd($trainee_workout_count);
-
-        $workout_id = array();
-
-        for($i=0;$i<$trainee_workout_count;$i++)
-        {
-            $workout_id[] = $trainee_workouts[$i]['id'];
-        }
-
-
-
-        for($i=0;$i<$trainee_workout_count;$i++)
-        {
-            $likes_per_workout = DB::table('workouts')->where('id',$workout_id[$i])->value('likes_on_workout');
-
-            if($likes_per_workout==NULL)
-            {
-                $likes_per_workout = 0;
-            }
-            $likes[] = $likes_per_workout;
-        }
-
-        // dd($workout_id);
-
-        for($i=0;$i<$trainee_workout_count;$i++)
-        {
-            $comments_per_id = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
-            $comments_per_id = json_decode($comments_per_id,true);
-            $count_comments = count($comments_per_id);
-
-
-            $comments[] = $comments_per_id;
-            $counts[] = $count_comments;
-
-            $name_per_comment = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id[$i])->get();
-            $name_per_comment = json_decode($name_per_comment,true);
-            $name_count = count($name_per_comment);
-            $name[] = $name_per_comment;
-
-            $name_counts[] = $name_count;
-
-            $time_per_comment = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id[$i])->get();
-            $time_per_comment = json_decode($time_per_comment,true);
-
-            $time_count = count($time_per_comment);
-
-            $time[] = $time_per_comment;
-
-            $image_per_comment = DB::table('workout_comments')->select('trainee_image')->where('workout_id',$workout_id[$i])->get();
-            $image_per_comment = json_decode($image_per_comment,true);
-
-            $image_count = count($image_per_comment);
-
-            $image[] = $image_per_comment;
-         }
-
-
-
-         for($i=0;$i<$trainee_workout_count;$i++)
-         {
-             if($counts[$i]>0)
-             {
-                 for($j=0;$j<$counts[$i];$j++)
-                 {
-                     $time[$i][$j]['created_at'] = substr($time[$i][$j]['created_at'],11,5);
-                     if(date($time[$i][$j]['created_at'])<12)
-                     {
-                         $time[$i][$j]['created_at'] = $time[$i][$j]['created_at']." AM";
-                     }
-                     else
-                     {
-                        $time[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time[$i][$j]['created_at'])))." PM";
-                     }
-
-
-                 }
-             }
-         }
-
-
-
-                  $trainee_workouts_all = DB::table('workouts')->orderBy('created_at','Desc')->get();
-                  $trainee_workouts_all = json_decode($trainee_workouts_all,true);
-                  $trainee_workout_count_all = count($trainee_workouts_all);
-                  // dd($trainee_workout_count_all);
-
-
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $trainee_workouts_all[$i]['workout_start_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_start_time']));
-                  }
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $trainee_workouts_all[$i]['workout_end_time'] = date("H:i",strtotime($trainee_workouts_all[$i]['workout_end_time']));
-                  }
-
-                  // dd($trainee_workouts_all);
-
-
-
-                  $workout_id_all = array();
-                  $trainee_names_all = array();
-
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-                      $workout_trainee_name = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('trainee_name');
-                      $trainee_names_all[] = $workout_trainee_name;
-                  }
-                  // dd($trainee_names_all);
-
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-                  }
-
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $workout_id_all[] = $trainee_workouts_all[$i]['id'];
-                      $workout_trainee_image = DB::table('trainee_details')->where('id',$trainee_workouts_all[$i]['trainee_id'])->value('profile_image');
-                      $trainee_images_all[] = $workout_trainee_image;
-                  }
-
-                  // dd($workout_id_all);
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $likes_per_workout_all = DB::table('workouts')->where('id',$workout_id_all[$i])->value('likes_on_workout');
-
-                      if($likes_per_workout_all==NULL)
-                      {
-                          $likes_per_workout_all = 0;
-                      }
-                      $likes_all[] = $likes_per_workout_all;
-                  }
-
-                  // dd($likes_all);
-
-                  for($i=0;$i<$trainee_workout_count_all;$i++)
-                  {
-                      $comments_per_id_all = DB::table('workout_comments')->where('workout_id',$workout_id_all[$i])->get();
-                      $comments_per_id_all = json_decode($comments_per_id_all,true);
-                      $count_comments_all = count($comments_per_id_all);
-
-
-                      $comments_all[] = $comments_per_id_all;
-                      $counts_all[] = $count_comments_all;
-
-                      $name_per_comment_all = DB::table('workout_comments')->select('trainee_name')->where('workout_id',$workout_id_all[$i])->get();
-                      $name_per_comment_all = json_decode($name_per_comment_all,true);
-                      $name_count_all = count($name_per_comment_all);
-                      $name_all[] = $name_per_comment_all;
-
-                      $name_counts_all[] = $name_count_all;
-
-                      $time_per_comment_all = DB::table('workout_comments')->select('created_at')->where('workout_id',$workout_id_all[$i])->get();
-                      $time_per_comment_all = json_decode($time_per_comment_all,true);
-
-                      $time_count_all = count($time_per_comment_all);
-
-                      $time_all[] = $time_per_comment_all;
-
-                      $image_per_comment_all = DB::table('workout_comments')->select('trainee_image')->where('workout_id',$workout_id_all[$i])->get();
-                      $image_per_comment_all = json_decode($image_per_comment_all,true);
-
-                      $image_count_all = count($image_per_comment_all);
-
-                      $image_all[] = $image_per_comment_all;
-
-                      // $image_workouts = DB::table('workout_comments')->where('workout_id',$workout_id[$i])->get();
-                      // $image_workouts = json_decode($image_workouts);
-
-                   }
-                   // dd($name_all);
-
-                   for($i=0;$i<$trainee_workout_count_all;$i++)
-                   {
-                       if($counts_all[$i]>0)
-                       {
-                           for($j=0;$j<$counts_all[$i];$j++)
-                           {
-                               $time_all[$i][$j]['created_at'] = substr($time_all[$i][$j]['created_at'],11,5);
-                               if(date($time_all[$i][$j]['created_at'])<12)
-                               {
-                                   $time_all[$i][$j]['created_at'] = $time_all[$i][$j]['created_at']." AM";
-                               }
-                               else
-                               {
-                                  $time_all[$i][$j]['created_at'] =  date('H:i', strtotime('-12 hour', strtotime($time_all[$i][$j]['created_at'])))." PM";
-                               }
-
-
-                           }
-                       }
-                   }
-                   // dd($image);
-        return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','image','time','likes'
-    ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all'));
+        // dd($like_status_all);
+        return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image'));
     }
 
     public function display()
@@ -625,11 +429,11 @@ class TraineeController extends Controller
         // dd($trainee_id);
 
 
-        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+        $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($trainee_workouts);
         // dd($logged_in_user);
-        return view('traineee.workout.show',compact('logged_in_user','trainee_workouts','trainee_image'));
+        return view('traineee.workout.show',compact('logged_in_user','trainee_workouts_show','trainee_image'));
     }
 
     /**
@@ -975,63 +779,63 @@ class TraineeController extends Controller
         //      }
         //  }
         // dd($workout_id);
-         //specific to workout code
+        //specific to workout code
 
-         $comments_for_workoutid = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$comments_for_workoutid = json_decode($comments_for_workoutid,true);
-// dd($comments_for_workoutid);
-$count_for_workout_comments = count($comments_for_workoutid);
+        $comments_for_workoutid = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $comments_for_workoutid = json_decode($comments_for_workoutid,true);
+        // dd($comments_for_workoutid);
+        $count_for_workout_comments = count($comments_for_workoutid);
 
-$comments_per_workout = array();
-for($i=0;$i<$count_for_workout_comments;$i++)
-{
-        $comments_per_workout[] = $comments_for_workoutid[$i]['comment'];
-}
+        $comments_per_workout = array();
+        for($i=0;$i<$count_for_workout_comments;$i++)
+        {
+            $comments_per_workout[] = $comments_for_workoutid[$i]['comment'];
+        }
 
-$names_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$names_for_comments = json_decode($names_for_comments,true);
-// dd($comments_for_workoutid);
-$count_for_names = count($names_for_comments);
+        $names_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $names_for_comments = json_decode($names_for_comments,true);
+        // dd($comments_for_workoutid);
+        $count_for_names = count($names_for_comments);
 
-$names_per_comments = array();
+        $names_per_comments = array();
 
-for($i=0;$i<$count_for_names;$i++)
-{
-        $names_per_comments[] = $names_for_comments[$i]['trainee_name'];
-}
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $names_per_comments[] = $names_for_comments[$i]['trainee_name'];
+        }
 
-$time_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$time_for_comments = json_decode($time_for_comments,true);
-// dd($time_for_comments);
-$time_per_comments = array();
-for($i=0;$i<$count_for_names;$i++)
-{
-        $time_per_comments[] = $time_for_comments[$i]['created_at'];
-}
+        $time_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $time_for_comments = json_decode($time_for_comments,true);
+        // dd($time_for_comments);
+        $time_per_comments = array();
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $time_per_comments[] = $time_for_comments[$i]['created_at'];
+        }
 
-$image_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$image_for_comments = json_decode($image_for_comments,true);
-// dd($image_for_comments);
-$image_per_comments = array();
-for($i=0;$i<$count_for_names;$i++)
-{
-        $image_per_comments[] = $image_for_comments[$i]['trainee_image'];
-}
-// dd($time_per_comments);
-for($j=0;$j<$count_for_names;$j++)
-{
-    $time_per_comments[$j] = substr($time_per_comments[$j],11,5);
-    if(date($time_per_comments[$j])<12)
-    {
-        $time_per_comments[$j] = $time_per_comments[$j]." AM";
-    }
-    else
-    {
-       $time_per_comments[$j] =  date('H:i', strtotime('-12 hour', strtotime($time_per_comments[$j])))." PM";
-    }
+        $image_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $image_for_comments = json_decode($image_for_comments,true);
+        // dd($image_for_comments);
+        $image_per_comments = array();
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $image_per_comments[] = $image_for_comments[$i]['trainee_image'];
+        }
+        // dd($time_per_comments);
+        for($j=0;$j<$count_for_names;$j++)
+        {
+            $time_per_comments[$j] = substr($time_per_comments[$j],11,5);
+            if(date($time_per_comments[$j])<12)
+            {
+                $time_per_comments[$j] = $time_per_comments[$j]." AM";
+            }
+            else
+            {
+                $time_per_comments[$j] =  date('H:i', strtotime('-12 hour', strtotime($time_per_comments[$j])))." PM";
+            }
 
-}
-// dd($time_per_comments,$count_for_names,$comments_per_workout,$names_per_comments);
+        }
+        // dd($time_per_comments,$count_for_names,$comments_per_workout,$names_per_comments);
 
 
         // dd($counts,$name,$comments);
@@ -1063,63 +867,63 @@ for($j=0;$j<$count_for_names;$j++)
         $workout_comment->save();
 
 
-         //specific to workout code
+        //specific to workout code
 
-         $comments_for_workoutid = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$comments_for_workoutid = json_decode($comments_for_workoutid,true);
-// dd($comments_for_workoutid);
-$count_for_workout_comments = count($comments_for_workoutid);
+        $comments_for_workoutid = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $comments_for_workoutid = json_decode($comments_for_workoutid,true);
+        // dd($comments_for_workoutid);
+        $count_for_workout_comments = count($comments_for_workoutid);
 
-$comments_per_workout = array();
-for($i=0;$i<$count_for_workout_comments;$i++)
-{
-        $comments_per_workout[] = $comments_for_workoutid[$i]['comment'];
-}
+        $comments_per_workout = array();
+        for($i=0;$i<$count_for_workout_comments;$i++)
+        {
+            $comments_per_workout[] = $comments_for_workoutid[$i]['comment'];
+        }
 
-$names_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$names_for_comments = json_decode($names_for_comments,true);
-// dd($comments_for_workoutid);
-$count_for_names = count($names_for_comments);
+        $names_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $names_for_comments = json_decode($names_for_comments,true);
+        // dd($comments_for_workoutid);
+        $count_for_names = count($names_for_comments);
 
-$names_per_comments = array();
+        $names_per_comments = array();
 
-for($i=0;$i<$count_for_names;$i++)
-{
-        $names_per_comments[] = $names_for_comments[$i]['trainee_name'];
-}
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $names_per_comments[] = $names_for_comments[$i]['trainee_name'];
+        }
 
-$time_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$time_for_comments = json_decode($time_for_comments,true);
-// dd($time_for_comments);
-$time_per_comments = array();
-for($i=0;$i<$count_for_names;$i++)
-{
-        $time_per_comments[] = $time_for_comments[$i]['created_at'];
-}
+        $time_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $time_for_comments = json_decode($time_for_comments,true);
+        // dd($time_for_comments);
+        $time_per_comments = array();
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $time_per_comments[] = $time_for_comments[$i]['created_at'];
+        }
 
-$image_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
-$image_for_comments = json_decode($image_for_comments,true);
-// dd($image_for_comments);
-$image_per_comments = array();
-for($i=0;$i<$count_for_names;$i++)
-{
-        $image_per_comments[] = $image_for_comments[$i]['trainee_image'];
-}
-// dd($time_per_comments);
-for($j=0;$j<$count_for_names;$j++)
-{
-    $time_per_comments[$j] = substr($time_per_comments[$j],11,5);
-    if(date($time_per_comments[$j])<12)
-    {
-        $time_per_comments[$j] = $time_per_comments[$j]." AM";
-    }
-    else
-    {
-       $time_per_comments[$j] =  date('H:i', strtotime('-12 hour', strtotime($time_per_comments[$j])))." PM";
-    }
+        $image_for_comments = DB::table('workout_comments')->where('workout_id',$workout_id)->get();
+        $image_for_comments = json_decode($image_for_comments,true);
+        // dd($image_for_comments);
+        $image_per_comments = array();
+        for($i=0;$i<$count_for_names;$i++)
+        {
+            $image_per_comments[] = $image_for_comments[$i]['trainee_image'];
+        }
+        // dd($time_per_comments);
+        for($j=0;$j<$count_for_names;$j++)
+        {
+            $time_per_comments[$j] = substr($time_per_comments[$j],11,5);
+            if(date($time_per_comments[$j])<12)
+            {
+                $time_per_comments[$j] = $time_per_comments[$j]." AM";
+            }
+            else
+            {
+                $time_per_comments[$j] =  date('H:i', strtotime('-12 hour', strtotime($time_per_comments[$j])))." PM";
+            }
 
-}
-// dd($time_per_comments,$count_for_names,$comments_per_workout,$names_per_comments);
+        }
+        // dd($time_per_comments,$count_for_names,$comments_per_workout,$names_per_comments);
 
 
         // dd($counts,$name,$comments);
@@ -1153,12 +957,12 @@ for($j=0;$j<$count_for_names;$j++)
 
         $likes_on_workout = $likes_on_workout + 1;
 
-         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
+        DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
-         $trainee_name = Auth::user()->name;
-         DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+        $trainee_name = Auth::user()->name;
+        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
 
-         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
     public function reducelikes(Request $request)
     {
@@ -1168,11 +972,55 @@ for($j=0;$j<$count_for_names;$j++)
 
         $likes_on_workout = $likes_on_workout - 1;
 
-         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
+        DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
-         $trainee_name = Auth::user()->name;
-         DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
+        $trainee_name = Auth::user()->name;
+        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
 
-         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+    }
+    public function updatelikesall(Request $request)
+    {
+        // dd($request->id);
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+
+        $likes_on_workout = $likes_on_workout + 1;
+
+        DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
+
+        $trainee_name = Auth::user()->name;
+        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+    }
+    public function reducelikesall(Request $request)
+    {
+        // dd($request->id);
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+
+        $likes_on_workout = $likes_on_workout - 1;
+
+        DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
+
+        $trainee_name = Auth::user()->name;
+        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
+
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+    }
+
+    public function statistics()
+    {
+        $logged_in_user = Auth::user()->name;
+
+        $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
+
+        // dd($trainee_id);
+
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        return view('traineee.workout.statistics',compact('logged_in_user','trainee_id','trainee_image'));
     }
 }

@@ -65,7 +65,7 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach($trainee_workouts as $workout)
+                                    @foreach($trainee_workouts_show as $workout)
                                     <tr>
                                         <td>{{$loop->index+1}}</td>
                                         <td>{{$workout->workout_name}}</td>
