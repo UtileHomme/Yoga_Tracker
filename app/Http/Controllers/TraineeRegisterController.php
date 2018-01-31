@@ -43,11 +43,11 @@ array(
 
     $trainee_id = DB::table('admins')->max('id');
 
-       $roles = new role;
-       $roles->name = "Trainee";
-       $roles->save();
+       // $roles = new role;
+       // $roles->name = "Trainee";
+       // $roles->save();
 
-       $role_id = DB::table('roles')->max('id');
+       $role_id = 2;
        $admin_id = DB::table('admins')->max('id');
 
        $role_admin = new role_admin;

@@ -1,25 +1,36 @@
-<!-- This is the Admin dashboard -->
+<!-- This is the trainee dashboard -->
 
-@extends('layouts.app')
+@extends('admin.layout.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@section('main-content')
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<head>
 
-                    You are logged in as Admin!
-                </div>
-            </div>
-        </div>
-    </div>
+</head>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1 class="text-center">
+            Welcome to your dashboard!! You are Logged in as Admin!!
+            <small></small>
+        </h1>
+        
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+
+
+    </section>
+    <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->
+
+
+@endsection
+
+@section('scripts')
 @endsection

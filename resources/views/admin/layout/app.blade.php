@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-    @include('traineee.layout.head')
+    @include('admin.layout.head')
 
     <style media="screen">
     .style-3::-webkit-scrollbar-track
@@ -45,22 +45,22 @@
 
 <div class="wrapper">
     @include('partial/_errors')
-    @include('traineee.layout.header')
+    @include('admin.layout.header')
 
-    @include('traineee.layout.sidebar')
+    @include('admin.layout.sidebar')
 
     @section('main-content')
 
     @show
 
 
-    @include('traineee.layout.footer')
+    @include('admin.layout.footer')
 
 </div>
 
 @section('scripts')
 
-    
+
 @show
 </body>
 </html>

@@ -19,7 +19,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="user-image" alt="User Image"> -->
-            <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="user-image" alt="User Image">
+            <img src="" class="user-image" alt="User Image">
 
     <span class="hidden-xs">Hello {{Auth::user()->name}}</span>
 
@@ -28,7 +28,7 @@
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="img-circle" alt="User Image">
+              <img src="" class="img-circle" alt="User Image">
 
               <p>
                 {{Auth::user()->name}}

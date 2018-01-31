@@ -541,6 +541,9 @@ class TraineeController extends Controller
 
         Session::flash('message','Your Workout changes have been updated');
         return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image','trainee_workouts'));
+
+    //     return redirect()->route('workout.display', ['logged_in_user'=>$logged_in_user,'trainee_image'=>$trainee_image,'trainee_workouts_show'=>$trainee_workouts_show,'trainee_workouts'=>$trainee_workouts])->with
+    // ('message','Your Workout changes have been updated');
     }
 
     /**
@@ -1140,8 +1143,49 @@ class TraineeController extends Controller
 
         $total_hours_for_this_month = intval($total_mins_for_this_month/60);
 
+
+        $present_year = date("Y");
+
+        $trainee_workouts_this_year = DB::table('workouts')->where('trainee_id',$trainee_id)->where('workout_date', 'like', $present_year."%" )->get();
+        $trainee_workouts_this_year = json_decode($trainee_workouts_this_year,true);
+        // dd($trainee_workouts_this_year);
+
+        // dd($trainee_workouts_this_year);
+        $trainee_workouts_this_year_count = count($trainee_workouts_this_year);
+
+        $total_mins_for_this_year = 0;
+        for($i=0;$i<$trainee_workouts_this_year_count;$i++)
+        {
+            $workout_start_time_hour = substr($trainee_workouts_this_year[$i]['workout_start_time'],0,2);
+            $workout_start_time_min= substr($trainee_workouts_this_year[$i]['workout_start_time'],3,2);
+            $workout_start_timeofday = $trainee_workouts_this_year[$i]['workout_start_timeofday'];
+            $workout_end_time_hour = substr($trainee_workouts_this_year[$i]['workout_end_time'],0,2);
+            $workout_end_time_min = substr($trainee_workouts_this_year[$i]['workout_end_time'],3,2);
+            $workout_end_timeofday = $trainee_workouts_this_year[$i]['workout_end_timeofday'];
+
+            if($workout_end_timeofday=="PM")
+            {
+                $workout_end_time_hour = $workout_end_time_hour+"12";
+            }
+            if($workout_start_timeofday=="PM")
+            {
+                $workout_start_time_hour = $workout_start_time_hour+"12";
+            }
+
+            // dd($workout_start_time_hour,$workout_start_time_min,$workout_end_time_hour,$workout_end_time_min);
+
+            $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            $diff_mins = $workout_end_time_min - $workout_start_time_min;
+            $total_mins = $diff_hours + $diff_mins;
+
+            $total_mins_for_this_year = $total_mins_for_this_year + $total_mins;
+        }
+
+        $total_hours_for_this_year = intval($total_mins_for_this_year/60);
+        // dd($total_hours_for_this_year);
+        // dd($present_year);
         // dd($total_hours_for_this_month);
         // dd($trainee_workouts_this_week);
-        return view('traineee.workout.statistics',compact('logged_in_user','trainee_id','trainee_image','total_hours_for_today','total_hours_for_this_week','total_hours_for_this_month'));
+        return view('traineee.workout.statistics',compact('logged_in_user','trainee_id','trainee_image','total_hours_for_today','total_hours_for_this_week','total_hours_for_this_month','total_hours_for_this_year'));
     }
 }

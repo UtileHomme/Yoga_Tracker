@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -25,6 +26,21 @@ class AdminController extends Controller
      */
     public function index()
     {
+
         return view('admin.home');
     }
-}
+
+
+        public function create()
+        {
+            $logged_in_user = Auth::user()->name;
+            return view('admin/trainer/create',compact('logged_in_user'));
+        }
+
+        public function store(Request $request)
+        {
+                $logged_in_user = Auth::user()->name;
+
+                
+        }
+    }

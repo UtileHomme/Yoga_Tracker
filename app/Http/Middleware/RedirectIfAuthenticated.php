@@ -46,6 +46,10 @@ class RedirectIfAuthenticated
     {
          return redirect('workout');
     }
+    else if($role->name == 'Trainer')
+    {
+         return redirect('trainer');
+    }
 }
 
 

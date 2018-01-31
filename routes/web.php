@@ -24,6 +24,7 @@ Route::get('workout/statistics','TraineeController@statistics')->name('workout.s
 
 
 Route::resource('workout','TraineeController');
+Route::resource('trainer','TrainerController');
 
 
 Auth::routes();
@@ -34,6 +35,8 @@ Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 
 //Route for showing the admin's dashboard after login
 Route::get('admin/home','AdminController@index');
+Route::get('admin/create','AdminController@create')->name('admin.create');
+Route::post('admin/store','AdminController@store')->name('admin.store');
 
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
 
