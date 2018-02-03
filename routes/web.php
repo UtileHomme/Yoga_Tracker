@@ -34,7 +34,7 @@ Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 //Routes for "Muti Auth"
 
 //Route for showing the admin's dashboard after login
-Route::get('admin/home','AdminController@index');
+Route::get('admin/home','AdminController@index')->name('admin.home');
 Route::get('admin/create','AdminController@create')->name('admin.create');
 Route::post('admin/store','AdminController@store')->name('admin.store');
 

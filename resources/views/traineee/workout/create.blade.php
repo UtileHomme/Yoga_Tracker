@@ -169,7 +169,7 @@ $(document).ready(function() {
                                         <select class="form-control select2" style="width: 100%;" name="trainer_name">
                                             <option selected="selected"></option>
                                             @foreach($trainer_names as $trainer)
-                                            <option value="{{$trainer->name}}">{{$trainer->name}}</option>
+                                            <option value="{{$trainer->trainer_name}}">{{$trainer->trainer_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

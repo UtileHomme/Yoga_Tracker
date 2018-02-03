@@ -103,7 +103,7 @@
                                         <select class="form-control select2"  name="trainer_name">
                                             <option selected="selected">@yield('edittrainer_name')</option>
                                             @foreach($trainer_names as $trainer)
-                                            <option value="{{$trainer->name}}">{{$trainer->name}}</option>
+                                            <option value="{{$trainer->trainer_name}}">{{$trainer->trainer_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -9,7 +9,6 @@
 <script src="{{ asset('traineee/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="{{ asset('traineee/bower_components/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('traineee/bower_components/morris.js/morris.min.js') }}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('traineee/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
 <!-- jvectormap -->
@@ -37,6 +36,10 @@
 <script src="{{ asset('traineee/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
+<script src="{{ asset('sb-admin/js/sb-admin.js') }}"></script>
+<script src="{{ asset('sb-admin/vendor/chart.js/Chart.js') }}"></script>
+<script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('sb-admin/js/sb-admin-charts.js') }}"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -73,17 +76,24 @@ $('.timepicker').timepicker({
   })
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Month', 'Hours Logged'],
-          ['January',  4],
-          ['February',  10],
-          ['March',  10],
-          ['April',  5],
+          ['Jan',  4],
+          ['Feb',  10],
+          ['Mar',  10],
+          ['Apr',  5],
+          ['May',  5],
+          ['May',  5],
+          ['May',  5],
+          ['May',  5],
+          ['May',  5],
+          ['May',  5],
+          ['May',  5],
           ['May',  5],
         ]);
 
@@ -97,7 +107,7 @@ $('.timepicker').timepicker({
 
         chart.draw(data, options);
       }
-    </script>
+    </script> -->
 
 
 
