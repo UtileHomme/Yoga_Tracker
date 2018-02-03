@@ -26,6 +26,7 @@
 <script src="{{ asset('traineee/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
 <!-- bootstrap time picker -->
 <script src="{{ asset('traineee/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+<script src="{{ asset('traineee/mdtimepicker.js') }}"></script>
 
 <!-- Slimscroll -->
 <script src="{{ asset('traineee/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>

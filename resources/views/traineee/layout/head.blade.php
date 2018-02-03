@@ -27,6 +27,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 <!-- Bootstrap time Picker -->
 <link rel="stylesheet" href="{{ asset('traineee/plugins/timepicker/bootstrap-timepicker.min.css') }}">
+<link rel="stylesheet" href="{{ asset('traineee/mdtimepicker.css') }}">
 
 
 
