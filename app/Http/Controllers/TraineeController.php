@@ -36,7 +36,7 @@ class TraineeController extends Controller
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
         //this part is for the logged in user's workouts
-        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->orderBy('created_at','Desc')->get();
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
         $trainee_workout1 = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
         $trainee_workouts = json_decode($trainee_workouts,true);
 
@@ -69,7 +69,7 @@ class TraineeController extends Controller
         $like_status = array();
         for($i=0;$i<$trainee_workout_count;$i++)
         {
-            $like_statuss = DB::table('like_details')->select('like_status')->where('workout_id',$workout_id[$i])->value('like_status');
+            $like_statuss = DB::table('like_details')->select('like_status')->where('workout_id',$workout_id[$i])->where('trainee_name',$logged_in_user)->value('like_status');
             $like_status[] = $like_statuss ;
         }
 
@@ -150,7 +150,7 @@ class TraineeController extends Controller
         //friends activity starts here
 
 
-        $trainee_workouts_all = DB::table('workouts')->orderBy('created_at','Desc')->get();
+        $trainee_workouts_all = DB::table('workouts')->get();
         $trainee_workouts_all = json_decode($trainee_workouts_all,true);
         $trainee_workout_count_all = count($trainee_workouts_all);
         // dd($trainee_workout_count_all);
@@ -267,10 +267,25 @@ class TraineeController extends Controller
                 }
             }
         }
-        //friends activity ends here
 
+        $trainee_likes_all = DB::table('like_details')->count();
+        // // dd($trainee_likes_all);
+        $trainee_names_likes = DB::table('like_details')->get();
+        $trainee_names_likes = json_decode($trainee_names_likes,true);
+
+        $trainee_likes = DB::table('like_details')->count();
+        // // dd($trainee_likes_all);
+        $trainee_names_likes_single = DB::table('like_details')->get();
+        $trainee_names_likes_single = json_decode($trainee_names_likes_single,true);
+
+        // dd($trainee_names_likes);
+        // dd($trainee_names_likes[0]['like_status']);
+        // dd($trainee_names_all);
+        //friends activity ends here
+        // dd($like_status);
         return view('traineee.trainee',compact('logged_in_user','trainee_image','trainee_workouts','comments','counts','trainee_workout_count','name','time','likes','image'
-        ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all','like_status','like_status_all'));
+        ,'trainee_workouts_all','comments_all','counts_all','trainee_workout_count_all','name_all','time_all','likes_all','image_all','trainee_names_all','trainee_images_all','like_status','like_status_all','trainee_names_likes','trainee_likes_all'
+    ,'trainee_likes','trainee_names_likes_single'));
     }
 
     /**
@@ -405,6 +420,7 @@ class TraineeController extends Controller
 
         $like_detail = new like_detail;
         $like_detail->workout_id = $workout_id_max;
+        $like_detail->trainee_name = $logged_in_user;
         $like_detail->save();
 
 
@@ -967,7 +983,26 @@ class TraineeController extends Controller
         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
         $trainee_name = Auth::user()->name;
-        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+
+        $workout_id_exist = DB::table('like_details')->where('workout_id',$workout_id)->value('id');
+
+        if($workout_id_exist!=NULL)
+        {
+            $trainee_name_exist = DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->value('id');
+
+            if($trainee_name_exist!=NULL)
+            {
+                DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+            }
+            else
+            {
+                $like_detail = new like_detail;
+                $like_detail->workout_id = $workout_id;
+                $like_detail->$trainee_name = $trainee_name;
+                $like_detail->save();
+            }
+        }
+
 
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
@@ -982,9 +1017,24 @@ class TraineeController extends Controller
         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
         $trainee_name = Auth::user()->name;
-        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
+        DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
 
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+    }
+
+    public function updatelikeshow(Request $request)
+    {
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+
+    }
+    public function reducelikeshow(Request $request)
+    {
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+
     }
     public function updatelikesall(Request $request)
     {
@@ -997,8 +1047,31 @@ class TraineeController extends Controller
         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
         $trainee_name = Auth::user()->name;
-        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+        $workout_id_exist = DB::table('like_details')->where('workout_id',$workout_id)->value('id');
+        // dd($workout_id_exist);
+        if($workout_id_exist!=NULL)
+        {
+            $trainee_name_exist = DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->value('id');
 
+            if($trainee_name_exist!=NULL)
+            {
+                DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+            }
+            else
+            {
+
+                DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+            }
+        }
+        else
+        {
+            $like_detail = new like_detail;
+            $like_detail->workout_id = $workout_id;
+            $like_detail->save();
+
+            DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+
+        }
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
     public function reducelikesall(Request $request)
@@ -1006,15 +1079,30 @@ class TraineeController extends Controller
         // dd($request->id);
         $workout_id = $request->id;
         $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
-
+        // dd($likes_on_workout);
         $likes_on_workout = $likes_on_workout - 1;
 
         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
         $trainee_name = Auth::user()->name;
-        DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
+        DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->update(['like_status'=>0,'trainee_name'=>$trainee_name]);
 
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+    }
+
+    public function updatelikeshowall(Request $request)
+    {
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+
+    }
+    public function reducelikeshowall(Request $request)
+    {
+        $workout_id = $request->id;
+        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
+        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
+
     }
 
     public function statistics()

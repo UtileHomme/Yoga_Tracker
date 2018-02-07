@@ -78,6 +78,10 @@ Route::get('updatecommentcount','TraineeController@commentcount')->name('updatec
 Route::get('updatecommentcountall','TraineeController@commentcountall')->name('updatecommentcountall');
 
 Route::get('updatelikes','TraineeController@updatelikes')->name('updatelikes');
+Route::get('updatelikeshow','TraineeController@updatelikeshow')->name('updatelikeshow');
+Route::get('reducelikeshow','TraineeController@reducelikeshow')->name('reducelikeshow');
+Route::get('updatelikeshowall','TraineeController@updatelikeshowall')->name('updatelikeshowall');
+Route::get('reducelikeshowall','TraineeController@reducelikeshowall')->name('reducelikeshowall');
 Route::get('updatelikesall','TraineeController@updatelikesall')->name('updatelikesall');
 Route::get('reducelikes','TraineeController@reducelikes')->name('reducelikes');
 Route::get('reducelikesall','TraineeController@reducelikesall')->name('reducelikesall');
