@@ -95,7 +95,7 @@
                                                         if($flag==1)
                                                         {
                                                          ?>
-                                                        <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs likecolourchangeall" style="background-color: #AAAACA">
+                                                        <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs likecolourchangeall" style="background-color: #AAAACA; border-color:black;">
                                                             <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall" ></i> Like</button>
                                                             <?php
                                                         }
@@ -117,7 +117,7 @@
                                                                 like
                                                                 @else
                                                                 likes
-                                                                @endif - 
+                                                                @endif -
                                                             </div>
                                                             <div class="commentcountall{{$trainee_workouts_all[$i]['id']}}" style="float:left">
                                                                 {{$counts_all[$i]}}
@@ -242,7 +242,7 @@
                                                             if($flag == 1)
                                                             {
                                                                 ?>
-                                                                <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs likecolourchange" style="background-color: #AAAACA">
+                                                                <button type="button" class="{{$trainee_workouts[$i]['id']}} like {{$trainee_workouts[$i]['id']}}likestatus btn btn-default btn-xs likecolourchange" style="background-color: #AAAACA; border-color:black;">
                                                                     <i class="fa fa-thumbs-o-up {{$trainee_workouts[$i]['id']}}likecolour"></i> Like</button>
                                                                     <?php
                                                                 }
@@ -260,7 +260,7 @@
 
 
                                                                     <span class="pull-right text-muted">
-                                                                        <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}} updatelikeshow{{$trainee_workouts_all[$i]['id']}} reducelikeshowall{{$trainee_workouts_all[$i]['id']}}" style="float:left">
+                                                                        <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}} updatelikeshow{{$trainee_workouts[$i]['id']}} reducelikeshowall{{$trainee_workouts[$i]['id']}}" style="float:left">
 
                                                                             {{$likes[$i]}}
 
@@ -319,15 +319,15 @@
 
                                                                 <!-- /.box-footer -->
                                                                 <div class="box-footer box-comment">
-                                                                    <form action="" method="post" id="formid">
+                                                                    <form action="" method="post" class= formid">
                                                                         {{csrf_field()}}
                                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                                         <input type="hidden" name="workout_number" value="">
                                                                         <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
                                                                         <!-- .img-push is used to add margin to elements next to floating images -->
                                                                         <div class="img-push">
-                                                                            <input type="text" class="form-control input-sm textcomment" placeholder="Please post you comment here" id="{{$trainee_workouts[$i]['id']}}com">
-                                                                            <p style="color:red" class="error">Enter Key is disabled!! Please click the button</p>
+                                                                            <input type="text" class="{{$trainee_workouts[$i]['id']}} form-control input-sm textcomment" placeholder="Please post you comment here" id="{{$trainee_workouts[$i]['id']}}com">
+                                                                            <p style="color:red" class="{{$trainee_workouts[$i]['id']}}error errors">Enter Key is disabled!! Please click the button</p>
                                                                             <input type="button" name="" value="Post Comment" class="{{$trainee_workouts[$i]['id']}} submit btn btn-success btn-sm pull-right" style="margin-top:10px;">
                                                                         </div>
 
@@ -381,19 +381,28 @@
                     //
                     //
                     // });
-                        $(".error").hide();
+                        $(".errors").hide();
 
-                    $('#formid').on('keyup keypress', function(e) {
+                    $('.textcomment').on('keyup keypress', function(e) {
+
+                        var post_class= $(this).attr("class");
+                        console.log(post_class);
+                        var post_class_array=post_class.split(" ");
+                        console.log(post_class_array);
+                        var post_id = post_class_array[0];
+                        console.log(post_id);
+
+
                         var keyCode = e.keyCode || e.which;
                         if (keyCode === 13) {
                             e.preventDefault();
-                                $(".error").show();
+                            $(post_id+".error").show();
                             return false;
 
                         }
                         else
                     {
-                        $(".error").hide();
+                        $(post_id+".error").hide();
                     }
                     });
 
@@ -404,6 +413,7 @@
                         console.log(post_class_array);
                         var post_id = post_class_array[0];
                         var comment=$("#"+post_id+"com").val();
+
                         $("#"+post_id+"com").val('');
                         $("#"+post_id+"com").attr("placeholder", "Please post your comment here");
                         // console.log(comment);
@@ -432,7 +442,7 @@
 
                         });
 
-
+                        $(".error").hide();
                     });
 
 
@@ -489,6 +499,12 @@
                                 $('.reducelikeshowall'+post_id).html(data);
                             });
 
+                            $.get("{{ URL::to('reducelikeshowall') }}",{id: post_id}
+                            ,function(data){
+                                $('.reducelikeshowall'+post_id).html(data);
+
+                                });
+
                         }
                         else
                         {
@@ -511,7 +527,11 @@
                                 $('.reducelikeshowall'+post_id).html(data);
                             });
 
+                            $.get("{{ URL::to('reducelikeshowall') }}",{id: post_id}
+                            ,function(data){
+                                $('.reducelikeshowall'+post_id).html(data);
 
+                                });
                         }
                     });
 
@@ -525,7 +545,7 @@
                             var like_class_array = like_class.split(" ");
                             // console.log(like_class_array);
                             var post_id = like_class_array[0];
-
+                            console.log(post_id)
                             $.get("{{ URL::to('reducelikesall') }}",{id: post_id}
                             ,function(data){
                                 $('.reducelikesall'+post_id).html(data);
@@ -538,6 +558,11 @@
                                 $('.reducelikeshowall'+post_id).html(data);
                             });
 
+                            $.get("{{ URL::to('reducelikeshowall') }}",{id: post_id}
+                            ,function(data){
+                                $('.reducelikeshowall'+post_id).html(data);
+
+                                });
 
                             // $('.'+post_id+'likestatus').attr("disabled", true);
                         }
@@ -549,7 +574,7 @@
                             var like_class_array = like_class.split(" ");
                             // console.log(like_class_array);
                             var post_id = like_class_array[0];
-
+                            console.log(post_id)
                             $.get("{{ URL::to('updatelikesall') }}",{id: post_id}
                             ,function(data){
                                 $('.updatelikesall'+post_id).html(data);
@@ -563,7 +588,11 @@
 
                             });
 
+                            $.get("{{ URL::to('reducelikeshowall') }}",{id: post_id}
+                            ,function(data){
+                                $('.reducelikeshowall'+post_id).html(data);
 
+                                });
                         }
                     });
 

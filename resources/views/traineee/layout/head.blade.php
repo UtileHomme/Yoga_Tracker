@@ -29,6 +29,8 @@ folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{ asset('traineee/plugins/timepicker/bootstrap-timepicker.min.css') }}">
 <link rel="stylesheet" href="{{ asset('traineee/mdtimepicker.css') }}">
 
+<link href="{{ asset('traineee/bower_components/footable.core.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('traineee/bower_components/footable.metro.css') }}" rel="stylesheet" type="text/css" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,6 +55,11 @@ folder instead of downloading all of them to reduce the load. -->
 .align
 {
     margin-left:20px;
+}
+
+.skin-purple .main-header li.user-header
+{
+    background-color: #222d32 !important;
 }
 
 /* IPhone 5s */

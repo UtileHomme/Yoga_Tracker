@@ -689,6 +689,8 @@ class TraineeController extends Controller
 
         $workout_id = $request->id;
         $comment_for_workout = $request->comment1;
+
+
         // dd($workout_id);
         $trainee_id = DB::table('workouts')->where('id',$workout_id)->value('trainee_id');
         // dd($trainee_id);
@@ -696,6 +698,8 @@ class TraineeController extends Controller
         $trainee_name = DB::table('trainee_details')->where('id',$trainee_id)->value('trainee_name');
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
+        if($comment_for_workout!=NULL)
+        {
         $workout_comment = new workout_comment;
         $workout_comment->comment = $comment_for_workout;
         $workout_comment->workout_id = $workout_id;
@@ -703,7 +707,8 @@ class TraineeController extends Controller
         $workout_comment->trainee_name = $trainee_name;
         $workout_comment->trainee_image = $trainee_image;
         $workout_comment->save();
-
+        }
+        
         $logged_in_user = Auth::user()->name;
 
         // $trainee_id = DB::table('admins')->where('name',$logged_in_user)->value('id');
