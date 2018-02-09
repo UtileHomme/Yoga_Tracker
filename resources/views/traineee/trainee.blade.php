@@ -7,9 +7,9 @@
 <head>
     <style media="screen">
 
-    .likecolourchange
+    .content-wrapper
     {
-
+        background-color: #F4F1EA;
     }
 </style>
 
@@ -23,10 +23,7 @@
             Welcome to your dashboard
             <small></small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Blank page</li>
-        </ol>
+
     </section>
 
     <!-- Main content -->
@@ -81,29 +78,36 @@
                                                 for($z=0;$z<$trainee_likes_all;$z++)
                                                 {
 
-                                                    if($trainee_names_likes[$z]['like_status']==1  && $trainee_names_likes[$z]['workout_id']==$trainee_workouts_all[$i]['id'])
+                                                    if($trainee_names_likes[$z]['like_status']==1 && $trainee_names_likes[$z]['trainee_name']==$logged_in_user  && $trainee_names_likes[$z]['workout_id']==$trainee_workouts_all[$i]['id'])
                                                     {
                                                         $flag = 1;
+                                                        break;
+                                                    }
+                                                    else
+                                                    {
+                                                        $flag=0;
+                                                    }
+                                                }
                                                         ?>
+
+                                                        <?php
+
+                                                        if($flag==1)
+                                                        {
+                                                         ?>
                                                         <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs likecolourchangeall" style="background-color: #AAAACA">
                                                             <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall" ></i> Like</button>
-
                                                             <?php
                                                         }
-                                                        else if($trainee_names_likes[$z]['like_status']==0  && $trainee_names_likes[$z]['workout_id']==$trainee_workouts_all[$i]['id'])
+                                                        else
                                                         {
-                                                            $flag = 1;
+
                                                             ?>
                                                             <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs">
                                                                 <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall"></i> Like</button>
                                                                 <?php
                                                             }
 
-                                                            if($flag == 1)
-                                                            {
-                                                                break 1;
-                                                            }
-                                                        }
                                                         ?>
                                                         <span class="pull-right text-muted">
 
@@ -113,7 +117,7 @@
                                                                 like
                                                                 @else
                                                                 likes
-                                                                @endif -
+                                                                @endif - 
                                                             </div>
                                                             <div class="commentcountall{{$trainee_workouts_all[$i]['id']}}" style="float:left">
                                                                 {{$counts_all[$i]}}
@@ -256,7 +260,7 @@
 
 
                                                                     <span class="pull-right text-muted">
-                                                                        <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}} updatelikeshow{{$trainee_workouts_all[$i]['id']}} reducelikeshow{{$trainee_workouts_all[$i]['id']}}" style="float:left">
+                                                                        <div class="updatelikes{{$trainee_workouts[$i]['id']}} reducelikes{{$trainee_workouts[$i]['id']}} updatelikeshow{{$trainee_workouts_all[$i]['id']}} reducelikeshowall{{$trainee_workouts_all[$i]['id']}}" style="float:left">
 
                                                                             {{$likes[$i]}}
 
@@ -513,7 +517,7 @@
 
                     $(".likeall").click(function(){
                         console.log('like all clicked');
-                        if($(".this").hasClass('likecolourchangeall'))
+                        if($(this).hasClass('likecolourchangeall'))
                         {
                             console.log('like has colour');
 
@@ -531,6 +535,7 @@
                                 $('.'+post_id+'likestatus').removeClass("likecolourchange");
                                 $('.'+post_id+'likestatus').css('background-color', '#f4f4f4');
                                 $('.'+post_id+'likestatus').css('border-color', '#ddd');
+                                $('.reducelikeshowall'+post_id).html(data);
                             });
 
 
@@ -554,6 +559,8 @@
                                 $('.'+post_id+'likestatus').addClass("likecolourchange");
                                 $('.'+post_id+'likestatus').css('background-color', '#AAAACA');
                                 $('.'+post_id+'likestatus').css('border-color', 'black');
+                                $('.reducelikeshowall'+post_id).html(data);
+
                             });
 
 

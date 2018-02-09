@@ -272,7 +272,7 @@ class TraineeController extends Controller
         // // dd($trainee_likes_all);
         $trainee_names_likes = DB::table('like_details')->get();
         $trainee_names_likes = json_decode($trainee_names_likes,true);
-
+        // dd($trainee_names_likes);
         $trainee_likes = DB::table('like_details')->count();
         // // dd($trainee_likes_all);
         $trainee_names_likes_single = DB::table('like_details')->get();
@@ -998,7 +998,8 @@ class TraineeController extends Controller
             {
                 $like_detail = new like_detail;
                 $like_detail->workout_id = $workout_id;
-                $like_detail->$trainee_name = $trainee_name;
+                $like_detail->trainee_name = $trainee_name;
+                $like_detail->like_status = 1;
                 $like_detail->save();
             }
         }
@@ -1022,20 +1023,7 @@ class TraineeController extends Controller
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
 
-    public function updatelikeshow(Request $request)
-    {
-        $workout_id = $request->id;
-        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
-        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
 
-    }
-    public function reducelikeshow(Request $request)
-    {
-        $workout_id = $request->id;
-        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
-        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
-
-    }
     public function updatelikesall(Request $request)
     {
         // dd($request->id);
@@ -1043,35 +1031,32 @@ class TraineeController extends Controller
         $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
 
         $likes_on_workout = $likes_on_workout + 1;
+        // dd($workout_id);
 
         DB::table('workouts')->where('id',$workout_id)->update(['likes_on_workout'=>$likes_on_workout]);
 
         $trainee_name = Auth::user()->name;
+        // dd($trainee_name);
         $workout_id_exist = DB::table('like_details')->where('workout_id',$workout_id)->value('id');
         // dd($workout_id_exist);
         if($workout_id_exist!=NULL)
         {
-            $trainee_name_exist = DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->value('id');
-
+            $trainee_name_exist = DB::table('like_details')->where(['workout_id'=>$workout_id,'trainee_name'=>$trainee_name])->value('trainee_name');
+            // dd($trainee_name_exist);
             if($trainee_name_exist!=NULL)
             {
                 DB::table('like_details')->where('workout_id',$workout_id)->where('trainee_name',$trainee_name)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
             }
             else
             {
-
-                DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
+                $like_detail = new like_detail;
+                $like_detail->workout_id = $workout_id;
+                $like_detail->trainee_name = $trainee_name;
+                $like_detail->like_status = 1;
+                $like_detail->save();
             }
         }
-        else
-        {
-            $like_detail = new like_detail;
-            $like_detail->workout_id = $workout_id;
-            $like_detail->save();
 
-            DB::table('like_details')->where('workout_id',$workout_id)->update(['like_status'=>1,'trainee_name'=>$trainee_name]);
-
-        }
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
     public function reducelikesall(Request $request)
@@ -1090,13 +1075,7 @@ class TraineeController extends Controller
         return view('traineee/workout/updatelikes',compact('likes_on_workout'));
     }
 
-    public function updatelikeshowall(Request $request)
-    {
-        $workout_id = $request->id;
-        $likes_on_workout = DB::table('workouts')->where('id',$workout_id)->value('likes_on_workout');
-        return view('traineee/workout/updatelikes',compact('likes_on_workout'));
 
-    }
     public function reducelikeshowall(Request $request)
     {
         $workout_id = $request->id;

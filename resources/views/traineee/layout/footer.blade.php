@@ -37,9 +37,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('traineee/dist/js/demo.js') }}"></script>
 <script src="{{ asset('sb-admin/js/sb-admin.js') }}"></script>
-<script src="{{ asset('sb-admin/vendor/chart.js/Chart.js') }}"></script>
-<script src="{{ asset('sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
-<script src="{{ asset('sb-admin/js/sb-admin-charts.js') }}"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 

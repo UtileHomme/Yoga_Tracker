@@ -168,66 +168,88 @@
                             <div id="curve_chart" style="width: 900px; height: 500px"></div>
                         </div> -->
 
-                        <div class=" col-md-12">
-                            <div class="card mb-3">
-                                <div class="card-header text-center">
-                                    <i class="fa fa-area-chart" ></i> Your Improvement Graph For The Year - {{$present_year}}</div>
-                                    <div class="card-body ">
-                                        <div id="chart_div" style="width: 100%; height: 500px;"></div>
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <!-- /.box-body -->
-                            </div>
-
-
-                        </div>
-
-
-                    </section>
-                    <!-- /.content -->
+                        <!-- <div class=" col-md-12">
+                        <div class="card mb-3">
+                        <div class="card-header text-center">
+                        <i class="fa fa-area-chart" ></i> Your Improvement Graph For The Year - {{$present_year}}</div>
+                        <div class="card-body ">
+                        <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                    </div>
                 </div>
-                <!-- /.content-wrapper -->
+            </div> -->
+
+            <div class="row col-md-12">
+
+                <div class="card mb-3 " style="margin-left:16px; width:1079px;">
+                    <div class="card-header text-center">
+                        <i class="fa fa-area-chart"></i> Your Improvement Graph For The Year - {{$present_year}}
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- /.box-body -->
+        </div>
 
 
-                @endsection
+    </div>
 
-                @section('scripts')
 
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript">
-                google.charts.load('current', {'packages':['corechart']});
-                google.charts.setOnLoadCallback(drawChart);
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-                function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Month', 'Workout Hours'],
-                        ['Jan',  {{$total_hours_for_this_January_month}}],
-                        ['Feb',  {{$total_hours_for_this_February_month}}],
-                        ['Mar',  {{$total_hours_for_this_March_month}}],
-                        ['Apr',  {{$total_hours_for_this_April_month}}],
-                        ['May',  {{$total_hours_for_this_May_month}}],
-                        ['June',  {{$total_hours_for_this_June_month}}],
-                        ['July',  {{$total_hours_for_this_July_month}}],
-                        ['Aug',  {{$total_hours_for_this_August_month}}],
-                        ['Sept',  {{$total_hours_for_this_September_month}}],
-                        ['Oct',  {{$total_hours_for_this_October_month}}],
-                        ['Nov',  {{$total_hours_for_this_November_month}}],
-                        ['Dec',  {{$total_hours_for_this_December_month}}],
-                    ]);
 
-                    var options = {
-                        title: '',
-                        hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0}
-                    };
+@endsection
 
-                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-                    chart.draw(data, options);
-                }
-                </script>
+@section('scripts')
 
-            </scripts>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
 
-            @endsection
+</script>
+
+<script type="text/javascript">
+Chart.defaults.global.defaultFontFamily='-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',Chart.defaults.global.defaultFontColor="#292b2c";var ctx=document.getElementById("myAreaChart"),myLineChart=new Chart(ctx,{type:"line",data:{labels:["January","February","March","April","May","June","July","August","September","October","November","December"],datasets:[{label:"Workout Hours",lineTension:.3,backgroundColor:"rgba(2,117,216,0.2)",borderColor:"rgba(2,117,216,1)",pointRadius:5,pointBackgroundColor:"rgba(2,117,216,1)",pointBorderColor:"rgba(255,255,255,0.8)",pointHoverRadius:5,pointHoverBackgroundColor:"rgba(2,117,216,1)",pointHitRadius:20,pointBorderWidth:2,data:[{{$total_hours_for_this_January_month}},{{$total_hours_for_this_February_month}},{{$total_hours_for_this_March_month}},{{$total_hours_for_this_April_month}},{{$total_hours_for_this_May_month}},{{$total_hours_for_this_June_month}},{{$total_hours_for_this_July_month}},{{$total_hours_for_this_August_month}},{{$total_hours_for_this_September_month}},{{$total_hours_for_this_October_month}},{{$total_hours_for_this_November_month}},{{$total_hours_for_this_December_month}}]}]},options:{scales:{xAxes:[{time:{unit:"date"},gridLines:{display:!1},ticks:{maxTicksLimit:7}}],yAxes:[{ticks:{min:0,max:720,maxTicksLimit:20},gridLines:{color:"rgba(0, 0, 0, .125)"}}]},legend:{display:!1}}}),ctx=document.getElementById("myBarChart"),myLineChart=new Chart(ctx,{type:"bar",data:{labels:["January","February","March","April","May","June"],datasets:[{label:"Revenue",backgroundColor:"rgba(2,117,216,1)",borderColor:"rgba(2,117,216,1)",data:[4215,5312,6251,7841,9821,14984]}]},options:{scales:{xAxes:[{time:{unit:"month"},gridLines:{display:!1},ticks:{maxTicksLimit:6}}],yAxes:[{ticks:{min:0,max:15e3,maxTicksLimit:5},gridLines:{display:!0}}]},legend:{display:!1}}}),ctx=document.getElementById("myPieChart"),myPieChart=new Chart(ctx,{type:"pie",data:{labels:["Blue","Red","Yellow","Green"],datasets:[{data:[12.21,15.58,11.25,8.32],backgroundColor:["#007bff","#dc3545","#ffc107","#28a745"]}]}});
+</script>
+
+
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Month', 'Workout Hours'],
+        ['Jan',  {{$total_hours_for_this_January_month}}],
+        ['Feb',  {{$total_hours_for_this_February_month}}],
+        ['Mar',  {{$total_hours_for_this_March_month}}],
+        ['Apr',  {{$total_hours_for_this_April_month}}],
+        ['May',  {{$total_hours_for_this_May_month}}],
+        ['June',  {{$total_hours_for_this_June_month}}],
+        ['July',  {{$total_hours_for_this_July_month}}],
+        ['Aug',  {{$total_hours_for_this_August_month}}],
+        ['Sept',  {{$total_hours_for_this_September_month}}],
+        ['Oct',  {{$total_hours_for_this_October_month}}],
+        ['Nov',  {{$total_hours_for_this_November_month}}],
+        ['Dec',  {{$total_hours_for_this_December_month}}],
+    ]);
+
+    var options = {
+        title: '',
+        hAxis: {title: 'Month',  titleTextStyle: {color: '#333'}},
+        vAxis: {minValue: 0}
+    };
+
+    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
+
+</scripts>
+
+@endsection
