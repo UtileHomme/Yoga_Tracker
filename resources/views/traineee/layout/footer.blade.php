@@ -40,7 +40,7 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<script src="{{ asset('traineee/bower_components/footable.js') }}" type="text/javascript"></script>
+<script src="{{ asset('traineee/footable.js') }}" type="text/javascript"></script>
 
 <script>
 $(document).ready(function(){

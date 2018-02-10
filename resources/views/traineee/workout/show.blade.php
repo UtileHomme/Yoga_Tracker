@@ -18,11 +18,6 @@
             Workout Logs
             <small></small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">View Workout</li>
-        </ol>
     </section>
 
     <!-- Main content -->
@@ -55,12 +50,12 @@
                                 <thead>
                                     <tr>
                                         <th>S.no</th>
-                                        <th>Workout Name</th>
-                                        <th>Workout Start date</th>
-                                        <th>Workout Start Time</th>
-                                        <th>Workout End Time</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th data-hide="phone,tablet">Workout Name</th>
+                                        <th data-hide="phone,tablet">Workout Start date</th>
+                                        <th data-hide="phone,tablet">Workout Start Time</th>
+                                        <th data-hide="phone,tablet">Workout End Time</th>
+                                        <th data-hide="phone,tablet">Edit</th>
+                                        <th data-hide="phone,tablet">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>

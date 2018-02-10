@@ -88,25 +88,25 @@
                                                         $flag=0;
                                                     }
                                                 }
-                                                        ?>
+                                                ?>
 
+                                                <?php
+
+                                                if($flag==1)
+                                                {
+                                                    ?>
+                                                    <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs likecolourchangeall" style="background-color: #AAAACA; border-color:black;">
+                                                        <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall" ></i> Like</button>
                                                         <?php
+                                                    }
+                                                    else
+                                                    {
 
-                                                        if($flag==1)
-                                                        {
-                                                         ?>
-                                                        <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs likecolourchangeall" style="background-color: #AAAACA; border-color:black;">
-                                                            <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall" ></i> Like</button>
+                                                        ?>
+                                                        <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs">
+                                                            <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall"></i> Like</button>
                                                             <?php
                                                         }
-                                                        else
-                                                        {
-
-                                                            ?>
-                                                            <button type="button" class="{{$trainee_workouts_all[$i]['id']}} likeall {{$trainee_workouts_all[$i]['id']}}likestatusall btn btn-default btn-xs">
-                                                                <i class="fa fa-thumbs-o-up {{$trainee_workouts_all[$i]['id']}}likecolourall"></i> Like</button>
-                                                                <?php
-                                                            }
 
                                                         ?>
                                                         <span class="pull-right text-muted">
@@ -174,8 +174,8 @@
                                                             <img class="img-responsive img-circle img-sm" src="{{ asset(Storage::disk('local')->url($trainee_image)) }} " alt="Alt Text">
                                                             <!-- .img-push is used to add margin to elements next to floating images -->
                                                             <div class="img-push">
-                                                                <input type="text" class="form-control input-sm textcomment1" placeholder="Please post you comment here" id="{{$trainee_workouts_all[$i]['id']}}comall">
-                                                                <input type="button" name="" value="Post Comment" class="{{$trainee_workouts_all[$i]['id']}} submit1 btn btn-success btn-sm pull-right" style="margin-top:10px;">
+                                                                <input type="text" class="{{$trainee_workouts_all[$i]['id']}} form-control input-sm textcomment1" placeholder="Please post you comment here" id="{{$trainee_workouts_all[$i]['id']}}comall">
+                                                                <input type="button" name="" value="Post Comment" class="{{$trainee_workouts_all[$i]['id']}} submit1 btn btn-success btn-sm pull-right {{$trainee_workouts_all[$i]['id']}}submitsall" style="margin-top:10px;">
                                                             </div>
 
                                                         </form>
@@ -328,7 +328,7 @@
                                                                         <div class="img-push">
                                                                             <input type="text" class="{{$trainee_workouts[$i]['id']}} form-control input-sm textcomment" placeholder="Please post you comment here" id="{{$trainee_workouts[$i]['id']}}com">
                                                                             <p style="color:red" class="{{$trainee_workouts[$i]['id']}}error errors">Enter Key is disabled!! Please click the button</p>
-                                                                            <input type="button" name="" value="Post Comment" class="{{$trainee_workouts[$i]['id']}} submit btn btn-success btn-sm pull-right" style="margin-top:10px;">
+                                                                            <input type="button" value="Post Comment" class="{{$trainee_workouts[$i]['id']}} submit btn btn-success btn-sm pull-right {{$trainee_workouts[$i]['id']}}submits " style="margin-top:10px;" >
                                                                         </div>
 
                                                                     </form>
@@ -381,32 +381,31 @@
                     //
                     //
                     // });
-                        $(".errors").hide();
+                    $(".errors").hide();
+                    $(".submit").prop('disabled', 'true');
+                    $(".submit1").prop('disabled', 'true');
 
                     $('.textcomment').on('keyup keypress', function(e) {
-
                         var post_class= $(this).attr("class");
-                        console.log(post_class);
                         var post_class_array=post_class.split(" ");
-                        console.log(post_class_array);
+
                         var post_id = post_class_array[0];
-                        console.log(post_id);
 
-
-                        var keyCode = e.keyCode || e.which;
-                        if (keyCode === 13) {
-                            e.preventDefault();
-                            $(post_id+".error").show();
-                            return false;
-
+                        // $("."+button_id).prop('disabled', 'false');
+                        var valueofcomment=$("#"+post_id+"com").val();
+                        if(valueofcomment == '')
+                        {
+                            $(".submit").prop('disabled', 'true');
                         }
                         else
-                    {
-                        $(post_id+".error").hide();
-                    }
+                        {
+                            $("."+post_id+"submits").removeAttr('disabled');
+                        }
+
                     });
 
                     $(".submit").click(function(){
+                        $(".submit").prop('disabled', 'true');
                         var post_class= $(this).attr("class");
                         // console.log(post_class);
                         var post_class_array=post_class.split(" ");
@@ -449,7 +448,29 @@
                     // $('.textcomment').val(" ");
                     // $(".textcomment").attr("placeholder","Please post your comment here");
                     // });
+
+                    $('.textcomment1').on('keyup keypress', function(e) {
+                        var post_class= $(this).attr("class");
+                        var post_class_array=post_class.split(" ");
+
+                        var post_id = post_class_array[0];
+                        console.log(post_id);
+                        // $("."+button_id).prop('disabled', 'false');
+                        var valueofcomment=$("#"+post_id+"comall").val();
+                        if(valueofcomment == '')
+                        {
+                            $(".submit1").prop('disabled', 'true');
+                        }
+                        else
+                        {
+                            $("."+post_id+"submitsall").removeAttr('disabled');
+                        }
+
+                    });
+
                     $(".submit1").click(function(){
+                        $(".submit1").prop('disabled', 'true');
+
                         var post_class2= $(this).attr("class");
                         var post_class_array2=post_class2.split(" ");
                         // console.log(post_class_array[0]);
@@ -503,7 +524,7 @@
                             ,function(data){
                                 $('.reducelikeshowall'+post_id).html(data);
 
-                                });
+                            });
 
                         }
                         else
@@ -531,7 +552,7 @@
                             ,function(data){
                                 $('.reducelikeshowall'+post_id).html(data);
 
-                                });
+                            });
                         }
                     });
 
@@ -562,7 +583,7 @@
                             ,function(data){
                                 $('.reducelikeshowall'+post_id).html(data);
 
-                                });
+                            });
 
                             // $('.'+post_id+'likestatus').attr("disabled", true);
                         }
@@ -592,7 +613,7 @@
                             ,function(data){
                                 $('.reducelikeshowall'+post_id).html(data);
 
-                                });
+                            });
                         }
                     });
 
