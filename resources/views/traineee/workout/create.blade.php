@@ -87,10 +87,7 @@ $(document).ready(function() {
         </h1>
         <br>
 
-        <ol class="breadcrumb">
-            <li><a href="{{route('workout.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Add Workout</li>
-        </ol>
+
     </section>
 
     <!-- Main content -->

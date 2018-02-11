@@ -66,6 +66,29 @@
     margin-bottom: 1rem !important;
 }
 
+.hoursvalue,.hourscaption
+{
+    color:black;
+}
+
+.small-box
+{
+    height: 122px;
+}
+
+@media (min-width: 1281px) {
+        .chartlook
+        {
+            margin-right: 31px;
+        }
+    }
+@media (min-width: 768px and max-width:1024px) {
+        .chartlook
+        {
+            width: 531px;
+        }
+    }
+
 </style>
 
 <!-- Content Wrapper. Contains page content -->
@@ -92,16 +115,14 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h4 class="text-center">{{$total_hours_for_today}} Hours {{$minutes_for_this_today}} Minutes</h3>
+                                <h4 class="text-center hoursvalue">{{$total_hours_for_today}} Hours {{$minutes_for_this_today}} Minutes</h3>
 
-                                    <p class="text-center">Hours Logged in Today</p>
+                                    <p class="text-center hourscaption">Hours Logged in Today</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-clock-o"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">
-                                    More info <i class="fa fa-arrow-circle-right"></i>
-                                </a>
+
                             </div>
                         </div>
                         <!-- ./col -->
@@ -109,16 +130,13 @@
                             <!-- small box -->
                             <div class="small-box bg-green">
                                 <div class="inner">
-                                    <h4 class="text-center">{{$total_hours_for_this_week}} Hours {{$minutes_for_this_week}} Minutes</h3>
+                                    <h4 class="text-center hoursvalue">{{$total_hours_for_this_week}} Hours {{$minutes_for_this_week}} Minutes</h3>
 
-                                        <p class="text-center">Hours Logged in a Week's Time</p>
+                                        <p class="text-center hourscaption">Hours Logged in a Week's Time</p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
-                                    <a href="#" class="small-box-footer">
-                                        More info <i class="fa fa-arrow-circle-right"></i>
-                                    </a>
                                 </div>
                             </div>
                             <!-- ./col -->
@@ -126,16 +144,13 @@
                                 <!-- small box -->
                                 <div class="small-box bg-yellow">
                                     <div class="inner">
-                                        <h4 class="text-center">{{$total_hours_for_this_month}} Hours {{$minutes_for_this_month}} Minutes</h3>
+                                        <h4 class="text-center hoursvalue">{{$total_hours_for_this_month}} Hours {{$minutes_for_this_month}} Minutes</h3>
 
-                                            <p class="text-center">Hours Logged in a Month's Time</p>
+                                            <p class="text-center hourscaption">Hours Logged in a Month's Time</p>
                                         </div>
                                         <div class="icon">
                                             <i class="fa fa-clock-o"></i>
                                         </div>
-                                        <a href="#" class="small-box-footer">
-                                            More info <i class="fa fa-arrow-circle-right"></i>
-                                        </a>
                                     </div>
                                 </div>
                                 <!-- ./col -->
@@ -143,16 +158,13 @@
                                     <!-- small box -->
                                     <div class="small-box bg-red">
                                         <div class="inner">
-                                            <h4 class="text-center">{{$total_hours_for_this_year}} Hours {{$minutes_for_this_year}} Minutes</h3>
+                                            <h4 class="text-center hoursvalue">{{$total_hours_for_this_year}} Hours {{$minutes_for_this_year}} Minutes</h3>
 
-                                                <p class="text-center">Hours Logged in This Year</p>
+                                                <p class="text-center hourscaption">Hours Logged in This Year</p>
                                             </div>
                                             <div class="icon">
                                                 <i class="fa fa-clock-o"></i>
                                             </div>
-                                            <a href="#" class="small-box-footer">
-                                                More info <i class="fa fa-arrow-circle-right"></i>
-                                            </a>
                                         </div>
                                     </div>
                                     <!-- ./col -->
@@ -178,17 +190,19 @@
                 </div>
             </div> -->
 
-            <div class="row col-md-12">
+            <div class="container">
+                <div class="row col-md-12 col-sm-6">
+                    <!-- style="margin-left:16px; width:1079px;" -->
+                    <div class="card mb-3 chartlook">
+                        <div class="card-header text-center">
+                            <i class="fa fa-area-chart"></i> Your Improvement Graph For The Year - {{$present_year}}
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myAreaChart" width="100%" height="40"></canvas>
+                        </div>
+                    </div>
 
-                <div class="card mb-3 " style="margin-left:16px; width:1079px;">
-                    <div class="card-header text-center">
-                        <i class="fa fa-area-chart"></i> Your Improvement Graph For The Year - {{$present_year}}
-                    </div>
-                    <div class="card-body">
-                        <canvas id="myAreaChart" width="100%" height="40"></canvas>
-                    </div>
                 </div>
-
             </div>
 
             <!-- /.box-body -->

@@ -109,7 +109,7 @@ $(document).ready(function() {
 
                                 <div class="form-group">
                                     <label for="trainer_email">Email Id</label>
-                                    <input type="text" class="form-control" id="trainer_email" name="trainer_email" placeholder="Please enter the Trainer Email Id">
+                                    <input type="text" class="form-control" id="trainer_email" name="email" placeholder="Please enter the Trainer Email Id">
                                 </div>
 
                                 <div class="form-group">

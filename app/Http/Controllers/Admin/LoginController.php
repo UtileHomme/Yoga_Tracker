@@ -29,7 +29,7 @@ class LoginController extends Controller
     */
 
     //redirection for admins after login
-    protected $redirectTo = 'admin/home';
+    protected $redirectTo = 'admin.home';
 
     /**
     * Create a new controller instance.

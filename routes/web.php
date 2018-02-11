@@ -22,6 +22,10 @@ Route::get('/download-resume','ResumeController@index')->name('download-resume')
 Route::get('workout/display','TraineeController@display')->name('workout.display');
 Route::get('workout/statistics','TraineeController@statistics')->name('workout.statistics');
 
+Route::get('admin/display','AdminController@display')->name('admin.display');
+Route::get('admin/edit','AdminController@edit')->name('admin.edit');
+Route::post('update/{id}','AdminController@update')->name('admin.update');
+
 
 Route::resource('workout','TraineeController');
 Route::resource('trainer','TrainerController');

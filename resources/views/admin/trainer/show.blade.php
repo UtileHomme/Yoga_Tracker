@@ -1,4 +1,4 @@
-@extends('traineee.layout.app')
+@extends('admin.layout.app')
 
 @section('main-content')
 
@@ -18,11 +18,7 @@
             Workout Logs
             <small></small>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
-            <li class="active">View Workout</li>
-        </ol>
+
     </section>
 
     <!-- Main content -->
@@ -33,7 +29,7 @@
             <div class="box-header with-border">
                 <!-- <h3 class="box-title">Workouts</h3> -->
 
-                <a href=" {{ route('workout.create')}}" class="btn btn-success col-lg-offset-5 pull-left"> Add New Workout</a>
+                <a href=" {{ route('admin.create')}}" class="btn btn-success col-lg-offset-5 pull-left"> Add New Trainer</a>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -55,33 +51,29 @@
                                 <thead>
                                     <tr>
                                         <th>S.no</th>
-                                        <th>Workout Name</th>
-                                        <th>Workout Start date</th>
-                                        <th>Workout Start Time</th>
-                                        <th>Workout End Time</th>
+                                        <th>Trainer Name</th>
+                                        <th>Trainer EmailId</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach($trainee_workouts_show as $workout)
+                                    @foreach($trainer_details as $details)
                                     <tr>
                                         <td>{{$loop->index+1}}</td>
-                                        <td>{{$workout->workout_name}}</td>
-                                        <td>{{$workout->workout_date}}</td>
-                                        <td>{{$workout->workout_start_time}}</td>
-                                        <td>{{$workout->workout_end_time}}</td>
-                                        <td><a href="{{route('workout.edit', $workout->id)}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td>{{$details->trainer_name}}</td>
+                                        <td>{{$details->trainer_emailid}}</td>
+                                        <td><a href="edit?id=<?php echo $details->id; ?>"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td>
-                                            <form id="delete-form-{{$workout->id}}" class="" style="display:none" action="{{route('workout.destroy', $workout->id)}}" method="POST">
+                                            <form id="delete-form-{{$details->id}}" class="" style="display:none" action="{{route('workout.destroy', $details->id)}}" method="POST">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
                                             </form>
                                             <a href="" onclick="
                                             if(confirm('Are you sure, You want to Delete this'))
                                             {
-                                                event.preventDefault(); document.getElementById('delete-form-{{$workout->id}}').submit();}
+                                                event.preventDefault(); document.getElementById('delete-form-{{$details->id}}').submit();}
                                                 else
                                                 {
                                                     event.preventDefault();

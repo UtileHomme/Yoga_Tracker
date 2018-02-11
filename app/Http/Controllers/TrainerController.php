@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Session;
+use Carbon\Carbon;
 
 class TrainerController extends Controller
 {
@@ -24,6 +25,25 @@ class TrainerController extends Controller
     public function index()
     {
 
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_image = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('profile_image');
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+        $trainee_details = DB::table('trainee_details')->where('trainer_id',$trainer_id)->get();
+
+        // $diffForHumans = $trainee_details[0]->created_at->diffForHumans();
+
+        foreach($trainee_details as $detail)
+        {
+            $detail->created_at = substr($detail->created_at,0,11);
+        }
+
+        $trainee_count = count($trainee_details);
+        // dd($diffForHumans);
+        // dd($trainee_details);
+
+        return view('trainer.home',compact('trainer_image','trainee_details','trainee_count'));
     }
 
     /**
