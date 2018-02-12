@@ -13,6 +13,25 @@
         max-width: 121px;
         height: 121px;
     }
+
+    .content-wrapper
+    {
+        background-color: #dddfeb !important;
+    }
+
+    .colors
+    {
+        color: #00635d;
+            margin-top: 32px;
+    }
+
+    .center
+    {
+        display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+    }
     </style>
 
 </head>
@@ -21,7 +40,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1 class="text-center">
+        <h1 class="text-center colors">
             Welcome to your dashboard!! You are Logged in as Trainer!!
             <small></small>
         </h1>
@@ -61,8 +80,13 @@
         </div>
 
         @else
-        <p>You currently don't have any Trainees under you</p>
-        @endif
+
+        <img src="{{ asset('images/sad_face/sad_face.jpg') }}" class="center" alt="User Image">
+
+        <h1 class="text-center colors">
+            You currently have NO TRAINEES under you!!
+            <small></small>
+        </h1>        @endif
     </section>
     <!-- /.content -->
 </div>

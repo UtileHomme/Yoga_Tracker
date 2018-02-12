@@ -31,8 +31,17 @@ class AdminController extends Controller
 
         $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
 
+        $trainer_details = DB::table('trainer_details')->get();
+
+        foreach($trainer_details as $detail)
+        {
+            $detail->created_at = substr($detail->created_at,0,11);
+        }
+
+        $trainer_count = count($trainer_details);
+
         // dd($admin_image);
-        return view('admin.home',compact('admin_image'));
+        return view('admin.home',compact('admin_image','trainer_count','trainer_details'));
     }
 
     /**

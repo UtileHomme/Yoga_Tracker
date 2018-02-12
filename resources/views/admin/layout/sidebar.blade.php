@@ -1,3 +1,11 @@
+<head>
+    <style media="screen">
+
+
+
+    </style>
+</head>
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
@@ -5,10 +13,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ asset(Storage::disk('local')->url($admin_image)) }}" class="img-circle" alt="User Image">
-      </div>
-      <div class="pull-left info">
-        <p>{{Auth::user()->name}}</p>
+        <img src="{{ asset(Storage::disk('local')->url($admin_image)) }}" class="img-circle" alt="User Image" style="margin-left:60px; ">
       </div>
     </div>
 
