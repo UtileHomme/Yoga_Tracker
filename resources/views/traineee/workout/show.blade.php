@@ -1,3 +1,4 @@
+
 @extends('traineee.layout.app')
 
 @section('main-content')
@@ -9,6 +10,8 @@
 @endsection
 
 @section('main-content')
+
+
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -101,6 +104,7 @@
             </div>
             <!-- /.content-wrapper -->
 
+            @include('partial._message')
             @endsection
 
             @section('footerSection')
@@ -126,5 +130,9 @@
             })
             </script>
             @endsection
+
+            @endsection
+
+            @section('scripts')
 
             @endsection

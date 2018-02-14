@@ -60,7 +60,8 @@
 
 @section('scripts')
 
-    
+
+
 @show
 </body>
 </html>

@@ -5,11 +5,9 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="img-circle" alt="User Image">
+        <img src="{{ asset(Storage::disk('local')->url($trainee_image)) }}" class="img-circle" alt="User Image" style="margin-left:60px; ">
       </div>
-      <div class="pull-left info">
-        <p>{{Auth::user()->name}}</p>
-      </div>
+
     </div>
 
     <!-- sidebar menu: : style can be found in sidebar.less -->

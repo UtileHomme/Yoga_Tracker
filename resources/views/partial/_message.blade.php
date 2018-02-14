@@ -1,8 +1,5 @@
 @if (session()->has('message'))
-<!-- <div class="alert alert-success" style="text-align: center">
-  {{session()->get('message')}}
-</div> -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">

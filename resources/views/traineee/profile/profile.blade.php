@@ -110,7 +110,7 @@ height: 93px;
                     <div class="row">
                         <div class="col-sm-4 border-right">
                             <div class="description-block">
-                                <h5 class="description-header">120</h5>
+                                <h5 class="description-header">{{$total_hours}} hours and {{$minutes}} minutes</h5>
                                 <span class="description-text">Total Hours Logged In</span>
                             </div>
                             <!-- /.description-block -->
@@ -118,16 +118,16 @@ height: 93px;
                         <!-- /.col -->
                         <div class="col-sm-4 border-right">
                             <div class="description-block">
-                                <h5 class="description-header">20</h5>
-                                <span class="description-text">Total Number of Workouts</span>
+                                <h5 class="description-header">{{$total_workouts}}</h5>
+                                <span class="description-text">Total Workouts</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-4">
                             <div class="description-block">
-                                <h5 class="description-header">Alex</h5>
-                                <span class="description-text">Trainee Name</span>
+                                <h5 class="description-header">{{$trainer_name}}</h5>
+                                <span class="description-text">Trainer Name</span>
                             </div>
                             <!-- /.description-block -->
                         </div>
