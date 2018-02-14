@@ -637,7 +637,7 @@ class TraineeController extends Controller
         // echo numbermat((float)$foo, 2, '.', '');
         // dd($total_hours);
         $mins = explode('.', $total_hours);
-
+                // dd($total_hours);
         if(!array_key_exists(1, $mins))
         {
             array_push($mins, "00");
@@ -647,7 +647,7 @@ class TraineeController extends Controller
         // $minutes = intval($minutes);
 
         $total_hours = intval($total_hours);
-        // dd($total_hours_for);
+        // dd($total_hours);
 
         return view('traineee/profile/profile',compact('logged_in_user','trainee_image','total_workouts','total_hours','minutes','trainer_name'));
     }
@@ -687,6 +687,60 @@ class TraineeController extends Controller
 
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
+        $trainer_id = DB::table('trainee_details')->where('id',$trainee_id)->value('trainer_id');
+
+        $trainer_name = DB::table('trainer_details')->where('id',$trainer_id)->value('trainer_name');
+
+        $trainee_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+
+        $total_workouts = DB::table('workouts')->where('trainee_id',$trainee_id)->count();
+
+        $trainee_workouts = json_decode($trainee_workouts,true);
+        // dd($trainee_workouts);
+        $trainee_workouts_count = count($trainee_workouts);
+        // dd($trainee_workouts_count);
+
+        $total_mins = 0;
+        for($i=0;$i<$trainee_workouts_count;$i++)
+        {
+            $workout_start_time_hour = substr($trainee_workouts[$i]['workout_start_time'],0,2);
+            $workout_start_time_min= substr($trainee_workouts[$i]['workout_start_time'],3,2);
+            $workout_start_timeofday = $trainee_workouts[$i]['workout_start_timeofday'];
+            $workout_end_time_hour = substr($trainee_workouts[$i]['workout_end_time'],0,2);
+            $workout_end_time_min = substr($trainee_workouts[$i]['workout_end_time'],3,2);
+            $workout_end_timeofday = $trainee_workouts[$i]['workout_end_timeofday'];
+
+            if($workout_end_timeofday=="PM" && $workout_end_time_hour!=12)
+            {
+                $workout_end_time_hour = $workout_end_time_hour+"12";
+            }
+            if($workout_start_timeofday=="PM"  && $workout_start_time_hour!=12)
+            {
+                $workout_start_time_hour = $workout_start_time_hour+"12";
+            }
+
+            $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            $diff_mins = $workout_end_time_min - $workout_start_time_min;
+            $total_mins = $diff_hours + $diff_mins;
+
+            $total_mins = $total_mins + $total_mins;
+        }
+
+        $total_hours = ($total_mins/60);
+        $total_hours = number_format((float)$total_hours,2,'.','');
+        // echo numbermat((float)$foo, 2, '.', '');
+        // dd($total_hours);
+        $mins = explode('.', $total_hours);
+                // dd($total_hours);
+        if(!array_key_exists(1, $mins))
+        {
+            array_push($mins, "00");
+        }
+        // dd($mins);
+        $minutes = ($mins[1]*60)/100;
+        // $minutes = intval($minutes);
+
+        $total_hours = intval($total_hours);
 
         // dd($request->all());
         $imageName = $trainee_image;
@@ -733,7 +787,7 @@ class TraineeController extends Controller
         $trainee_detail->save();
 
         Session::flash('message','Your Profile Settings have been changed');
-        return view('traineee/profile/profile',compact('trainee_image'));
+        return view('traineee/profile/profile',compact('trainee_image','total_hours','minutes','trainee_workouts','total_workouts','trainer_name'));
     }
 
     public function addcomment(Request $request)

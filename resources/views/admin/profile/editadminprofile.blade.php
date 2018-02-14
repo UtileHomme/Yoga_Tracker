@@ -1,10 +1,10 @@
-@extends('traineee.layout.app')
+@extends('admin.layout.app')
 
-@section('editname',$trainee_details->trainee_name)
-@section('editemailid',$trainee_details->trainee_emailid)
-@section('editdob',$trainee_details->trainee_dob)
-@section('editmobileno',$trainee_details->trainee_mobilenumber)
-@section('edittrainer_name',$trainer_name)
+@section('editname',$admin_details->admin_name)
+@section('editemailid',$admin_details->admin_emailid)
+@section('editdob',$admin_details->admin_dob)
+@section('editmobileno',$admin_details->admin_mobilenumber)
+@section('editadmin_name',$admin_name)
 
 @section('main-content')
 
@@ -59,14 +59,14 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{ route('updateprofile') }}" method="POST" enctype="multipart/form-data">
+                    <form role="form" action="{{ route('updateadminprofile') }}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="box-body">
 
                             <div class="col-lg-6 col-lg-offset-3">
                                 <div class="form-group">
                                     <label for="trainee_name">Name</label>
-                                    <input type="text" class="form-control" id="trainee_name" name="trainee_name" placeholder="Your Name please" value="@yield('editname')">
+                                    <input type="text" class="form-control" id="admin_name" name="admin_name" placeholder="Your Name please" value="@yield('editname')">
                                 </div>
 
                                 <div class="form-group">
@@ -76,36 +76,17 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="form-control pull-right" id="datepicker" name="trainee_dob" placeholder="Select Your Date of Birth" value="@yield('editdob')">
+                                        <input type="text" class="form-control pull-right" id="datepicker" name="admin_dob" placeholder="Select Your Date of Birth" value="@yield('editdob')">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="trainee_emailid">Email Id</label>
-                                    <input type="text" class="form-control" id="trainee_emailid" name="trainee_emailid" placeholder="Your Email id please" value="@yield('editemailid')">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="trainee_mobilenumber">Mobile Number</label>
-                                    <input type="text" class="form-control" id="trainee_mobilenumber" name="trainee_mobilenumber" placeholder="Your Mobile Number please" value="@yield('editmobileno')">
+                                    <label for="admin_emailid">Email Id</label>
+                                    <input type="text" class="form-control" id="admin_emailid" name="admin_emailid" placeholder="Your Email id please" value="@yield('editemailid')">
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label>Select Your Trainer:</label>
-
-                                    <div class="input-group">
-
-                                        <select class="form-control select2"  name="trainer_name">
-                                            <option selected="selected">@yield('edittrainer_name')</option>
-                                            @foreach($trainer_names as $trainer)
-                                            <option value="{{$trainer->trainer_name}}">{{$trainer->trainer_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
 
                                 <div class="form-group">
                                     <label for="profile_image">Upload your Profile Image</label>

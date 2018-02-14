@@ -9,6 +9,7 @@ use App\role;
 use App\role_admin;
 use DB;
 use Session;
+use App\admin_detail;
 
 class AdminController extends Controller
 {
@@ -158,6 +159,82 @@ class AdminController extends Controller
                 dd($request->all());
             }
 
+            public function adminprofile()
+            {
+                $logged_in_user = Auth::user()->name;
+
+                $admin_id = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('id');
+
+                $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
+
+                return view('admin/profile/adminprofile',compact('logged_in_user','admin_image'));
+            }
+
+            public function editadminprofile()
+            {
+
+                $logged_in_user = Auth::user()->name;
+
+                $admin_name = $logged_in_user;
+                $admin_id = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('id');
+
+                $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
+
+                $admin_details = admin_detail::find($admin_id);
+
+                // dd($admin_details);
+
+                return view('admin/profile/editadminprofile',compact('logged_in_user','admin_id','admin_image','admin_details','admin_name'));
+
+            }
+
+            public function updateadminprofile(Request $request)
+            {
+
+                $this->validate($request,[
+                    'admin_name'=>'required|string',
+                    'admin_emailid'=>'required|email',
+                    // 'trainee_trainer_name'=>'required',
+                ]);
+                // dd($request->all());
+                $logged_in_user = Auth::user()->name;
+
+                $admin_name = $logged_in_user;
+                $admin_id = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('id');
+
+                $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
+
+                $imageName = $admin_image;
+                // dd($request->hasFile('profile_image'));
+                if($request->hasFile('profile_image'))
+                {
+                    $imageName = $request->profile_image->store('public');
+                    $admin_image = $request->profile_image->store('public');
+                    // dd($imageName);
+
+                }
+
+                $date = $request->admin_dob;
+                $date = date("Y-m-d",strtotime($date));
+
+                $admin_detail = admin_detail::find($admin_id);
+                $admin_detail->admin_name = $request->admin_name;
+                $admin_detail->admin_emailid = $request->admin_emailid;
+                $admin_detail->admin_dob = $date;
+                $admin_detail->profile_image = $imageName;
+
+
+                $admin_details = Admin::find($admin_id);
+                $admin_details->name = $request->admin_name;
+                $admin_details->email = $request->admin_emailid;
+                $admin_details->save();
+
+                $admin_detail->save();
+
+                Session::flash('message','Your Profile Settings have been changed');
+                return view('admin/profile/adminprofile',compact('admin_image'));
+
+            }
             /**
             * Remove the specified resource from storage.
             *

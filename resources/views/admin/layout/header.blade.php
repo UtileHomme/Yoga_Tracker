@@ -37,7 +37,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{route('adminprofile')}}" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
