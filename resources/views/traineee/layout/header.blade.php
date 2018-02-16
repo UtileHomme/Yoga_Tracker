@@ -37,10 +37,10 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{route('profile')}}" class="btn btn-success btn-flat" style="color:black">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="{{ route('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                <a href="{{ route('logout') }}" class="btn btn-primary btn-flat" style="color:black">Sign out</a>
               </div>
             </li>
           </ul>

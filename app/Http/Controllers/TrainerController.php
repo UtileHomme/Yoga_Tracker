@@ -8,6 +8,9 @@ use Auth;
 use DB;
 use Session;
 use Carbon\Carbon;
+use App\trainer_detail;
+use App\Admin;
+
 
 class TrainerController extends Controller
 {
@@ -18,10 +21,10 @@ class TrainerController extends Controller
         $this->middleware('trainer',['except'=>'test']);
     }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
 
@@ -47,68 +50,161 @@ class TrainerController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         //
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
         //
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Display the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function show($id)
     {
-        //
+        // dd($id);
+        $trainee_id = $id;
+
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_image = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('profile_image');
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        // dd($trainee_id);
+        $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+
+        // dd($trainee_workouts_show);
+
+        return view('trainer.workout.show',compact('logged_in_user','trainee_workouts_show','trainer_image'));
+
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for editing the specified resource.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function edit($id)
     {
         //
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Update the specified resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function update(Request $request, $id)
     {
         //
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
     public function destroy($id)
     {
         //
     }
+
+    public function trainerprofile()
+    {
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+        $trainer_image = DB::table('trainer_details')->where('id',$trainer_id)->value('profile_image');
+
+        $trainee_count = DB::table('trainee_details')->where('trainer_id',$trainer_id)->count();
+
+        // dd($trainee_count);
+        return view('trainer/profile/profile',compact('logged_in_user','trainer_image','trainee_count'));
+    }
+
+    public function edittrainerprofile()
+    {
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+        $trainer_image = DB::table('trainer_details')->where('id',$trainer_id)->value('profile_image');
+
+        $trainer_details = trainer_detail::find($trainer_id);
+
+        return view('trainer/profile/editprofile',compact('logged_in_user','trainer_details','trainer_image'));
+
+    }
+
+    public function updatetrainerprofile(Request $request)
+    {
+        // dd($request->all());
+        $this->validate($request,[
+            'trainer_name'=>'required|string',
+            'trainer_emailid'=>'required|email',
+            // 'trainee_trainer_name'=>'required',
+        ]);
+
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+        $trainer_image = DB::table('trainer_details')->where('id',$trainer_id)->value('profile_image');
+
+        $imageName = $trainer_image;
+        // dd($request->hasFile('profile_image'));
+        if($request->hasFile('profile_image'))
+        {
+            $imageName = $request->profile_image->store('public');
+            $trainer_image = $request->profile_image->store('public');
+            // dd($imageName);
+        }
+
+        $date = $request->trainer_dob;
+        $date = date("Y-m-d",strtotime($date));
+
+        $trainer_detail = trainer_detail::find($trainer_id);
+        $trainer_detail->trainer_name = $request->trainer_name;
+        $trainer_detail->trainer_emailid = $request->trainer_emailid;
+        $trainer_detail->trainer_dob = $date;
+        $trainer_detail->trainer_mobilenumber = $request->trainer_mobilenumber;
+        $trainer_detail->profile_image = $imageName;
+
+        $admin_details = Admin::find($trainer_id);
+        $admin_details->name = $request->trainer_name;
+        $admin_details->email = $request->trainer_emailid;
+        $admin_details->save();
+
+        $trainer_detail->save();
+
+        Session::flash('message','Your Profile Settings have been changed');
+        return view('trainer/profile/profile',compact('trainer_image'));
+
+    }
+
+
 }

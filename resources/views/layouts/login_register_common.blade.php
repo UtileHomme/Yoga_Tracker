@@ -64,13 +64,7 @@
     nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
     img{max-width:100%;}
     /*-- end reset --*/
-    body {
-        background: url(../images/111.jpg)repeat 0px 0px;
-        background-attachment: fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-    }
+
     h1,h2,h3,h4,h5{
         font-family: 'Acme', sans-serif;
     }

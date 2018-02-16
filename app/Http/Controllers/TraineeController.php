@@ -626,16 +626,21 @@ class TraineeController extends Controller
             }
 
             $diff_hours = abs($workout_end_time_hour - $workout_start_time_hour) * 60;
+            // dd($diff_hours);
             $diff_mins = $workout_end_time_min - $workout_start_time_min;
-            $total_mins = $diff_hours + $diff_mins;
+            $total_mins_per_workout = $diff_hours + $diff_mins;
 
-            $total_mins = $total_mins + $total_mins;
+
+            $total_mins = $total_mins + $total_mins_per_workout;
         }
 
+        // dd($total_mins);
         $total_hours = ($total_mins/60);
-        $total_hours = number_format((float)$total_hours,2,'.','');
-        // echo numbermat((float)$foo, 2, '.', '');
         // dd($total_hours);
+
+        $total_hours = number_format((float)$total_hours,2,'.','');
+
+
         $mins = explode('.', $total_hours);
                 // dd($total_hours);
         if(!array_key_exists(1, $mins))

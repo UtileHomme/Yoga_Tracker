@@ -58,6 +58,10 @@ Route::get('adminprofile','AdminController@adminprofile')->name('adminprofile');
 Route::get('editadminprofile','AdminController@editadminprofile')->name('editadminprofile');
 Route::post('updateadminprofile','AdminController@updateadminprofile')->name('updateadminprofile');
 
+Route::get('trainerprofile','TrainerController@trainerprofile')->name('trainerprofile');
+Route::get('edittrainerprofile','TrainerController@edittrainerprofile')->name('edittrainerprofile');
+Route::post('updatetrainerprofile','TrainerController@updatetrainerprofile')->name('updatetrainerprofile');
+
 Route::POST('admin-password/email','Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::GET('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 
