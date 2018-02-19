@@ -13,11 +13,6 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
-      <li class="active treeview">
-          <li class=""><a href="{{route('workout.create')}}"><i class="fa fa-circle-o"></i> Log My Workout</a></li>
-      </li>
-      <li>
-      </li>
     </ul>
   </section>
   <!-- /.sidebar -->

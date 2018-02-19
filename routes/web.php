@@ -97,3 +97,12 @@ Route::get('reducelikeshowall','TraineeController@reducelikeshowall')->name('red
 Route::get('updatelikesall','TraineeController@updatelikesall')->name('updatelikesall');
 Route::get('reducelikes','TraineeController@reducelikes')->name('reducelikes');
 Route::get('reducelikesall','TraineeController@reducelikesall')->name('reducelikesall');
+
+Route::get('traineechangepassword', 'UpdatePasswordController@traineeindex')->name('traineechangepassword');
+Route::post('traineechangepassword', 'UpdatePasswordController@traineeupdate')->name('traineechangepassword');
+
+Route::get('adminchangepassword', 'UpdatePasswordController@adminindex')->name('adminchangepassword');
+Route::post('adminchangepassword', 'UpdatePasswordController@adminupdate')->name('adminchangepassword');
+
+Route::get('trainerchangepassword', 'UpdatePasswordController@trainerindex')->name('trainerchangepassword');
+Route::post('trainerchangepassword', 'UpdatePasswordController@trainerupdate')->name('trainerchangepassword');

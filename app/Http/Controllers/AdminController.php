@@ -42,7 +42,7 @@ class AdminController extends Controller
         $trainer_count = count($trainer_details);
 
         // dd($admin_image);
-        return view('admin.home',compact('admin_image','trainer_count','trainer_details'));
+        return view('admin.home',compact('admin_image','trainer_count','trainer_details','logged_in_user'));
     }
 
     /**
