@@ -47,13 +47,13 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left sameline">
-                <a href="{{route('profile')}}" class="btn btn-success" style="color:black">Profile</a>
+                  <a href="{{route('profile')}}" class="btn btn-default" style="color:black">Profile</a>
               </div>
               <div class="sameline">
-                <a href="{{route('traineechangepassword')}}" class="btn btn-danger" style="color:black">Change Password</a>
+                <a href="{{route('traineechangepassword')}}" class="btn btn-default" style="color:black">Change Password</a>
               </div>
               <div class="sameline">
-                <a href="{{ route('logout') }}" class="btn btn-primary" style="color:black">Sign out</a>
+                <a href="{{ route('logout') }}" class="btn btn-default" style="color:black">Sign out</a>
               </div>
             </li>
           </ul>
