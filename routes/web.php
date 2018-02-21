@@ -106,3 +106,5 @@ Route::post('adminchangepassword', 'UpdatePasswordController@adminupdate')->name
 
 Route::get('trainerchangepassword', 'UpdatePasswordController@trainerindex')->name('trainerchangepassword');
 Route::post('trainerchangepassword', 'UpdatePasswordController@trainerupdate')->name('trainerchangepassword');
+
+Route::get('downloadcsv','TrainerController@downloadcsv')->name('downloadcsv');

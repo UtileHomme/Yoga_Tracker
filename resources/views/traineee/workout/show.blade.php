@@ -7,6 +7,15 @@
 
 <link rel="stylesheet" href="{{ asset('traineee/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}">
 
+<style media="screen">
+
+    input[type="search"]
+    {
+        margin-left: 8px;
+    }
+
+</style>
+
 @endsection
 
 @section('main-content')

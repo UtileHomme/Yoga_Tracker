@@ -10,6 +10,8 @@ use Session;
 use Carbon\Carbon;
 use App\trainer_detail;
 use App\Admin;
+use Illuminate\Support\Facades\Response;
+
 
 
 class TrainerController extends Controller
@@ -94,7 +96,56 @@ class TrainerController extends Controller
 
         // dd($trainee_workouts_show);
 
-        return view('trainer.workout.show',compact('logged_in_user','trainee_workouts_show','trainer_image'));
+        return view('trainer.workout.show',compact('logged_in_user','trainee_workouts_show','trainer_image','trainee_id'));
+
+    }
+
+    public function downloadcsv()
+    {
+        $trainee_id = $_GET['id'];
+        // dd($trainee_id);
+        $trainee_name = DB::table('trainee_details')->where('id',$trainee_id)->value('trainee_name');
+        $download_status = $_GET['download'];
+
+        $logged_in_user = Auth::user()->name;
+
+        $trainer_image = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('profile_image');
+        $trainer_id = DB::table('trainer_details')->where('trainer_name',$logged_in_user)->value('id');
+
+
+        $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
+
+        // dd($trainee_id);
+        $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
+
+        // dd($trainee_workouts_show);
+
+
+        if(isset($_GET['download']))
+        {
+            $trainee_workouts_download = DB::table('workouts')->select('id','workout_name','workout_date','workout_start_time','workout_start_timeofday','workout_end_time','workout_end_timeofday','comments')->where('trainee_id',$trainee_id)->get();
+            $trainee_workouts_download = json_decode($trainee_workouts_download,true);
+
+            $array = array('Workout Id','Workout Name','Workout Date','Workout Start Time', 'Workout Start Time of the Day','Workout End Time','Workout End Time of the Day', 'Post Name');
+
+            $filename = "Workout_For_".$trainee_name.".csv";
+
+            $fp = fopen($filename, 'w');
+
+            fputcsv($fp, $array );
+            foreach ($trainee_workouts_download as $fields) {
+                fputcsv($fp, $fields);
+            }
+
+            fclose($fp);
+
+            $headers = array(
+                'Content-Type' => 'text/csv',
+            );
+            return Response::download($filename, $filename, $headers);
+        }
+
+        return view('trainer.workout.show',compact('logged_in_user','trainee_workouts_show','trainer_image','trainee_id'));
 
     }
 
