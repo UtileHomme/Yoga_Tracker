@@ -77,6 +77,11 @@
         letter-spacing: 7px;
     }
 
+    .navigation-menu .navbar-nav li a
+    {
+        font-size: 15px !important;
+    }
+    
     .svg
     {
         position:absolute;

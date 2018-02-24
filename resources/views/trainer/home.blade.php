@@ -22,15 +22,15 @@
     .colors
     {
         color: #00635d;
-            margin-top: 32px;
+        margin-top: 32px;
     }
 
     .center
     {
         display: block;
-margin-left: auto;
-margin-right: auto;
-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
     </style>
 
@@ -60,15 +60,17 @@ width: 50%;
 
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body no-padding">
+                <div class="box-body no-padding" >
                     <ul class="users-list clearfix">
 
-                        @foreach($trainee_details as $detail)
-                        <li>
-                            <a href="{{route('trainer.show',$detail->id)}}" data-toggle="tooltip" title="Click to see your Trainee Workouts" data-placement="bottom"><img src="{{ asset(Storage::disk('local')->url($detail->profile_image)) }}" alt="User Image"></a>
-                            <a class="users-list-name" href="#">{{$detail->trainee_name}}</a>
-                            <span class="users-list-date">{{$detail->created_at}}</span>
-                        </li>
+                            @foreach($trainee_details as $detail)
+                            <li>
+                                <a href="{{route('trainer.show',$detail->id)}}" data-toggle="tooltip" title="Click to see your Trainee Workouts" data-placement="bottom"><img src="{{ asset(Storage::disk('local')->url($detail->profile_image)) }}" alt="User Image" width
+                                    = "200px"></a>
+                                <a class="users-list-name" href="#">{{$detail->trainee_name}}</a>
+                                <span class="users-list-date">{{$detail->created_at}}</span>
+                            </li>
+
                         @endforeach
                     </ul>
                     <!-- /.users-list -->

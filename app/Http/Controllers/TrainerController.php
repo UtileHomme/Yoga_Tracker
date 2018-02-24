@@ -80,7 +80,6 @@ class TrainerController extends Controller
     */
     public function show($id)
     {
-        // dd($id);
         $trainee_id = $id;
 
         $logged_in_user = Auth::user()->name;
@@ -91,7 +90,6 @@ class TrainerController extends Controller
 
         $trainee_image = DB::table('trainee_details')->where('id',$trainee_id)->value('profile_image');
 
-        // dd($trainee_id);
         $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($trainee_workouts_show);
