@@ -81,7 +81,7 @@
     {
         font-size: 15px !important;
     }
-    
+
     .svg
     {
         position:absolute;
@@ -695,6 +695,90 @@ padding-right: 0px;
         width: 102% !important;
     }
 
+
+    .form-layout
+    {
+        padding-right: 0px;
+    }
+}
+
+
+@media(min-width:768px) and (max-width:770px)
+{
+    h1 {
+        font-size: 1.8em;
+    }
+    .main-w3lsrow {
+        background:rgba(0, 0, 10, 0.66);
+        width:74%;
+        padding:113px;
+        margin-left: 98px;
+        margin-top:-108px;
+    }
+    ul.top-links li a i.fa {
+        color: #000;
+        background-color: #fff;
+        width: 50px;
+        height: 35px;
+        font-size: 24px;
+        border:1px solid #fff;
+        line-height: 36px;
+        text-align: center;
+        text-decoration: none;
+        transition:all 0.5s ease-in-out;
+        -webkit-transition:all 0.5s ease-in-out;
+        -moz-transition:all 0.5s ease-in-out;
+        -o-transition:all 0.5s ease-in-out;
+        -ms-transition:all 0.5s ease-in-out;
+    }
+
+    .login-f
+    {
+        font-size: 25px;
+    }
+    .login-form h2 {
+        font-size: 2.0em;
+        margin-bottom: 3em;
+        margin-left: -85px;
+    }
+    .login-form p {
+        font-size: 1.50em;
+        margin: 2em 0 .2em;
+        letter-spacing: 2px;
+        margin-left: -11px;
+    }
+    .anim {
+        font-size: 0.75em;
+    }
+    .login-agileits-bottom {
+        margin-top: 2em;
+    }
+    .login-form input[type="email"], .login-form input[type="password"] {
+        width: 167% !important;
+        margin-left: -9px;
+    }
+    .login-form input[type="submit"]
+    {
+        width: 88% !important;
+        margin-left: -65px;
+    }
+    .agile-row
+    {
+        width:129%
+    }
+
+    .login-agileits-bottom h6  {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
+    }
+
+    .login-agileits-bottom1 h3
+    {
+        font-size: 2em;
+        font-weight: 200;
+        letter-spacing: 5px;
+    }
 
     .form-layout
     {

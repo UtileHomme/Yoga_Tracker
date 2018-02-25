@@ -1,3 +1,5 @@
+<!-- For the Registration page -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +37,7 @@
 
     <!-- Styles -->
     <style>
+
 
     /*--
     Author: W3layouts
