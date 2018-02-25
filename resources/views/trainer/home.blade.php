@@ -57,45 +57,47 @@
                 <div class="box-header with-border text-center">
                     <h3 class="box-title">Your Current Trainees</h3>
 
-
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding" >
-                    <ul class="users-list clearfix">
-
-                            @foreach($trainee_details as $detail)
-                            <li>
-                                <a href="{{route('trainer.show',$detail->id)}}" data-toggle="tooltip" title="Click to see your Trainee Workouts" data-placement="bottom"><img src="{{ asset(Storage::disk('local')->url($detail->profile_image)) }}" alt="User Image" width
-                                    = "200px"></a>
-                                <a class="users-list-name" href="#">{{$detail->trainee_name}}</a>
-                                <span class="users-list-date">{{$detail->created_at}}</span>
-                            </li>
-
-                        @endforeach
-                    </ul>
-                    <!-- /.users-list -->
+                    <ul >
+                        <div class="container">
+                            <div class="row users-list clearfix">
+                                @foreach($trainee_details as $detail)
+                                <div class="col-sm-4">
+                                    <a href="{{route('trainer.show',$detail->id)}}" data-toggle="tooltip" title="Click to see your Trainee Workouts" data-placement="bottom"><img src="{{ asset(Storage::disk('local')->url($detail->profile_image)) }}" alt="User Image"
+                                        style="width: 131px;
+    height: 131px;"></a>
+                                        <a class="users-list-name" href="#">{{$detail->trainee_name}}</a>
+                                        <span class="users-list-date">{{$detail->created_at}}</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </ul>
+                        <!-- /.users-list -->
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- /.box-footer -->
                 </div>
-                <!-- /.box-body -->
-                <!-- /.box-footer -->
+                <!--/.box -->
             </div>
-            <!--/.box -->
-        </div>
 
-        @else
+            @else
 
-        <img src="{{ asset('images/sad_face/sad_face.jpg') }}" class="center" alt="User Image">
+            <img src="{{ asset('images/sad_face/sad_face.jpg') }}" class="center" alt="User Image">
 
-        <h1 class="text-center colors">
-            You currently have NO TRAINEES under you!!
-            <small></small>
-        </h1>        @endif
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+            <h1 class="text-center colors">
+                You currently have NO TRAINEES under you!!
+                <small></small>
+            </h1>        @endif
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
 
-@endsection
+    @endsection
 
-@section('scripts')
-@endsection
+    @section('scripts')
+    @endsection
