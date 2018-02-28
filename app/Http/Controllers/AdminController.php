@@ -105,8 +105,8 @@ class AdminController extends Controller
                 $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
 
                 Session::flash('message','The New Trainer has Been added successfully!!');
-                // return redirect()->route('admin.home');
-                return view('admin.trainer.show',compact('trainer_details','admin_image'));
+                return redirect()->route('admin.display');
+                // return view('admin.trainer.show',compact('trainer_details','admin_image','logged_in_user'));
             }
 
             /**
@@ -120,6 +120,17 @@ class AdminController extends Controller
                 //
             }
 
+            public function display()
+            {
+                $logged_in_user = Auth::user()->name;
+
+                $trainer_details = DB::table('trainer_details')->get();
+
+                $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
+
+                return view('admin.trainer.show',compact('trainer_details','admin_image','logged_in_user'));
+
+            }
             /**
             * Show the form for editing the specified resource.
             *
@@ -128,7 +139,7 @@ class AdminController extends Controller
             */
             public function edit($id)
             {
-                $id = $_GET['id'];
+                // $id = $_GET['id'];
                 // dd($id);
 
                 $logged_in_user = Auth::user()->name;
@@ -138,7 +149,7 @@ class AdminController extends Controller
                 // dd($trainer_detail);
                 $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
 
-                return view('admin.trainer.edit',compact('trainer_detail','id','admin_image'));
+                return view('admin.trainer.edit',compact('trainer_detail','id','admin_image','logged_in_user'));
             }
 
             /**
@@ -232,8 +243,8 @@ class AdminController extends Controller
                 $admin_detail->save();
 
                 Session::flash('message','Your Profile Settings have been changed');
-                return view('admin/profile/adminprofile',compact('admin_image'));
-
+                // return view('admin/profile/adminprofile',compact('admin_image'));
+                return redirect()->route('adminprofile');
             }
             /**
             * Remove the specified resource from storage.
@@ -243,6 +254,15 @@ class AdminController extends Controller
             */
             public function destroy($id)
             {
-                //
+                dd($id);
+                $logged_in_user = Auth::user()->name;
+
+                $trainer_id = $id;
+
+                admin_detail::where('id',$id)->delete();
+
+                $admin_image = DB::table('admin_details')->where('admin_name',$logged_in_user)->value('profile_image');
+
+                return redirect()->back();
             }
         }

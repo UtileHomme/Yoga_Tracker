@@ -288,6 +288,12 @@
             textarea {
                 height: 111px;
             }
+            ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: #CECACA;
+                opacity: 1; /* Firefox */
+                font-size: 17px;
+                text-align: center;
+            }
         }
         @media(max-width:1280px){
             .appointment-w3 {
@@ -336,7 +342,7 @@
             ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
                 color: #CECACA;
                 opacity: 1; /* Firefox */
-                font-size: 15px;
+                font-size: 17px;
                 text-align: center;
             }
 

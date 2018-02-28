@@ -6,6 +6,37 @@
 
 <link rel="stylesheet" href="{{ asset('traineee/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}">
 
+<head>
+
+    <style media="screen">
+
+    .alert-success
+    {
+        color: #3c763d !important;
+        background-color: #dff0d8 !important;
+        border-color: #d6e9c6 !important;
+
+    }
+
+    .alert
+    {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .modal-content2
+    {
+        height: 52px !important;
+        margin-top: 87% !important;
+
+        border-radius: 7px;
+    }
+    
+    </style>
+</head>
+
 @endsection
 
 @section('main-content')
@@ -64,9 +95,9 @@
                                         <td>{{$loop->index+1}}</td>
                                         <td>{{$details->trainer_name}}</td>
                                         <td>{{$details->trainer_emailid}}</td>
-                                        <td><a href="edit?id=<?php echo $details->id; ?>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                                        <td><a href="{{$details->id}}/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td>
-                                            <form id="delete-form-{{$details->id}}" class="" style="display:none" action="{{route('workout.destroy', $details->id)}}" method="POST">
+                                            <form id="delete-form-{{$details->id}}" class="" style="display:none" action="/admin/destroy/{{$details->id}}" method="POST">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
                                             </form>
@@ -97,6 +128,8 @@
                 <!-- /.content -->
             </div>
             <!-- /.content-wrapper -->
+
+            @include('partial._message')
 
             @endsection
 

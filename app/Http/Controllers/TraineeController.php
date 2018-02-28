@@ -481,7 +481,7 @@ class TraineeController extends Controller
         $workouts = DB::table('workouts')->where('id',$id)->get();
 
         // dd($workouts);
-        return view('traineee/workout/edit',compact('workouts','id','trainee_image'));
+        return view('traineee/workout/edit',compact('workouts','id','trainee_image','logged_in_user'));
     }
 
     /**
@@ -553,9 +553,10 @@ class TraineeController extends Controller
 
         $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
-
+        // dd($id);
         Session::flash('message','Your Workout changes have been updated');
-        return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image','trainee_workouts'));
+        return redirect()->route('workout.display');
+        // return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image','trainee_workouts'));
 
     }
 
@@ -792,7 +793,8 @@ class TraineeController extends Controller
         $trainee_detail->save();
 
         Session::flash('message','Your Profile Settings have been changed');
-        return view('traineee/profile/profile',compact('trainee_image','total_hours','minutes','trainee_workouts','total_workouts','trainer_name'));
+        return redirect()->route('profile');
+        // return view('traineee/profile/profile',compact('trainee_image','total_hours','minutes','trainee_workouts','total_workouts','trainer_name','logged_in_user'));
     }
 
     public function addcomment(Request $request)

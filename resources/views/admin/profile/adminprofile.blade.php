@@ -133,4 +133,6 @@ height: 93px;
 </div>
 <!-- /.content-wrapper -->
 
+@include('partial._message')
+
 @endsection

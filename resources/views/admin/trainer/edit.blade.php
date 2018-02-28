@@ -96,9 +96,9 @@ $(document).ready(function() {
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('admin.update',$id)}}" method="POST">
+                    <form role="form" action="{{ url("admin/update", array($id))}}" method="POST">
                         {{csrf_field()}}
-                        {{method_field('PATCH')}}
+                        {{method_field('PUT')}}
 
                         <div class="box-body">
 

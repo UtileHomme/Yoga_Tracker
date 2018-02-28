@@ -23,8 +23,9 @@ Route::get('workout/display','TraineeController@display')->name('workout.display
 Route::get('workout/statistics','TraineeController@statistics')->name('workout.statistics');
 
 Route::get('admin/display','AdminController@display')->name('admin.display');
-Route::get('admin/edit','AdminController@edit')->name('admin.edit');
-Route::post('update/{id}','AdminController@update')->name('admin.update');
+Route::get('admin/{id}/edit','AdminController@edit')->name('admin.edit');
+Route::post('/admin/update/{id}','AdminController@update');
+Route::post('/admin/destroy/{id}','AdminController@destroy');
 
 
 Route::resource('workout','TraineeController');
