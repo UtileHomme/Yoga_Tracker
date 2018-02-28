@@ -14,7 +14,7 @@
 }
 
 .content {
-    height: 464px;
+    height: 670px;
 }
 
 .users-list>li img

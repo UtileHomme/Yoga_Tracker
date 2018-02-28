@@ -50,10 +50,10 @@
                   <a href="{{route('trainerprofile')}}" class="btn btn-default" style="color:black">Profile</a>
               </div>
               <div class="sameline">
-                <a href="{{route('trainerchangepassword')}}" class="btn btn-default" style="color:black">Change Password</a>
+                <a href="{{route('trainerchangepassword')}}" class="btn btn-default" style="color:black; margin-left: 5px;">Change Password</a>
               </div>
               <div class="sameline">
-                <a href="{{ route('logout') }}" class="btn btn-default" style="color:black">Sign out</a>
+                <a href="{{ route('logout') }}" class="btn btn-default" style="color:black; margin-left:2px;">Sign out</a>
               </div>
             </li>
           </ul>

@@ -2,16 +2,20 @@
 
 @section('scripts')
 
+@include('partial/_errors')
 <script type="text/javascript">
+
+
 
 $(document).ready(function() {
 
     var trainer_name = $('#trainer_name').val();
     var length = trainer_name.length;
-    var reg = /^[a-zA-Z\s]*$/;
+    // var reg = /^[a-zA-Z\s]+$/;
+    var reg = /^[a-zA-Z\s]+$/;
     var test = reg.test(trainer_name);
 
-
+    $(".error").hide();
     // console.log
     // console.log(trainer_name);
     if(length==0)
@@ -23,7 +27,7 @@ $(document).ready(function() {
 
         var trainer_name = $('#trainer_name').val();
         var length = trainer_name.length;
-        var reg = /^[a-zA-Z\s]*$/;
+        var reg = /^[a-zA-Z\s]+$/;
         var test = reg.test(trainer_name);
 
         if(reg.test(trainer_name)==false)
@@ -96,9 +100,9 @@ $(document).ready(function() {
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{ url("admin/update", array($id))}}" method="POST">
+                    <form role="form" action="{{ url('update')}}" method="POST">
                         {{csrf_field()}}
-                        {{method_field('PUT')}}
+                        <input type="hidden" name="id"  value="{{$id}}" />
 
                         <div class="box-body">
 
@@ -135,6 +139,5 @@ $(document).ready(function() {
 </section>
 <!-- /.content -->
 </div>
-
 
 @endsection

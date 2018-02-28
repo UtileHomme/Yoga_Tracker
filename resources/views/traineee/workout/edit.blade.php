@@ -2,6 +2,7 @@
 
 @section('scripts')
 
+@include('partial/_errors')
 @if (session()->has('message'))
 <!-- <div class="alert alert-success" style="text-align: center">
   {{session()->get('message')}}
@@ -37,10 +38,10 @@ $(document).ready(function() {
 
     var workout_name = $('#wname').val();
     var length = workout_name.length;
-    var reg = /^[a-zA-Z\s]*$/;
+    var reg = /^[a-zA-Z\s]+$/;
     var test = reg.test(workout_name);
 
-
+    $(".error").hide();
     // console.log
     // console.log(workout_name);
     if(length==0)
@@ -52,7 +53,7 @@ $(document).ready(function() {
 
         var workout_name = $('#wname').val();
         var length = workout_name.length;
-        var reg = /^[a-zA-Z\s]*$/;
+        var reg = /^[a-zA-Z\s]+$/;
         var test = reg.test(workout_name);
 
         if(reg.test(workout_name)==false)

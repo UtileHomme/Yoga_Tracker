@@ -250,9 +250,11 @@ class TrainerController extends Controller
 
         $trainer_detail->save();
 
-        Session::flash('message','Your Profile Settings have been changed');
-        return view('trainer/profile/profile',compact('trainer_image'));
+        $trainee_count = DB::table('trainee_details')->where('trainer_id',$trainer_id)->count();
 
+        Session::flash('message','Your Profile Settings have been changed');
+        // return view('trainer/profile/profile',compact('trainer_image','trainee_count'));
+        return redirect()->route('trainerprofile');
     }
 
 

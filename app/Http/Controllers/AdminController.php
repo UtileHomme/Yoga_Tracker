@@ -159,15 +159,24 @@ class AdminController extends Controller
             * @param  int  $id
             * @return \Illuminate\Http\Response
             */
-            public function update(Request $request, $id)
+            public function update(Request $request)
             {
+                // dd($request->all());
+
+                $id = $request->id;
                 $this->validate($request,[
                     'trainer_name'=>'required|string',
-                    'email'=>'required|string|email|max:255|unique:admins',
-                    'password'=>'required|string|min:6|confirmed',
+                    'email'=>'required|string|email|max:255',
                 ]);
 
-                dd($request->all());
+                $name = $request->trainer_name;
+                $email = $request->email;
+
+                DB::table('trainer_details')->where('id',$id)->update(['trainer_name'=>$name, 'trainer_emailid'=>$email]);
+                DB::table('admins')->where('id',$id)->update(['name'=>$name, 'email'=>$email]);
+
+                Session::flash('message','The Trainer Details have been Updated Successfully!!');
+                return redirect()->route('admin.display');
             }
 
             public function adminprofile()
@@ -252,9 +261,9 @@ class AdminController extends Controller
             * @param  int  $id
             * @return \Illuminate\Http\Response
             */
-            public function destroy($id)
+            public function destroy()
             {
-                dd($id);
+                dd('hello');
                 $logged_in_user = Auth::user()->name;
 
                 $trainer_id = $id;

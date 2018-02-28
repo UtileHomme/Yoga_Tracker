@@ -432,7 +432,10 @@ class TraineeController extends Controller
         $trainee_workouts_show = DB::table('workouts')->where('trainee_id',$trainee_id)->get();
 
         // dd($like_status_all);
-        return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image'));
+        Session::flash('message','Your Workout has been successfully Logged');
+        // return view('traineee.workout.show',compact('trainee_workouts_show','logged_in_user','trainee_image'));
+        return redirect()->route('workout.display');
+
     }
 
     public function display()
@@ -582,6 +585,7 @@ class TraineeController extends Controller
         // DB::table('workouts')->where('id',$id)->delete();
 
         Workout::where('id',$id)->delete();
+        Session::flash('message','Your Workout has been Deleted');
         return redirect()->back();
 
         // return view('traineee.workout.show',compact('logged_in_user','trainee_image','trainee_workouts'));

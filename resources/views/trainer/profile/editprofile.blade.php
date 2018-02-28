@@ -5,6 +5,10 @@
 @section('editdob',$trainer_details->trainer_dob)
 @section('editmobileno',$trainer_details->trainer_mobilenumber)
 
+@section('scripts')
+
+@include('partial/_errors')
+@endsection
 @section('main-content')
 
 <head>

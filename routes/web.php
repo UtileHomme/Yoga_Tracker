@@ -24,8 +24,7 @@ Route::get('workout/statistics','TraineeController@statistics')->name('workout.s
 
 Route::get('admin/display','AdminController@display')->name('admin.display');
 Route::get('admin/{id}/edit','AdminController@edit')->name('admin.edit');
-Route::post('/admin/update/{id}','AdminController@update');
-Route::post('/admin/destroy/{id}','AdminController@destroy');
+
 
 
 Route::resource('workout','TraineeController');
@@ -33,6 +32,14 @@ Route::resource('trainer','TrainerController');
 
 
 Auth::routes();
+//
+// Route::POST('update', function () {
+//     dd('asd');
+// });
+
+
+Route::POST('update','AdminController@update');
+Route::POST('destroy','AdminController@destroy');
 
 Route::get('/home/{name}', ['uses' => 'HomeController@index','as' => 'home']);
 

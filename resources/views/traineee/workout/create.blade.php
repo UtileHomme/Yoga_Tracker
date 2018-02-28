@@ -2,13 +2,14 @@
 
 @section('scripts')
 
+@include('partial/_errors')
 <script type="text/javascript">
 
 $(document).ready(function() {
 
     var workout_name = $('#wname').val();
     var length = workout_name.length;
-    var reg = /^[a-zA-Z\s]*$/;
+    var reg = /^[a-zA-Z\s]+$/;
     var test = reg.test(workout_name);
 
 
@@ -23,7 +24,7 @@ $(document).ready(function() {
 
         var workout_name = $('#wname').val();
         var length = workout_name.length;
-        var reg = /^[a-zA-Z\s]*$/;
+        var reg = /^[a-zA-Z\s]+$/;
         var test = reg.test(workout_name);
 
         if(reg.test(workout_name)==false)

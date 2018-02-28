@@ -33,7 +33,7 @@
 
         border-radius: 7px;
     }
-    
+
     </style>
 </head>
 
@@ -97,7 +97,7 @@
                                         <td>{{$details->trainer_emailid}}</td>
                                         <td><a href="{{$details->id}}/edit"><span class="glyphicon glyphicon-edit"></span></a></td>
                                         <td>
-                                            <form id="delete-form-{{$details->id}}" class="" style="display:none" action="/admin/destroy/{{$details->id}}" method="POST">
+                                            <form id="delete-form-{{$details->id}}" class="" style="display:none" action="{{ url('destroy')}}" method="POST">
                                                 {{csrf_field()}}
                                                 {{method_field('DELETE')}}
                                             </form>
