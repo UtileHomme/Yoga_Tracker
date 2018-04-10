@@ -27,7 +27,7 @@
               <img src="{{ asset('traineee/dist/img/spiderman.jpg') }}" class="img-circle" alt="User Image">
 
               <p>
-                {{$logged_in_user}} - Web Developer
+                {{$logged_in_user}}
               </p>
             </li>
             <!-- Menu Footer-->

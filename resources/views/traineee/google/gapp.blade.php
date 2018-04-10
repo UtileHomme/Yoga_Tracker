@@ -12,9 +12,9 @@
 
         @include('traineee.google.gsidebar')
 
-        <!-- @section('main-content')
+        @section('main-content')
 
-        @show -->
+        @show
 
         @include('traineee.layout.footer')
 

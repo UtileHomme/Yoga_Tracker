@@ -62,7 +62,7 @@
         </div>
         <div class="social_icons agileinfo">
             <ul class="top-links">
-                <li><a href="{{ url('login/google') }}"><i class="fa fa-facebook"></i></a></li>
+                <!-- <li><a href="{{ url('login/google') }}"><i class="fa fa-facebook"></i></a></li> -->
                 <li><a href="{{ url('login/google') }}"><i class="fa fa-google-plus"></i></a></li>
             </ul>
         </div>

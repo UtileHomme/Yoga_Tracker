@@ -26,7 +26,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
-          <li class=""><a href="{{ route('createworkout.create')}}"><i class="fa fa-circle-o"></i> Log My Workout</a></li>
+          <li class=""><a href=""><i class="fa fa-circle-o"></i> Log My Workout</a></li>
           <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> View My Workouts</a></li>
       </li>
       <li>
